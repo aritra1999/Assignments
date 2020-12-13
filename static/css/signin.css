@@ -1,0 +1,111 @@
+div.full_height{
+    height: calc(100vh - 65px);
+    background-color: #06090f;
+    display: flex;
+    padding: 0 10%;
+}
+div.left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+div.right{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+div.left form{
+    width: 60%;
+}
+img.logo{
+    width: 70px;
+    margin-bottom: 20px;
+}
+h1.login{
+    color: #fff;
+    font-size: 2rem;
+    font-family: "Mulish-reg", sans-serif;
+}
+p.tag{
+    color: #e2e2e2;
+    font-size: 0.95rem;
+    font-family: "Mulish-Reg", sans-serif;
+    margin: 15px 0;
+}
+p.tag a{
+    text-decoration: none;
+    color: #0078d4;
+    font-weight: 600;
+}
+input.input{
+    display: block;
+    height: 40px;
+    padding: 10px 15px;
+    width: 450px;
+    background-color: #1E252E;
+    border: none;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.96rem;
+    color: #ffffff;
+}
+button.login{
+    width: 480px;
+    height: 50px;
+    padding: 10px 15px;
+    background-color: #0078d4;
+    color: #ffffff;
+    border: none;
+    display: block;
+    border-radius: 4px;
+    text-align: left;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 1rem;
+    position: relative;
+}
+svg.arrow{
+    position: absolute;
+    width: 20px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+div.pass_cont{
+    position: relative;
+}
+svg.eye{
+    position: absolute;
+    width: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
+a.forgot{
+    color: #777777;
+    text-decoration: none;
+    margin-top: 20px;
+    font-family: "Mulish-reg", sans-serif;
+    font-size: 0.9rem;
+}
+
+img.loginImg{
+    width: 95%;
+    height: auto;
+}
+
+@media screen and (max-width: 1100px) {
+    div.full_height div.right{
+        display: none;
+    }
+    div.full_height{
+        padding: 0 3%;
+    }
+    div.full_height div.left{
+        width: 100%;
+        align-items: center;
+    }
+}

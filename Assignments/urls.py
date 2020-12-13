@@ -6,6 +6,6 @@ from dashboard.views import home_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
-    # path('auth/', include('accounts.urls')),
+    path('auth/', include('accounts.urls')),
     path('assignments/', include('assignment.urls')),
 ]
