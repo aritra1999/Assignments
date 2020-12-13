@@ -1,0 +1,16 @@
+{% load static %}
+<nav class="main_nav">
+    <div class="links">
+        <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/logo.svg' %}" alt="logo" class="nav_logo"></a>
+        <ul class="nav_links_cont">
+            <li class="nav_link"><a href="#">Members</a></li>
+            <li class="nav_link"><a href="#">IDE</a></li>
+        </ul>
+    </div>
+    <div class="nav_cta">
+        <ul class="nav_cta">
+            <li><a href="{% url 'login_view' %}">Sign In</a></li>
+            <li><a href="{% url 'register_view' %}">Sign Up</a></li>
+        </ul>
+    </div>
+</nav>
