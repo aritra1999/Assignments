@@ -4,57 +4,27 @@
     <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 {% endblock extrahead %}
 {% block content %}
-<div class="full_height">
-    <div class="left">
-        <img src="{% static 'Illustrations/logo.svg' %}" alt="logo" class="logo">
-        <h1 class="login">Sign in to Assignments</h1>
-        <p class="tag">Don't have an account?<a href="{% url 'register_view' %}">Create an account</a></p>
-        <form action="" method="post">{% csrf_token %}
-            <input type="email" name="username" class="username input" placeholder="someone@email.com">
+    <div class="full_height">
+        <div class="left">
+            <img src="{% static 'Illustrations/Logo.svg' %}" alt="logo" class="logo">
+            <h1 class="login">Sign in to Assignments</h1>
+            <p class="tag">Don't have an account?<a href="{% url 'register_view' %}">Create an account</a></p>
+            <form action="" method="post">{% csrf_token %}
+                <input type="email" name="email" class="username input" placeholder="someone@email.com">
                 <input type="password" name="password" class="password input" placeholder="password">
-            <button type="submit" class="login">Sign in to Assignments <svg class="arrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 31.49 31.49" style="enable-background:new 0 0 31.49 31.49;" xml:space="preserve">
-<path style="fill:#ffffff;" d="M21.205,5.007c-0.429-0.444-1.143-0.444-1.587,0c-0.429,0.429-0.429,1.143,0,1.571l8.047,8.047H1.111
-	C0.492,14.626,0,15.118,0,15.737c0,0.619,0.492,1.127,1.111,1.127h26.554l-8.047,8.032c-0.429,0.444-0.429,1.159,0,1.587
-	c0.444,0.444,1.159,0.444,1.587,0l9.952-9.952c0.444-0.429,0.444-1.143,0-1.571L21.205,5.007z"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg></button>
-        </form>
-        <a href="#" class="forgot">Forgot your password?</a>
+                <button type="submit" class="login">Sign in to Assignments
+                    <svg class="arrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 31.49 31.49" style="enable-background:new 0 0 31.49 31.49;" xml:space="preserve"> <path style="fill:#ffffff;" d="M21.205,5.007c-0.429-0.444-1.143-0.444-1.587,0c-0.429,0.429-0.429,1.143,0,1.571l8.047,8.047H1.111 C0.492,14.626,0,15.118,0,15.737c0,0.619,0.492,1.127,1.111,1.127h26.554l-8.047,8.032c-0.429,0.444-0.429,1.159,0,1.587                         c0.444,0.444,1.159,0.444,1.587,0l9.952-9.952c0.444-0.429,0.444-1.143,0-1.571L21.205,5.007z"/>
+                    </svg>
+                </button>
+            </form>
+            <a href="#" class="forgot">Forgot your password?</a>
+        </div>
+        <div class="right">
+            <img src="{% static 'Illustrations/LoginIllustration.svg' %}" alt="" class="loginImg">
+        </div>
     </div>
-    <div class="right">
-        <img src="{% static 'Illustrations/loginillustration.png' %}" alt="" class="loginImg">
-    </div>
-</div>
 
 {% endblock content %}
 
