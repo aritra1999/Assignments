@@ -52,3 +52,17 @@ class BestSubmission(models.Model):
 
     def __str__(self):
         return str(self.slug)
+
+
+class Executions(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    language = models.CharField(max_length=10, null=True, blank=True)
+    verdict = models.CharField(max_length=10, null=True, blank=True)
+    message = models.CharField(max_length=100, null=True, blank=True)
+    time_taken = models.CharField(max_length=10, null=True, blank=True)
+    mem_used = models.CharField(max_length=10, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.language)
