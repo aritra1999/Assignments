@@ -38,6 +38,7 @@ class Question(models.Model):
 
 class Submission(models.Model):
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=10, blank=True, null=True)
     score = models.IntegerField(null=True, blank=True)
 
@@ -47,6 +48,7 @@ class Submission(models.Model):
 
 class BestSubmission(models.Model):
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=10, blank=True, null=True)
     score = models.IntegerField(null=True, blank=True)
 

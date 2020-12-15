@@ -1,13 +1,16 @@
 import json
 import requests
 
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from accounts.models import Profile
 
 
 def home_view(request):
+    if request.user.is_authenticated:
+        redirect('/dashboard/')
     context = {
         'title': 'Home'
     }
@@ -15,6 +18,7 @@ def home_view(request):
     return render(request, 'dashboard/home.html', context)
 
 
+@login_required
 def dashboard_view(request):
     context = {
         'title': 'Dashboard'
