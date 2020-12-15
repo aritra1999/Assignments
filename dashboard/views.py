@@ -1,3 +1,7 @@
+import json
+import requests
+
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from accounts.models import Profile
@@ -50,5 +54,29 @@ def report_view(request):
         'title': 'Report'
     }
     return render(request, 'dashboard/report.html', context)
+
+
+def submit(request):
+    if request.method == "POST":
+        payload = {
+            "language": request.POST.get('language'),
+            "code": request.POST.get('code'),
+            "input": request.POST.get('input')
+        }
+        url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
+        r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+
+        # verdict = r['verdict']
+        # message = r['message']
+        # output = r['output']
+        # time = r['time']
+        # memory = r['memory']
+
+        response = {
+            'response': r
+        }
+        return JsonResponse(response)
+    else: return JsonResponse({'error': 'Bad Request'})
+
 
 
