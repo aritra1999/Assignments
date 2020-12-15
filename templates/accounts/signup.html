@@ -1,10 +1,26 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 {% endblock extrahead %}
-
 {% block content %}
-    SignUp
+    {% include 'base/header.html' %}
+    <div class="full_height">
+        <div class="left">
+            <img src="{% static 'Illustrations/Logo.svg' %}" alt="logo" class="logo">
+            <h1 class="login">Sign Up for Assignments</h1>
+            <p class="tag">Already have an account?<a href="{% url 'login_view' %}">Sign In to existing account</a></p>
+            <form action="" method="post">{% csrf_token %}
+                <div class="part1">
+
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <img src="{% static 'Illustrations/LoginIllustration.svg' %}" alt="" class="loginImg">
+        </div>
+    </div>
+
 {% endblock content %}
 
 {% block extrafoot %}

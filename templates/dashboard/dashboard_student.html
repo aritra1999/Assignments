@@ -1,10 +1,35 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
 {% endblock extrahead %}
 {% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="dash_cont">
+        <div class="class_cont">
+            <div class="top">
+                <span class="search_cont">
+                    <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
+                </span>
+                <button type="button" class="join">Join a class</button>
+            </div>
+            <div class="classes">
+                <a href="" class="class_tile">
+                    <div class="class_tile">
+                    <div class="heads">
+                        <h3 class="class_head">T&T Lab</h3>
+                        <p class="section">IT-G1</p>
+                    </div>
+                    <div class="tags">
+                        <p class="due_tag">Assignment due</p>
+                        <p class="date">Nov 18, 2020</p>
+                    </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
-
 {% block extrafoot %}
 {% endblock extrafoot %}

@@ -19,13 +19,13 @@ def dashboard_view(request):
     context = {
         'title': 'Dashboard'
     }
-    user = request.user
-    profile = Profile.objects.get()
-
-    if profile.type == "teacher":
-        return render(request, 'dashboard/dashboard_teacher.html', context)
-    elif profile.type == "student":
-        return render(request, 'dashboard/dashboard_student.html', context)
+    # user = request.user
+    # profile = Profile.objects.get()
+    #
+    # if profile.type == "teacher":
+    #     return render(request, 'dashboard/dashboard_teacher.html', context)
+    # elif profile.type == "student":
+    return render(request, 'dashboard/dashboard_student.html', context)
 
 
 def assignment_view(request):
@@ -76,7 +76,5 @@ def submit(request):
             'response': r
         }
         return JsonResponse(response)
-    else: return JsonResponse({'error': 'Bad Request'})
-
-
-
+    else:
+        return JsonResponse({'error': 'Bad Request'})
