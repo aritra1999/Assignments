@@ -1,0 +1,15 @@
+{% load static %}
+<nav class="dash_nav">
+    <div class="left_cta">
+        <a href="{% url 'dash' %}" class="logo"><img src="{% static 'Illustrations/Logo.svg' %}" class="dash_logo" alt=""></a>
+        <ul class="cta">
+            <li><a href="#" class="active">Classrooms</a></li>
+            <li><a href="#">Your Assignments</a></li>
+            <li><a href="#">Online IDE</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        <span class="notif"><img src="{% static 'Illustrations/bell.svg' %}" alt="" class="bell"></span>
+        <span class="profile">Richard Hill</span>
+    </div>
+</nav>
