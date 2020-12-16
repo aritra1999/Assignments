@@ -110,7 +110,7 @@ input.search{
 	display: inline-block;
 	width: 400px;
 	border: none;
-	padding: 12px 35px;
+	padding: 12px 40px;
 	background-color: #161b22;
 	font-family: "Mulish-Reg", sans-serif;
 	font-weight: 600;
@@ -124,7 +124,7 @@ img.search{
 	display: inline-block;
 	position: absolute;
 	width: 18px;
-	left: 10px;
+	left: 15px;
 	top: 50%;
 	transform: translateY(-50%);
 }
