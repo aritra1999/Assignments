@@ -5,9 +5,11 @@ part2.style.display = "none";
 
 nextBtn.addEventListener("click", nextPart)
 function nextPart(){
-    validation()
+    if (validation()===true){
+        part1.style.display = "none"
+        part2.style.display = "block"
+    }
 }
-
 function validation(){
     let f_name = document.forms["subForm"]["f_name"]
     let l_name = document.forms["subForm"]["l_name"]
@@ -16,10 +18,10 @@ function validation(){
 
     if(f_name.value===""||l_name.value===""||univ.value===""||roll.value===""){
         nextBtn.style.backgroundColor="#ff6347"
-        window.alert("Please Fill all the fields")
+        alert("Please fill us all the fields")
+        return false
     }
     else {
-        part1.style.display = "none"
-        part2.style.display = "block"
+        return true
     }
 }
