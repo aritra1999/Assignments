@@ -53,10 +53,10 @@ ul.cta li a{
     transition: all 100ms ease-in;
 }
 ul.cta li a:hover{
-	border-bottom: 2px solid #109b67;
+	border-bottom: 3px solid #109b67;
 }
 .active{
-	border-bottom: 2px solid #109b67 !important;
+	border-bottom: 3px solid #109b67 !important;
 }
 div.right{
 	display: flex;
