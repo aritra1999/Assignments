@@ -55,6 +55,7 @@ input.input{
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.96rem;
     color: #ffffff;
+    outline: none;
 }
 button.login{
     width: 480px;
@@ -137,4 +138,5 @@ select.university{
     font-size: 1rem;
     position: relative;
     margin-bottom: 15px;
+    outline: none;
 }
