@@ -111,6 +111,15 @@ img.loginImg{
     div.full_height div.left{
         width: 100%;
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    div.full_height div.left form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
