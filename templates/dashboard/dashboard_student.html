@@ -15,18 +15,21 @@
                 <button type="button" class="join">Join a class</button>
             </div>
             <div class="classes">
-                <a href="" class="class_tile">
-                    <div class="class_tile">
-                    <div class="heads">
-                        <h3 class="class_head">T&T Lab</h3>
-                        <p class="section">IT-G1</p>
-                    </div>
-                    <div class="tags">
-                        <p class="due_tag">Assignment due</p>
-                        <p class="date">Nov 18, 2020</p>
-                    </div>
-                    </div>
-                </a>
+                {% for class in classes %}
+                    <a href="/dashboard/assignment/{{ class.class_name.slug }}" class="class_tile">
+                        <div class="class_tile">
+                            <div class="heads">
+                                <h3 class="class_head">{{ class.class_name.name }}</h3>
+                                <p class="section">IT-G1</p>
+                            </div>
+                            <div class="tags">
+{#                                <p class="due_tag">Assignment due</p>#}
+{#                                <p class="date">Nov 18, 2020</p>#}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
             </div>
         </div>
     </div>

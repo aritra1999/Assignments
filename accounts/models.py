@@ -12,7 +12,7 @@ class Profile(models.Model):
         return str(self.user.username)
 
 
-class enrolled(models.Model):
+class Enrolled(models.Model):
     student = models.OneToOneField(User, on_delete=models.CASCADE)
     class_name =  models.OneToOneField(Class, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
