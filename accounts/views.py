@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 from .models import Profile
 
+
 def signin_view(request):
     context = {
         'title': 'Sign In'
@@ -35,7 +36,7 @@ def signup_view(request):
                     first_name=request.POST.get('f_name'),
                     last_name=request.POST.get('l_name'),
                     username=request.POST.get('email'),
-                    email = request.POST.get('email'),
+                    email=request.POST.get('email'),
                     password=password1
                 )
                 Profile.objects.create(
@@ -43,7 +44,6 @@ def signup_view(request):
                     type="student",
                     university=request.POST.get('university')
                 ).save()
-
 
                 user = authenticate(request, username=request.POST.get('email'), password=password1)
                 if user is not None:
