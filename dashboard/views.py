@@ -11,6 +11,7 @@ from accounts.models import Profile
 def home_view(request):
     if request.user.is_authenticated:
         redirect('/dashboard/')
+
     context = {
         'title': 'Home'
     }
@@ -21,8 +22,12 @@ def home_view(request):
 @login_required
 def dashboard_view(request):
     context = {
-        'title': 'Dashboard'
+        'title': 'Dashboard',
+        'user': request.user,
+        'profile': Profile.objects.get(user=request.user)
     }
+
+
     # user = request.user
     # profile = Profile.objects.get()
     #
