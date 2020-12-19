@@ -11,6 +11,11 @@
             <h1 class="login">Sign in to Assignments</h1>
             <p class="tag">Don't have an account?<a href="{% url 'register_view' %}">Create an account</a></p>
             <form action="" method="post">{% csrf_token %}
+                {% if error %}
+                    <div class="error">
+                        <p class="errorText">{{ error }}</p>
+                    </div>
+                {% endif %}
                 <input type="email" name="email" class="username input" placeholder="someone@email.com">
                 <input type="password" name="password" class="password input" placeholder="password">
                 <button type="submit" class="login">Sign in to Assignments
@@ -26,7 +31,6 @@
             <img src="{% static 'Illustrations/LoginIllustration.svg' %}" alt="" class="loginImg">
         </div>
     </div>
-
 {% endblock content %}
 
 {% block extrafoot %}

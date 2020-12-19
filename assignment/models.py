@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from Assignments.utls import slug_generator
 
+
 class Class(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=10, blank=True, null=True)

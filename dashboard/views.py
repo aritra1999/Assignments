@@ -10,7 +10,7 @@ from accounts.models import Profile, Enrolled
 
 def home_view(request):
     if request.user.is_authenticated:
-        redirect('/dashboard/')
+        return redirect('/dashboard/')
 
     context = {
         'title': 'Home'

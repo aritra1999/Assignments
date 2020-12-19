@@ -6,6 +6,8 @@ from .models import Profile
 
 
 def signin_view(request):
+    if request.user.is_authenticated:
+        return redirect('/dashboard/')
     context = {
         'title': 'Sign In'
     }
@@ -18,11 +20,13 @@ def signin_view(request):
             login(request, user)
             return redirect("/dashboard")
         else:
-            context['login_error'] = "Invalid credentials!"
+            context['error'] = "Invalid credentials!"
     return render(request, 'accounts/signin.html', context)
 
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('/dashboard/')
     context = {
         'title': 'SignUp',
     }
