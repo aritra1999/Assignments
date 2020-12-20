@@ -8,7 +8,7 @@
     <div class="full_height">
         <div class="left">
             <img src="{% static 'Illustrations/Logo.svg' %}" alt="logo" class="logo">
-            <h1 class="login">Sign in to Assignments</h1>
+            <h1 class="login">Sign in to CodeVox</h1>
             <p class="tag">Don't have an account?<a href="{% url 'register_view' %}">Create an account</a></p>
             <form action="" method="post">{% csrf_token %}
                 {% if error %}
