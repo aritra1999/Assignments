@@ -1,11 +1,15 @@
 import json
 import requests
+import asyncio
+import aiohttp
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from accounts.models import Profile, Enrolled
+from assignment.models import Question
+
 
 
 def home_view(request):
@@ -47,8 +51,10 @@ def assignment_view(request, assignment_slug):
 
 
 def question_view(request, question_slug):
+    question = Question.objects.get(slug=question_slug)
     context = {
-        'title': 'Question'
+        'title': 'Question',
+        'question': question
     }
     return render(request, 'dashboard/question.html', context)
 
@@ -60,25 +66,46 @@ def report_view(request, email):
     return render(request, 'dashboard/report.html', context)
 
 
-def submit(request):
+
+def submit(request, question_slug):
     if request.method == "POST":
-        payload = {
-            "language": request.POST.get('language'),
-            "code": request.POST.get('code'),
-            "input": request.POST.get('input')
-        }
-        url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
-        r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+        response = {}
+        question = Question.objects.get(slug=question_slug)
+        print(question)
 
-        # verdict = r['verdict']
-        # message = r['message']
-        # output = r['output']
-        # time = r['time']
-        # memory = r['memory']
+        response['totalscore'] = 0
+        for it in range(1, 6):
+            input = open("media/io/" + question_slug + "_" + str(it) + ".in", "rt").read()
+            output = open("media/io/"+ question_slug + "_" + str(it) + ".out", "rt").read().strip()
 
-        response = {
-            'response': r
-        }
+            payload = {
+                "language": question.allowed_lang,
+                "code": request.POST.get('code'),
+                "input": input
+            }
+
+            url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
+            r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+
+            if r['verdict'] == "error":
+                return JsonResponse({
+                    'status': 'error',
+                    'error': r
+                })
+
+            response['status'] = "success"
+            response['time' + str(it)] = r['time']
+            response['memory' + str(it)] = r['memory']
+
+            if r['output'].strip() == output:
+                response['verdict' + str(it)] = "correct"
+                response['score' + str(it)] = "20"
+                response['totalscore'] += 20
+            else:
+                response['verdict' + str(it)] = "wrong"
+
+        print(response)
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
+

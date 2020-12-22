@@ -5,7 +5,8 @@ from .views import (
     class_view,
     question_view,
     report_view,
-    assignment_view
+    assignment_view,
+    submit
 )
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path('assignment/<assignment_slug>', assignment_view, name='assignment'),
     path('question/<question_slug>', question_view, name='question'),
     path('report/<email>', report_view, name='report'),
+    path('submit/<question_slug>', submit, name='submit'),
 ]
