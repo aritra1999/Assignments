@@ -1,4 +1,34 @@
 {% extends "base/base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+{% endblock extrahead %}
 {% block content %}
-    {% include 'base/header.html' %}
+    <div class="homeNav">
+        <span class="logo"><a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo"></a></span>
+        <nav class="homeNav">
+            <ul class="homeNav">
+                <li class="navItem"><a href="#">Home</a></li>
+                <li class="navItem"><a href="#">About Us</a></li>
+                <li class="navItem"><a href="#">Online IDE</a></li>
+                <li class="navItem"><a href="{% url 'login_view' %}">Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="homeCont">
+        <div class="content_cont">
+            <h1 class="mainHead">A free <span class="lg">portal</span> for <span class="dg">coding</span> assessment<span id="cursor">|</span></h1>
+            <p class="tag">Free and collaborative tool to help students and teachers to assess coding skills efficiently.</p>
+            <div class="cta">
+                <a href="{% url 'register_view' %}" class="signUp">Sign up for free</a>
+                <a href="#" class="try">Try our online IDE</a>
+            </div>
+        </div>
+    </div>
+    <div class="floatImg">
+        <img src="{% static 'Illustrations/LandingPageIllustration.svg' %}" alt="" class="float">
+    </div>
 {% endblock %}
+{% block extrafoot %}
+    <script src="{% static 'js/landing.js' %}"></script>
+{% endblock extrafoot %}

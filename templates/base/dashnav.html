@@ -10,6 +10,17 @@
     </div>
     <div class="right">
         <span class="notif"><img src="{% static 'Illustrations/bell.svg' %}" alt="" class="bell"></span>
-        <span class="profile">{{ user.first_name }} {{ user.last_name }}</span>
+        <span class="profile" id="togglePop">{{ user.first_name }} <svg class="arrowTogg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg></span>
+    </div>
+    <div class="popUp" id="popUp">
+        <h1 class="namePop">{{ user.first_name }} {{ user.last_name }}</h1>
+        <p class="tagEmail">Signed in as</p>
+        <p class="email">{{ user.email }}</p>
+        <div class="ctaPop">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+            <a href="#" class="viewProfile">View profile</a>
+        </div>
     </div>
 </nav>

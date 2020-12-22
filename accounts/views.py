@@ -4,7 +4,10 @@ from django.shortcuts import render, redirect
 
 from .models import Profile
 
+
 def signin_view(request):
+    if request.user.is_authenticated:
+        return redirect('/dashboard/')
     context = {
         'title': 'Sign In'
     }
@@ -17,11 +20,13 @@ def signin_view(request):
             login(request, user)
             return redirect("/dashboard")
         else:
-            context['login_error'] = "Invalid credentials!"
+            context['error'] = "Invalid credentials!"
     return render(request, 'accounts/signin.html', context)
 
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('/dashboard/')
     context = {
         'title': 'SignUp',
     }
@@ -35,7 +40,7 @@ def signup_view(request):
                     first_name=request.POST.get('f_name'),
                     last_name=request.POST.get('l_name'),
                     username=request.POST.get('email'),
-                    email = request.POST.get('email'),
+                    email=request.POST.get('email'),
                     password=password1
                 )
                 Profile.objects.create(
@@ -43,7 +48,6 @@ def signup_view(request):
                     type="student",
                     university=request.POST.get('university')
                 ).save()
-
 
                 user = authenticate(request, username=request.POST.get('email'), password=password1)
                 if user is not None:
