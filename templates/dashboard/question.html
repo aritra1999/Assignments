@@ -1,0 +1,81 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<div class="main">
+    <h2>Question {{ question.slug }}</h2>
+    <hr>
+
+    Question title: {{ question.title }}<br>
+    Question body: {{ question.body }}<br>
+    Added on: {{ question.timestamp }}<br>
+    Assignment: {{ question.assignment }}<br>
+    <br><br>
+
+    Solution:
+    <div>
+        <textarea name="code" id="code" cols="30" rows="10">x, y = input().split()
+print(int(x) + int(y))</textarea> <br>
+        {% csrf_token %}
+        <input type="text" name="language" id="language" value="{{ question.allowed_lang }}" readonly> <br>
+        <button type="button" onclick="submit_code()">SUBMIT</button>
+    </div>
+
+
+    <div class="verdict" id="processing" style="display: none">
+        <hr>
+        Processing . . .
+    </div>
+
+    <hr>
+    Result:
+    <button id="clearVerdict">Clear Result</button>
+    <div class="verdict" id="verdict">
+    </div>
+
+</div>
+
+<script>
+    $("#clearVerdict").click(function () {
+        $("#verdict").empty();
+    });
+
+    function submit_code() {
+        var code = document.getElementById('code').value;
+        var language = document.getElementById('language').value;
+        var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+        $("#processing").css({"display": "block"});
+        $("#verdict").empty();
+        $.ajax({
+            method: 'POST',
+            url: '/dashboard/submit/{{ question.slug }}',
+            data: {
+                language: language,
+                code: code,
+                csrfmiddlewaretoken: csrf,
+            }
+        })
+            .done(function (data, status) {
+                $("#processing").css({"display": "none"});
+
+                if (data.status === "success") {
+                    for (var i = 1; i <= 5; i++) {
+                        $("#verdict").append(i + "." + data['verdict' + i] + " Time taken: " + data['time' + i] + " Memory used: " + data['memory' + i] + " Score: " + data['score' + i] + "<br>");
+                    }
+                    $("#verdict").append("Total Score: " + data['totalscore'] + "/100<br><br>" );
+                    if(data['totalscore'] > 20){
+                        $("#verdict").append("Pass");
+                    }else{
+                        $("#verdict").append("Fail");
+                    }
+
+                } else {
+                    $('#verdict').text(data['error']['message'] + "<br>");
+                    $('#verdict').append(data['error']['output']);
+                }
+            })
+            .fail(function (data, status) {
+                $('#verdict').text(data);
+            });
+    }
+
+
+</script>

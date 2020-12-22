@@ -36,7 +36,8 @@ class Assignment(models.Model):
 class Question(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=10, blank=True, null=True)
-    title = models.ForeignKey(User, on_delete=models.CASCADE)
+    added_by = models.ForeignKey(User, default="1", on_delete=models.CASCADE)
+    title = models.CharField(max_length=100, null=True, blank=True)
     body = models.CharField(max_length=5000, null=True, blank=True)
     allowed_lang = models.CharField(max_length=10, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
