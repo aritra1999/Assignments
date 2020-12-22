@@ -1,10 +1,33 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
 {% endblock extrahead %}
 {% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="dash_cont">
+        <div class="class_cont">
+            <div class="top">
+                <span class="search_cont">
+                    <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
+                </span>
+                <button type="button" class="join">Create a classroom</button>
+            </div>
+            <div class="classes">
+                {% if classes %}
+                    {% for class in classes %}
+
+                    {% endfor %}
+                    {% else %}
+                       <div class="noClass">
+                           <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
+                       </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}
-    Dashboard
 {% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
 {% endblock extrafoot %}

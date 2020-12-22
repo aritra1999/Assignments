@@ -23,14 +23,12 @@ def home_view(request):
 def dashboard_view(request):
     context = {'title': 'Dashboard', 'user': request.user, 'profile': Profile.objects.get(user=request.user),
                'classes': Enrolled.objects.filter(student=request.user)}
-
-    # user = request.user
-    # profile = Profile.objects.get()
-    #
-    # if profile.type == "teacher":
-    #     return render(request, 'dashboard/dashboard_teacher.html', context)
-    # elif profile.type == "student":
-    return render(request, 'dashboard/dashboard_student.html', context)
+    user = request.user
+    profile = Profile.objects.get(user=request.user)
+    if profile.type == "teacher":
+        return render(request, 'dashboard/dashboard_teacher.html', context)
+    elif user.profile.type == "student":
+        return render(request, 'dashboard/dashboard_student.html', context)
 
 
 @login_required
