@@ -11,9 +11,10 @@ from accounts.models import Profile, Enrolled
 from assignment.models import Question
 
 
+
 def home_view(request):
     if request.user.is_authenticated:
-        redirect('/dashboard/')
+        return redirect('/dashboard/')
 
     context = {
         'title': 'Home'
@@ -24,11 +25,8 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-    context = {
-        'title': 'Dashboard',
-        'user': request.user,
-        'profile': Profile.objects.get(user=request.user),
-    }
+    context = {'title': 'Dashboard', 'user': request.user, 'profile': Profile.objects.get(user=request.user),
+               'classes': Enrolled.objects.filter(student=request.user)}
 
     # user = request.user
     # profile = Profile.objects.get()
@@ -36,7 +34,6 @@ def dashboard_view(request):
     # if profile.type == "teacher":
     #     return render(request, 'dashboard/dashboard_teacher.html', context)
     # elif profile.type == "student":
-    context['classes'] = Enrolled.objects.filter(student=request.user)
     return render(request, 'dashboard/dashboard_student.html', context)
 
 

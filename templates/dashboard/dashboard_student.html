@@ -15,24 +15,30 @@
                 <button type="button" class="join">Join a class</button>
             </div>
             <div class="classes">
-                {% for class in classes %}
-                    <a href="/dashboard/assignment/{{ class.class_name.slug }}" class="class_tile">
-                        <div class="class_tile">
-                            <div class="heads">
-                                <h3 class="class_head">{{ class.class_name.name }}</h3>
-                                <p class="section">IT-G1</p>
+                {% if classes %}
+                    {% for class in classes %}
+                        <a href="/dashboard/assignment/{{ class.class_name.slug }}" class="class_tile">
+                            <div class="class_tile">
+                                <div class="heads">
+                                    <h3 class="class_head">{{ class.class_name.name }}</h3>
+                                    <p class="section">IT-G1</p>
+                                </div>
+                                <div class="tags">
+                                    <p class="due_tag">Assignment due</p>
+                                    <p class="date">Nov 18, 2020</p>
+                                </div>
                             </div>
-                            <div class="tags">
-{#                                <p class="due_tag">Assignment due</p>#}
-{#                                <p class="date">Nov 18, 2020</p>#}
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-
+                        </a>
+                    {% endfor %}
+                    {% else %}
+                       <div class="noClass">
+                           <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
+                       </div>
+                {% endif %}
             </div>
         </div>
     </div>
 {% endblock content %}
 {% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
 {% endblock extrafoot %}

@@ -25,3 +25,7 @@ function validation(){
         return true
     }
 }
+
+function passwordValidation(){
+
+}

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from Assignments.utls import slug_generator
 
+
 class Class(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=10, blank=True, null=True)
@@ -20,7 +21,7 @@ class Class(models.Model):
 class Assignment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=10, blank=True, null=True)
-    class_name =  models.ForeignKey(Class, on_delete=models.CASCADE)
+    class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=True, blank=True)
     due_date = models.DateField(max_length=50, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
