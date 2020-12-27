@@ -14,3 +14,16 @@ function pop(){
         arrow.style.transform="rotate(0)"
     }
 }
+
+let classToggleClose = document.getElementById("closeBtn")
+let classToggleOpen = document.getElementById("createClass")
+let classBody = document.getElementById("classBody")
+classBody.style.display = "none"
+classToggleOpen.addEventListener("click", classShow)
+function classShow(){
+    classBody.style.display = "block"
+}
+classToggleClose.addEventListener("click", classHide)
+function classHide() {
+    classBody.style.display = "none"
+}

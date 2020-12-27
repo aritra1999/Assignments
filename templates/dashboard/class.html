@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+{% endblock extrahead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="assignmentCont">
+        <div class="tags">
+            <a href="#" class="tags activeLink">Assignments</a>
+            <a href="#" class="tags">Statistics</a>
+        </div>
+        <div class="class_cont">
+            <h1 class="yourAssignments">Your Assignments</h1>
+            <div class="assignmentsView">
+                {% for a in assignments %}
+                    <a href="#">
+                        <div class="assignmentCard">
+                            <div class="assignmentCardHead">
+                                <h1 class="assignment">{{ a.name }}</h1>
+                                <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
+                            </div>
+                            <div class="assignmentCardFoot">
+                                <h1 class="assignmentDue">Assignment Due</h1>
+                                <h2 class="due">25 Nov, 2020</h2>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+{% endblock extrafoot %}

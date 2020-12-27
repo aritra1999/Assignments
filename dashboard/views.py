@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
 
+from assignment.models import Assignment, Class
 
 
 def home_view(request):
@@ -25,7 +26,9 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-    context = {'title': 'Dashboard', 'user': request.user, 'profile': Profile.objects.get(user=request.user),
+    context = {'title': 'Dashboard',
+               'user': request.user,
+               'profile': Profile.objects.get(user=request.user),
                'classes': Enrolled.objects.filter(student=request.user)}
     user = request.user
     profile = Profile.objects.get(user=request.user)
@@ -37,15 +40,18 @@ def dashboard_view(request):
 
 @login_required
 def class_view(request, class_slug):
+    classSelected = Class.objects.get(slug=class_slug)
+    assignments = Assignment.objects.filter(class_name=classSelected)
     context = {
-        'title': 'Class'
+        'title': 'Class',
+        'assignments': assignments,
     }
     return render(request, 'dashboard/class.html', context)
 
 
 def assignment_view(request, assignment_slug):
     context = {
-        'title': 'Dashboard'
+        'title': 'Dashboard',
     }
     return render(request, 'dashboard/assignment.html', context)
 
@@ -64,7 +70,6 @@ def report_view(request, email):
         'title': 'Report'
     }
     return render(request, 'dashboard/report.html', context)
-
 
 
 def submit(request, question_slug):
