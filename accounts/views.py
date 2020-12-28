@@ -45,7 +45,7 @@ def signup_view(request):
                 )
                 Profile.objects.create(
                     user=user,
-                    type="student",
+                    type=request.POST.get('userPersona'),
                     university=request.POST.get('university')
                 ).save()
 

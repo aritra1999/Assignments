@@ -12,16 +12,16 @@
                     <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
                     <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
                 </span>
-                <button type="button" class="join">Join a class</button>
+                <button type="button" id="createClass" class="join">Join a class</button>
             </div>
             <div class="classes">
                 {% if classes %}
                     {% for class in classes %}
-                        <a href="/dashboard/assignment/{{ class.class_name.slug }}" class="class_tile">
+                        <a href="/dashboard/class/{{ class.class_name.slug }}" class="class_tile">
                             <div class="class_tile">
                                 <div class="heads">
                                     <h3 class="class_head">{{ class.class_name.name }}</h3>
-                                    <p class="section">IT-G1</p>
+                                    <p class="section">{{ class.class_name.batch }}</p>
                                 </div>
                                 <div class="tags">
                                     <p class="due_tag">Assignment due</p>

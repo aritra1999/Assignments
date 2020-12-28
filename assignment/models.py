@@ -8,6 +8,7 @@ class Class(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=10, blank=True, null=True)
     name = models.CharField(max_length=50, null=True, blank=True)
+    batch = models.CharField(max_length=50, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):

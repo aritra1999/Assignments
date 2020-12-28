@@ -272,3 +272,70 @@ img.noClass{
 	max-height: 100%;
 	max-width: 100%;
 }
+
+
+div.classCreate{
+    position: absolute;
+    padding: 30px;
+    background-color: #1E252E;
+	width: 400px;
+    z-index: 99;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+div.classCreate div.topBar{
+	display: flex;
+	height: 50px;
+	justify-content: space-between;
+	align-items: center;
+}
+div.classCreate img.logo{
+	height: 40px;
+}
+div.classCreate svg.close{
+	height: 25px;
+	color: #efefef;
+	cursor: pointer;
+}
+div.classCreate h1.head{
+	color: #ffffff;
+	margin: 25px 0;
+	font-size: 1.8rem;
+	font-family: "Mulish-Reg", sans-serif;
+}
+div.classCreate input.input{
+    display: block;
+    height: 40px;
+    padding: 10px 15px;
+    width: calc(100% - 30px);
+    background-color: #161b22;
+    border: none;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.96rem;
+    color: #ffffff;
+    outline: none;
+}
+div.classCreate div.btn{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	margin-top: 20px;
+	outline: none;
+}
+div.btn button.cancel{
+	padding: 10px 15px;
+	border: none;
+	font-family: "Mulish-Reg", sans-serif;
+	font-size: 0.9rem;
+	font-weight: 600;
+	border-radius: 4px;
+}
+div.btn button.submit{
+	background-color: #0078d4;
+	color: #ffffff;
+	margin-left: 15px;
+}

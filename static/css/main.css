@@ -55,6 +55,14 @@ table {
 	font-family: "Mulish-It";
 	src: url("../Mulish/Mulish-Italic-VariableFont_wght.ttf");
 }
+@font-face {
+	font-family: "GT-Reg";
+	src: url("../GTWalsheimProRegular.ttf");
+}
+@font-face {
+	font-family: "GT-Med";
+	src: url("../GTWalsheimProMedium.ttf");
+}
 
 /*END FONTS*/
 
@@ -63,6 +71,7 @@ div.container{
 	flex-flow: column;
 	height: 100%;
 	width: 100%;
+	position: relative;
 }
 
 /*NAVBAR*/
