@@ -51,7 +51,7 @@ ul.cta li a{
     justify-content: center;
     align-items: center;
     padding: 0 10px;
-    border-bottom: 0 solid #0078d4;
+    border-bottom: 0 solid #109b67;
     transition: all 100ms ease-in;
 }
 ul.cta li a:hover{
@@ -173,7 +173,7 @@ div.dash_cont{
 }
 div.class_cont{
 	width: 90%;
-	margin: 50px auto 0 auto;
+	margin: 30px auto 0 auto;
 }
 div.top{
 	height: 40px;
@@ -240,7 +240,7 @@ div.class_tile{
 	background-size: 100% 100%;
 	background-position: right bottom;
 	background-repeat: no-repeat;
-	margin: 20px;
+	margin: 10px;
 }
 h3.class_head{
 	font-family: "Mulish-reg", sans-serif;
@@ -260,6 +260,12 @@ p.due_tag{
 p.date{
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 1.6rem;
+}
+p.teachTag{
+	color: #0078d4;
+}
+div.teacherTag{
+    margin-bottom: 20px !important;
 }
 div.noClass{
 	width: 100%;

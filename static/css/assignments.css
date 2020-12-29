@@ -29,12 +29,30 @@ a.tags:first-child{
 }
 h1.yourAssignments{
     color: #ffffff;
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.03rem;
+}
+h1.tagBatch{
+    color: #efefef;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+p.youCan{
+    color: #A8A8A8;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+p.createdBy{
+    color: #3187ca;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 0.9rem;
+    margin-top: 8px;
 }
 div.assignmentsView{
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -46,7 +64,7 @@ div.assignmentCard{
     background-repeat: no-repeat;
     background-position: bottom right;
     border-radius: 10px;
-    margin: 20px;
+    margin: 10px;
     display: flex;
     padding: 20px;
     justify-content: space-between;
@@ -70,4 +88,19 @@ h1.assignmentDue{
 }
 h2.due{
     font-size: 1.4rem;
+}
+span.goBack{
+    cursor: pointer;
+    color: #A8A8A8;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    width: 60px;
+    margin-bottom: 10px;
+}
+svg.goBack{
+    display: inline-block;
+    height: 20px;
+    margin-right: 10px;
 }
