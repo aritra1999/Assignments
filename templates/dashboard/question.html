@@ -6,7 +6,7 @@
 {% block content %}
     <div class="main_cont">
         <div class="topBar">
-            <a href="#" class="back"><img src="{% static 'Illustrations/backArrow.svg' %}" alt="" class="backArrow"></a>
+            <a href="#" onclick="goBack()" class="back"><img src="{% static 'Illustrations/backArrow.svg' %}" alt="" class="backArrow"></a>
             <h1 class="questionHead">{{ question.assignment }} - {{ question.slug }}</h1>
         </div>
         <div class="partition">
@@ -98,6 +98,29 @@
             .fail(function (data, status) {
                 $('#verdict').text(data);
             });
+        }
+
+        window.goBack = function (e){
+            let defaultLocation = "http://localhost:8000/dashboard/";
+            let oldHash = window.location.hash;
+
+            history.back();
+            let newHash = window.location.hash;
+            if(
+                newHash === oldHash &&
+                (typeof(document.referrer) !== "string" || document.referrer  === "")
+            ){
+                window.setTimeout(function(){
+                    window.location.href = defaultLocation;
+                },1000);
+            }
+            if(e){
+                if(e.preventDefault)
+                    e.preventDefault();
+                if(e.preventPropagation)
+                    e.preventPropagation();
+            }
+            return false;
         }
     </script>
 {% endblock extrafoot %}

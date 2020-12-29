@@ -1,0 +1,70 @@
+span.goBack{
+    cursor: pointer;
+    color: #A8A8A8;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    width: 60px;
+}
+svg.goBack{
+    display: inline-block;
+    height: 20px;
+    margin-right: 10px;
+}
+div.questionCont{
+    width: 100%;
+    margin-top: 10px;
+}
+h1.assignmentHead{
+    color: #ffffff;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03rem;
+}
+p.due{
+    color: #ff6347;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    letter-spacing: 0.03rem;
+}
+p.due span{
+    color: #ffffff;
+}
+div.tableCont{
+    margin-top: 20px;
+}
+table.questionTable {
+    width: 100%;
+    background-color: #1E252E;
+    border-collapse: collapse;
+}
+table.questionTable td, table.questionTable th {
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.4);
+    border-style: solid;
+    padding: 15px 25px;
+    text-align: left;
+}
+table.questionTable th{
+    color: #A8A8A8;
+    font-family: "GT-Med", sans-serif;
+    font-size: 0.9rem;
+}
+table.questionTable td{
+    color: #ffffff;
+    font-family: "GT-Med", sans-serif;
+    font-size: 0.9rem;
+}
+table.questionTable span.passStatus{
+    background-color: #109b67;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+a.question{
+    color: #ffffff;
+    border-bottom: 2px solid #0078d4;
+    padding: 0 5px;
+}

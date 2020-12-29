@@ -41,17 +41,29 @@ def dashboard_view(request):
 @login_required
 def class_view(request, class_slug):
     classSelected = Class.objects.get(slug=class_slug)
-    assignments = Assignment.objects.filter(class_name=classSelected)
+    try:
+        assignments = Assignment.objects.filter(class_name=classSelected)
+    except:
+        assignments = None
     context = {
         'title': 'Class',
         'assignments': assignments,
+        'classSelected': classSelected,
     }
     return render(request, 'dashboard/class.html', context)
 
 
+@login_required
 def assignment_view(request, assignment_slug):
+    assignmentSelected = Assignment.objects.get(slug=assignment_slug)
+    try:
+        questions = Question.objects.filter(assignment=assignmentSelected)
+    except:
+        questions = None
     context = {
         'title': 'Dashboard',
+        'assignmentSelected': assignmentSelected,
+        'questions': questions,
     }
     return render(request, 'dashboard/assignment.html', context)
 
@@ -65,6 +77,7 @@ def question_view(request, question_slug):
     return render(request, 'dashboard/question.html', context)
 
 
+@login_required
 def report_view(request, email):
     context = {
         'title': 'Report'
@@ -72,6 +85,7 @@ def report_view(request, email):
     return render(request, 'dashboard/report.html', context)
 
 
+@login_required
 def submit(request, question_slug):
     if request.method == "POST":
         response = {}
@@ -113,4 +127,3 @@ def submit(request, question_slug):
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
-
