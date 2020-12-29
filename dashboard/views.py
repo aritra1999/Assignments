@@ -30,11 +30,16 @@ def dashboard_view(request):
     user = request.user    
     profile = Profile.objects.get(user=request.user)
     if profile.type == "teacher":
-        createdClasses = Class.objects.filter(created_by=user)
+        classInstances = Class.objects.filter(created_by=user)
+
+        for classInstance in classInstances:
+            classInstance.assignmentNumber = Assignment.objects.filter(class_name=classInstance).count()
+            classInstance.studentNumber = Enrolled.objects.filter(class_name=classInstance).count()
+    
         context = {
             'title': 'Dashboard',
             'user': request.user,
-            'createdClass': createdClasses,
+            'createdClass': classInstances,
         }
         return render(request, 'dashboard/dashboard_teacher.html', context)
     elif user.profile.type == "student":
