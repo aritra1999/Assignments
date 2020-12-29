@@ -17,12 +17,16 @@
                     </div>
                 {% endif %}
                 <div class="part part1">
-                    <input type="text" name="f_name" class="f_name input" placeholder="First Name">
-                    <input type="text" name="l_name" class="l_name input" placeholder="Last Name">
-                    <select name="university" id="university" class="university">
+                    <input type="text" required name="f_name" class="f_name input" placeholder="First Name">
+                    <input type="text" required name="l_name" class="l_name input" placeholder="Last Name">
+                    <select name="university" id="university" required class="university">
                         <option value="kiit">KIIT</option>
                     </select>
-                    <input type="text" class="roll input" name="roll" placeholder="Roll Number">
+                    <select name="userPersona" id="userType" required class="university">
+                        <option value="" selected>Select user type</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select>
                     <button type="button" class="login nextBtn">Next
                         <svg class="arrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -31,9 +35,10 @@
                     </button>
                 </div>
                 <div class="part part2">
-                    <input type="email" name="email" class="email input" placeholder="Email Address">
-                    <input type="password" name="password" class="password input" placeholder="Password">
-                    <input type="password" name="cnfrm_password" class="password input" placeholder="Comfirm Password">
+                    <input type="text" class="roll input" id="roll" name="roll" placeholder="Roll Number">
+                    <input type="email" required name="email" class="email input" placeholder="Email Address">
+                    <input type="password" required name="password" class="password input" placeholder="Password">
+                    <input type="password" required name="cnfrm_password" class="password input" placeholder="Comfirm Password">
                     <button type="submit" class="login">Sign up to Assignments
                         <svg class="arrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

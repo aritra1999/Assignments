@@ -4,7 +4,11 @@
         <a href="{% url 'dash' %}" class="logo"><img src="{% static 'Illustrations/Logo.svg' %}" class="dash_logo" alt=""></a>
         <ul class="cta">
             <li><a href="#" class="active">Classrooms</a></li>
-            <li><a href="#">Your Assignments</a></li>
+            {% if profile.type == 'teacher' %}
+                <li><a href="#">Assignments</a></li>
+                {% else %}
+                <li><a href="#">Your Assignments</a></li>
+            {% endif %}
             <li><a href="http://justrun.ml/">Online IDE</a></li>
         </ul>
     </div>

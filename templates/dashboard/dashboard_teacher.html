@@ -1,10 +1,49 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
 {% endblock extrahead %}
 {% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="dash_cont">
+        <div class="class_cont">
+            <div class="top">
+                <span class="search_cont">
+                    <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
+                </span>
+                <button type="button" class="join" id="createClass">Create a classroom</button>
+            </div>
+            <div class="classes">
+                {% if classes %}
+                    {% for class in classes %}
+
+                    {% endfor %}
+                    {% else %}
+                       <div class="noClass">
+                           <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
+                       </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="classCreate" id="classBody">
+        <div class="topBar">
+            <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
+            <svg class="close" id="closeBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+        <h1 class="head">Create a classroom</h1>
+        <form action="" method="post">{% csrf_token %}
+            <input type="text" required name="class_name" class="class_name input" placeholder="Enter class name">
+            <input type="text" required name="section" class="section input" placeholder="Enter section">
+            <div class="btn">
+                <button type="submit" class="cancel submit">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
-    Dashboard
 {% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
 {% endblock extrafoot %}
