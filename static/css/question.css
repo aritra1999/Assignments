@@ -122,3 +122,10 @@ div.idk a.submit{
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.85rem;
 }
+
+#editor {
+    position: relative;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+}
