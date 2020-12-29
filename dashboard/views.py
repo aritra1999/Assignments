@@ -25,8 +25,11 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-    context = {'title': 'Dashboard', 'user': request.user, 'profile': Profile.objects.get(user=request.user),
-               'classes': Enrolled.objects.filter(student=request.user)}
+    context = {
+        'title': 'Dashboard', 
+        'user': request.user, 
+        'profile': Profile.objects.get(user=request.user),
+        'classes': Enrolled.objects.filter(student=request.user)}
 
     # user = request.user
     # profile = Profile.objects.get()
@@ -66,7 +69,6 @@ def report_view(request, email):
         'title': 'Report'
     }
     return render(request, 'dashboard/report.html', context)
-
 
 
 def submit(request, question_slug):
