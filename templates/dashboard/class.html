@@ -12,18 +12,26 @@
             <a href="#" class="tags">Statistics</a>
         </div>
         <div class="class_cont">
-            <h1 class="yourAssignments">Your Assignments</h1>
+            <span class="goBack" onclick="goBack();">
+                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg> Back
+            </span>
+            <h1 class="yourAssignments">{{ classSelected.name }}</h1>
+            <h1 class="tagBatch">{{ classSelected.batch }}</h1>
+            <p class="youCan">You can view all assignments and scores for each submission here.</p>
+            <p class="createdBy">Created By: {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
             <div class="assignmentsView">
-                {% for a in assignments %}
-                    <a href="#">
+                {% for assignment in assignments %}
+                    <a href="/dashboard/assignment/{{ assignment.slug }}">
                         <div class="assignmentCard">
                             <div class="assignmentCardHead">
-                                <h1 class="assignment">{{ a.name }}</h1>
+                                <h1 class="assignment">{{ assignment.name }}</h1>
                                 <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
                             </div>
                             <div class="assignmentCardFoot">
                                 <h1 class="assignmentDue">Assignment Due</h1>
-                                <h2 class="due">25 Nov, 2020</h2>
+                                <h2 class="due">{{ assignment.due_date }}</h2>
                             </div>
                         </div>
                     </a>
@@ -35,4 +43,28 @@
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>
+    <script>
+        window.goBack = function (e){
+            let defaultLocation = "http://localhost:8000/dashboard/";
+            let oldHash = window.location.hash;
+
+            history.back();
+            let newHash = window.location.hash;
+            if(
+                newHash === oldHash &&
+                (typeof(document.referrer) !== "string" || document.referrer  === "")
+            ){
+                window.setTimeout(function(){
+                    window.location.href = defaultLocation;
+                },1000);
+            }
+            if(e){
+                if(e.preventDefault)
+                    e.preventDefault();
+                if(e.preventPropagation)
+                    e.preventPropagation();
+            }
+            return false;
+        }
+    </script>
 {% endblock extrafoot %}

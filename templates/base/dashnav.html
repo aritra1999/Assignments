@@ -3,7 +3,7 @@
     <div class="left_cta">
         <a href="{% url 'dash' %}" class="logo"><img src="{% static 'Illustrations/Logo.svg' %}" class="dash_logo" alt=""></a>
         <ul class="cta">
-            <li><a href="#" class="active">Classrooms</a></li>
+            <li><a href="{% url 'dash' %}">Classrooms</a></li>
             {% if profile.type == 'teacher' %}
                 <li><a href="#">Assignments</a></li>
                 {% else %}
