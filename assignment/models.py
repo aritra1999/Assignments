@@ -26,6 +26,7 @@ class Assignment(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     due_date = models.DateField(max_length=50, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    isActive = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         self.slug = slug_generator()
