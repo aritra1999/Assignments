@@ -26,15 +26,23 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-    context = {'title': 'Dashboard',
-               'user': request.user,
-               'profile': Profile.objects.get(user=request.user),
-               'classes': Enrolled.objects.filter(student=request.user)}
     user = request.user
     profile = Profile.objects.get(user=request.user)
     if profile.type == "teacher":
+        createdClasses = Class.objects.filter(created_by=user)
+        context = {
+            'title': 'Dashboard',
+            'user': request.user,
+            'createdClass': createdClasses,
+        }
         return render(request, 'dashboard/dashboard_teacher.html', context)
     elif user.profile.type == "student":
+        context = {
+            'title': 'Dashboard',
+            'user': request.user,
+            'profile': Profile.objects.get(user=request.user),
+            'classes': Enrolled.objects.filter(student=request.user)
+        }
         return render(request, 'dashboard/dashboard_student.html', context)
 
 
@@ -68,6 +76,7 @@ def assignment_view(request, assignment_slug):
     return render(request, 'dashboard/assignment.html', context)
 
 
+@login_required
 def question_view(request, question_slug):
     question = Question.objects.get(slug=question_slug)
     context = {

@@ -33,7 +33,7 @@ p.due span{
     color: #ffffff;
 }
 div.tableCont{
-    margin-top: 20px;
+    margin: 10px auto 0 auto;
 }
 table.questionTable {
     width: 100%;

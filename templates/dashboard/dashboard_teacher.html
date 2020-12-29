@@ -15,9 +15,26 @@
                 <button type="button" class="join" id="createClass">Create a classroom</button>
             </div>
             <div class="classes">
-                {% if classes %}
-                    {% for class in classes %}
-
+                {% if createdClass %}
+                    {% for class in createdClass %}
+                        <a href="#" class="class_tile">
+                            <div class="class_tile">
+                                <div class="heads">
+                                    <h3 class="class_head">{{ class.name }}</h3>
+                                    <p class="section">{{ class.batch }}</p>
+                                </div>
+                                <div class="coverTeacher">
+                                    <div class="tags teacherTag">
+                                        <p class="due_tag">Active assignments</p>
+                                        <p class="date teachTag">5</p>
+                                    </div>
+                                    <div class="tags">
+                                        <p class="due_tag">Total Students</p>
+                                        <p class="date teachTag">102</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     {% endfor %}
                     {% else %}
                        <div class="noClass">
