@@ -26,12 +26,16 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-
     user = request.user    
     profile = Profile.objects.get(user=request.user)
     if profile.type == "teacher":
+        if request.method == "POST":
+            Class.objects.create(
+                created_by=request.user,
+                name=request.POST.get('class_name'),
+                batch=request.POST.get('section'),
+            )
         classInstances = Class.objects.filter(created_by=user)
-
         for classInstance in classInstances:
             classInstance.assignmentNumber = Assignment.objects.filter(class_name=classInstance).count()
             classInstance.studentNumber = Enrolled.objects.filter(class_name=classInstance).count()
