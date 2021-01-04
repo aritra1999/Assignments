@@ -46,7 +46,8 @@ def signup_view(request):
                 Profile.objects.create(
                     user=user,
                     type=request.POST.get('userPersona'),
-                    university=request.POST.get('university')
+                    university=request.POST.get('university'),
+                    rollNo=request.POST.get('roll'),
                 ).save()
 
                 user = authenticate(request, username=request.POST.get('email'), password=password1)
