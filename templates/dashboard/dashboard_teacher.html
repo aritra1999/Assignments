@@ -17,7 +17,7 @@
             <div class="classes">
                 {% if createdClass %}
                     {% for class in createdClass %}
-                        <a href="#" class="class_tile">
+                        <a href="/dashboard/class/{{ class.slug }}" class="class_tile">
                             <div class="class_tile">
                                 <div class="heads">
                                     <h3 class="class_head">{{ class.name }}</h3>
