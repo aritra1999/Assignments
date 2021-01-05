@@ -9,4 +9,5 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('auth/', include('accounts.urls')),
     path('assignments/', include('assignment.urls')),
+    
 ]
