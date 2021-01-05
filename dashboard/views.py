@@ -82,6 +82,11 @@ def class_view(request, class_slug):
             assignments = Assignment.objects.filter(class_name=classSelected)
         except:
             assignments = None
+
+        for student in students:
+            student.rollNo = (Profile.objects.get(user=student.student)).rollNo
+            
+
         context = {
             'title': 'Class',
             'assignments': assignments,

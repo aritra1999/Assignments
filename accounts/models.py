@@ -15,8 +15,8 @@ class Profile(models.Model):
 
 
 class Enrolled(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE)
-    class_name = models.OneToOneField(Class, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
