@@ -10,21 +10,25 @@ div.tags{
     align-items: center;
     padding: 15px 0 0 0;
 }
-a.tags{
+button.tags{
     display: inline-block;
     padding: 15px 20px;
     color: #ffffff;
+    background-color: #06090F;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.85rem;
     border-radius: 50px;
     font-weight: 600;
     letter-spacing: 0.03rem;
     text-decoration: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
-.activeLink{
-    background-color: #2B2F3B;
+.activeBtn{
+    background-color: #161b22 !important;
 }
-a.tags:first-child{
+button.tags:first-child{
     margin-right: 20px;
 }
 h1.yourAssignments{
@@ -103,4 +107,23 @@ svg.goBack{
     display: inline-block;
     height: 20px;
     margin-right: 10px;
+}
+h1.studentHead{
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-family: "Mulish-Reg", sans-serif;
+}
+h2.students{
+    color: #0078d4;
+    font-family: "Mulish-It", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03rem;
+    margin-top: 10px;
+}
+p.youCan{
+    color: #a7a7a7;
+}
+div.studentView{
+    margin-top: 30px !important;
 }

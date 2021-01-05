@@ -1,0 +1,85 @@
+div.classTeacherTile{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    background-color: #161b22;
+    background-image: url("../Illustrations/CardBg1.svg");
+    background-size: 17%;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    display: flex;
+}
+div.cont1 h1.classTitle{
+    color: #ffffff;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.04rem;
+}
+div.cont1 h2.classBatch{
+    color: #efefef;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 1.2rem;
+    margin: 10px 0 20px 0;
+}
+div.cont1 p.invite{
+    color: #a7a7a7;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+}
+span.joinLink{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 250px;
+    background-color: #06090F;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+    position: relative;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+span.copy{
+    position: absolute;
+    right: 15px;
+}
+span.linkText{
+    margin-left: 10px;
+}
+svg.copy{
+    height: 20px;
+    color: #efefef;
+}
+div.cont2{
+    margin-left: 40px;
+}
+p.assignmentCountHead{
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: "Mulish-Reg", sans-serif;
+}
+h1.assignmentCount{
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 10px 0 20px 0;
+    font-family: "Mulish-Reg", sans-serif;
+}
+button.createAssignment{
+    border: none;
+    outline: none;
+    background-color: #0078d4;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-family: "Mulish-Reg", sans-serif;
+    border-radius: 5px;
+    letter-spacing: 0.03rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+h1.yourAssg{
+    color: #ffffff;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 1.5rem;
+    margin: 40px 0 20px 0;
+}

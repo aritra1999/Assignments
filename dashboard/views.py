@@ -26,16 +26,19 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-
     user = request.user    
     profile = Profile.objects.get(user=request.user)
     if profile.type == "teacher":
+        if request.method == "POST":
+            Class.objects.create(
+                created_by=request.user,
+                name=request.POST.get('class_name'),
+                batch=request.POST.get('section'),
+            )
         classInstances = Class.objects.filter(created_by=user)
-
         for classInstance in classInstances:
             classInstance.assignmentNumber = Assignment.objects.filter(class_name=classInstance).count()
             classInstance.studentNumber = Enrolled.objects.filter(class_name=classInstance).count()
-    
         context = {
             'title': 'Dashboard',
             'user': request.user,
@@ -54,17 +57,41 @@ def dashboard_view(request):
 
 @login_required
 def class_view(request, class_slug):
-    classSelected = Class.objects.get(slug=class_slug)
-    try:
-        assignments = Assignment.objects.filter(class_name=classSelected)
-    except:
-        assignments = None
-    context = {
-        'title': 'Class',
-        'assignments': assignments,
-        'classSelected': classSelected,
-    }
-    return render(request, 'dashboard/class.html', context)
+    user = request.user
+    userType = Profile.objects.get(user=user)
+    if userType.type == "student":
+        classSelected = Class.objects.get(slug=class_slug)
+        try:
+            assignments = Assignment.objects.filter(class_name=classSelected)
+        except:
+            assignments = None
+        context = {
+            'title': 'Class',
+            'assignments': assignments,
+            'classSelected': classSelected,
+        }
+        return render(request, 'dashboard/class.html', context)
+    else:
+        classSelected = Class.objects.get(slug=class_slug)
+        assignmentNumber = Assignment.objects.filter(class_name=classSelected).count()
+        assignmentsAll = Assignment.objects.filter(class_name=classSelected)
+        studentNumber = Enrolled.objects.filter(class_name=classSelected).count()
+        students = Enrolled.objects.filter(class_name=classSelected)
+        classSelected = Class.objects.get(slug=class_slug)
+        try:
+            assignments = Assignment.objects.filter(class_name=classSelected)
+        except:
+            assignments = None
+        context = {
+            'title': 'Class',
+            'assignments': assignments,
+            'classSelected': classSelected,
+            'assignmentNumber': assignmentNumber,
+            'studentNumber': studentNumber,
+            'students': students,
+            'assignmentsAll': assignmentsAll,
+        }
+        return render(request, 'dashboard/class_teacher.html', context)
 
 
 @login_required
