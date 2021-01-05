@@ -136,7 +136,10 @@ def report_view(request, email):
 def submit(request, question_slug):
     if request.method == "POST":
         response = {}
-        question = Question.objects.get(slug=question_slug)
+        try: 
+            question = Question.objects.get(slug=question_slug)
+        except:
+            return JsonResponse({'error': 'Bad Request'})
         print(question)
 
         response['totalscore'] = 0

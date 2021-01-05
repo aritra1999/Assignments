@@ -7,7 +7,7 @@
     <div class="main_cont">
         <div class="topBar">
             <a href="#" onclick="goBack()" class="back"><img src="{% static 'Illustrations/backArrow.svg' %}" alt="" class="backArrow"></a>
-            <h1 class="questionHead">{{ question.assignment }} - {{ question.slug }}</h1>
+            <h1 class="questionHead">{{ question.assignment }} - <span id="slug">{{ question.slug }}</span></h1>
         </div>
         <div class="partition">
             <div class="left">
@@ -41,19 +41,34 @@
             </div>
             <div class="right">
                 <div class="top">
+                    <input type="hidden" id="lang" value='{{ question.allowed_lang }}'>
                     <div id="editor">a, b = input().split()
 print(int(a) + int(b))</div>
                     {% csrf_token %}
                 </div>
                 <div class="bottom">
                     <div class="idk">
-                        <p class="allowed">Allowed language : <span id="lang">{{ question.allowed_lang }}}</span></p>
+                        <p class="allowed">Allowed language : <span id="lang">{{ question.allowed_lang }}</span></p>
                         <a class="submit" onclick="submit_code()">Submit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="alert processing hidden" id="processing">
+        Processing . . .
+    </div>
+    <div class="alert error hidden" id="error">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div id="error_message"></div>
+    </div>
+
+    <div class="alert success hidden" id="success">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div id="success_message"></div>
+    </div>
+
+
     {% include 'base/aceCDN.html' %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>

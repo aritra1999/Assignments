@@ -25,43 +25,41 @@ function submit_code() {
     var code = editor.getValue();
     var language = document.getElementById('lang').value;
     var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-    console.log(code)
-
+    var slug = document.getElementById('slug').innerHTML;
+    $("#processing").css({"display": "block"});
     
-
-    // $("#processing").css({"display": "block"});
-    // $("#verdict").empty();
-    // $.ajax({
-    //     method: 'POST',
-    //     url: '/dashboard/submit/{{ question.slug }}',
-    //     data: {
-    //         language: language,
-    //         code: code,
-    //         csrfmiddlewaretoken: csrf,
-    //     }
-    // })
-    // .done(function (data, status) {
-    //     $("#processing").css({"display": "none"});
-
-    //     if (data.status === "success") {
-    //         for (let i = 1; i <= 5; i++) {
-    //             $("#verdict").append(i + "." + data['verdict' + i] + " Time taken: " + data['time' + i] + " Memory used: " + data['memory' + i] + " Score: " + data['score' + i] + "<br>");
-    //         }
-    //         $("#verdict").append("Total Score: " + data['totalscore'] + "/100<br><br>" );
-    //         if(data['totalscore'] > 20){
-    //             $("#verdict").append("Pass");
-    //         }else{
-    //             $("#verdict").append("Fail");
-    //         }
-
-    //     } else {
-    //         $('#verdict').text(data['error']['message'] + "<br>");
-    //         $('#verdict').append(data['error']['output']);
-    //     }
-    // })
-    // .fail(function (data, status) {
-    //     $('#verdict').text(data);
-    // });
+    $.ajax({
+        method: 'POST',
+        url: '/dashboard/submit/' + slug,
+        data: {
+            language: language,
+            code: code,
+            csrfmiddlewaretoken: csrf,
+        }
+    })
+    .done(function (data, status) {
+        $("#processing").css({"display": "none"});
+        if (data.status === "success") {
+            for (let i = 1; i <= 5; i++) {
+                $("#success_message").append(i + "." + data['verdict' + i] + " Time taken: " + data['time' + i] + " Memory used: " + data['memory' + i] + " Score: " + data['score' + i] + "<br>");
+            }
+            $("#success_message").append("Total Score: " + data['totalscore'] + "/100<br><br>" );
+            if(data['totalscore'] > 20){
+                $("#success").css({"display": "block"});
+                $("#success_message").append("Pass");
+            }else{
+                $("#error").css({"display": "block"});
+                $("#error_message").append("Wrong Answer!");
+            }
+        } else {
+            $("#error").css({"display": "block"});
+            $('#error_message').text(data['error']['message'] + "<br>");
+            $('#error_message').append(data['error']['output']);
+        }
+    })
+    .fail(function (data, status) {
+        $('#verdict').text(data);
+    });
 }
 
 window.goBack = function (e){

@@ -129,3 +129,44 @@ div.idk a.submit{
     right: 0;
     bottom: 0;
 }
+
+
+.hidden {
+    display: none;
+}
+
+
+.alert {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30%;
+    border-radius: 5px;
+    padding: 20px 30px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.processing {
+    background-color: #e8f8ff;
+    border-radius: 4px;
+    color: #0c0c10;
+}
+
+.error {
+    background-color: #ff4e2e;
+}
+
+.success {
+    background-color: #4ad369;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: #ffffff;
+    float: right;
+    font-size: 22px;
+    line-height: 26px;
+    cursor: pointer;
+    transition: 0.3s;
+}
