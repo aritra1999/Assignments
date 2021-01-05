@@ -28,6 +28,9 @@ function submit_code() {
     var slug = document.getElementById('slug').innerHTML;
     $("#processing").css({"display": "block"});
     
+    $("#success_message").empty();
+    $("#error_message").empty();
+
     $.ajax({
         method: 'POST',
         url: '/dashboard/submit/' + slug,
@@ -58,7 +61,7 @@ function submit_code() {
         }
     })
     .fail(function (data, status) {
-        $('#verdict').text(data);
+        $('#error_message').text(data);
     });
 }
 
