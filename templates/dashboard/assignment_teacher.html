@@ -21,16 +21,15 @@
             <div class="questionCont">
                 <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
                 <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
+                <a href="/dashboard/create/questions/{{ assignmentSelected.slug }}" class="addQuestion">Add Questions</a>
             </div>
             <div class="tableCont">
                 <table class="questionTable">
                     <thead>
                         <tr>
                             <th>Program Name</th>
-                            <th>Success Rate</th>
-                            <th>Last Run</th>
-                            <th>Score</th>
-                            <th>Status</th>
+                            <th>Average Score</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,10 +37,8 @@
                             {% for question in questions %}
                                 <tr>
                                     <td><a href="/dashboard/question/{{ question.slug }}" class="question">{{ question.title }}</a></td>
-                                    <td>Overall SR: <span>65%</span></td>
-                                    <td>17 Dec, 2020</td>
                                     <td>80/100</td>
-                                    <td><span class="passStatus">Passed</span></td>
+                                    <td><a href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}" class="delete">Delete Question</a></td>
                                 </tr>
                             {% endfor %}
                             {% else %}

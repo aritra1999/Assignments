@@ -14,7 +14,7 @@ class Class(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Question, self).save(*args, **kwargs)
+            super(Class, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.name)
@@ -25,14 +25,14 @@ class Assignment(models.Model):
     slug = models.SlugField(max_length=11, blank=True, null=True)
     class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=True, blank=True)
-    due_date = models.DateField(max_length=50, null=True, blank=True)
+    due_date = models.DateTimeField(max_length=50, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     isActive = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Question, self).save(*args, **kwargs)
+            super(Assignment, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.name)
