@@ -173,6 +173,8 @@ def submit(request, question_slug):
             else:
                 response['verdict' + str(it)] = "wrong"
 
+            
+
         print(response)
         return JsonResponse(response)
     else:
