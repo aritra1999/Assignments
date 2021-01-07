@@ -4,13 +4,13 @@ import asyncio
 import aiohttp
 
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
 
-from assignment.models import Assignment, Class
+from assignment.models import Assignment, Class, Submission
 
 
 def home_view(request):
@@ -85,8 +85,6 @@ def class_view(request, class_slug):
 
         for student in students:
             student.rollNo = (Profile.objects.get(user=student.student)).rollNo
-            
-
         context = {
             'title': 'Class',
             'assignments': assignments,
@@ -101,17 +99,32 @@ def class_view(request, class_slug):
 
 @login_required
 def assignment_view(request, assignment_slug):
-    assignmentSelected = Assignment.objects.get(slug=assignment_slug)
-    try:
-        questions = Question.objects.filter(assignment=assignmentSelected)
-    except:
-        questions = None
-    context = {
-        'title': 'Dashboard',
-        'assignmentSelected': assignmentSelected,
-        'questions': questions,
-    }
-    return render(request, 'dashboard/assignment.html', context)
+    user = request.user
+    userType = Profile.objects.get(user=user)
+    if userType == "student":
+        assignmentSelected = Assignment.objects.get(slug=assignment_slug)
+        try:
+            questions = Question.objects.filter(assignment=assignmentSelected)
+        except:
+            questions = None
+        context = {
+            'title': 'Dashboard',
+            'assignmentSelected': assignmentSelected,
+            'questions': questions,
+        }
+        return render(request, 'dashboard/assignment.html', context)
+    else:
+        assignmentSelected = Assignment.objects.get(slug=assignment_slug)
+        try:
+            questions = Question.objects.filter(assignment=assignmentSelected)
+        except:
+            questions = None
+        context = {
+            'title': 'Dashboard',
+            'assignmentSelected': assignmentSelected,
+            'questions': questions,
+        }
+        return render(request, 'dashboard/assignment_teacher.html', context)
 
 
 @login_required
@@ -179,3 +192,87 @@ def submit(request, question_slug):
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
+
+
+@login_required
+def assignment_create(request, class_slug):
+    classSelected = Class.objects.get(slug=class_slug)
+    print(classSelected)
+    context = {
+        'title': 'Create',
+    }
+    if request.method == "POST":
+        Assignment.objects.create(
+            created_by=request.user,
+            class_name=classSelected,
+            due_date=request.POST.get('assignmentDate'),
+            name=request.POST.get('assignmentName'),
+        )
+        return redirect("/dashboard/class/"+class_slug)
+    return render(request, 'dashboard/assignmentCreation.html', context)
+
+
+@login_required
+def question_create(request, assignment_slug):
+    assignmentSelected = Assignment.objects.get(slug=assignment_slug)
+    print(assignmentSelected)
+    context = {
+        'title': 'Add Questions',
+    }
+    if request.method == 'POST':
+        Question.objects.create(
+            assignment=assignmentSelected,
+            added_by=request.user,
+            title=request.POST.get('questionName'),
+            body=request.POST.get('problemStatement'),
+            input_format=request.POST.get('inputFormat'),
+            output_format=request.POST.get('outputFormat'),
+            allowed_lang=request.POST.get('allowedLang'),
+        )
+        return redirect("/dashboard/assignment/"+assignment_slug)
+    return render(request, 'dashboard/questionCreate.html', context)
+
+
+@login_required
+def question_delete(request, question_slug, assignment_slug):
+    questionSelected = Question.objects.get(slug=question_slug)
+    questionSelected.delete()
+    return redirect("/dashboard/assignment/"+assignment_slug)
+
+
+@login_required
+def remove_student(request, class_slug, student_email):
+    return HttpResponse("This page is not coded")
+
+
+@login_required
+def submissions_view(request, question_slug):
+    user = request.user
+    userType = Profile.objects.get(user=user)
+    questionSelected = Question.objects.get(slug=question_slug)
+    if userType == "student":
+        user = request.user
+        try:
+            submissionSelected = Submission.objects.filter(submitted_by=user, question=questionSelected)
+        except:
+            submissionSelected = None
+        context = {
+            'title': 'Submissions',
+            'questionSelected': questionSelected,
+            'submissionSelected': submissionSelected,
+        }
+        return render(request, 'dashboard/submissions.html', context)
+    else:
+        questionSelected = Question.objects.get(slug=question_slug)
+        user = request.user
+        try:
+            submissionSelected = Submission.objects.filter(question=questionSelected)
+        except:
+            submissionSelected = None
+        print(submissionSelected)
+        context = {
+            'title': 'Submissions',
+            'questionSelected': questionSelected,
+            'submissionSelected': submissionSelected,
+        }
+        return render(request, 'dashboard/submission_teacher.html', context)

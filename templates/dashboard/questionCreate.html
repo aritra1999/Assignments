@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questionCreate.css' %}">
+{% endblock extrahead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="assignmentCont">
+        <div class="class_cont questionCreateBody">
+            <h1 class="createAssignment">Add a question</h1>
+            <div class="assignmentPart">
+                <div class="questionBody">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="questionCreateFormElem">
+                            <label class="questionCreate" for="questionName">Question Name:
+                                <input aria-required="true" type="text" name="questionName" id="questionName" class="questionCreate">
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="questionCreate" for="questionName">Allowed Language:
+                                <select aria-required="true" name="allowedLang" id="allowedLang" class="allowedLang">
+                                    <option value="0" selected>Select</option>
+                                    <option value="C">C</option>
+                                    <option value="CPP">C++</option>
+                                    <option value="Python">Python</option>
+                                    <option value="Java">Java</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="questionCreate" for="questionName">Problem Statement:
+                                <textarea aria-required="true" name="problemStatement" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="questionCreate" for="questionName">Input Description:
+                                <textarea aria-required="true" name="inputFormat" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="questionCreate" for="questionName">Output Description:
+                                <textarea aria-required="true" name="outputFormat" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 1</h2>
+                            <div class="sample">
+                                <label class="questionCreate sample" for="questionName">Sample Input 1:
+                                    <textarea aria-required="true" name="sampleOneInp" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                                <label class="questionCreate sample" for="questionName">Sample Output 1:
+                                    <textarea aria-required="true" name="sampleOneOut" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 2</h2>
+                            <div class="sample">
+                                <label class="questionCreate sample" for="questionName">Sample Input 2:
+                                    <textarea aria-required="true" name="sampleOneInp" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                                <label class="questionCreate sample" for="questionName">Sample Output 2:
+                                    <textarea aria-required="true" name="sampleOneOut" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 3</h2>
+                            <div class="sample">
+                                <label class="questionCreate sample" for="questionName">Sample Input 3:
+                                    <textarea aria-required="true" name="sampleOneInp" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                                <label class="questionCreate sample" for="questionName">Sample Output 3:
+                                    <textarea aria-required="true" name="sampleOneOut" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 4</h2>
+                            <div class="sample">
+                                <label class="questionCreate sample" for="questionName">Sample Input 4:
+                                    <textarea aria-required="true" name="sampleOneInp" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                                <label class="questionCreate sample" for="questionName">Sample Output 4:
+                                    <textarea aria-required="true" name="sampleOneOut" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 5</h2>
+                            <div class="sample">
+                                <label class="questionCreate sample" for="questionName">Sample Input 5:
+                                    <textarea aria-required="true" name="sampleOneInp" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                                <label class="questionCreate sample" for="questionName">Sample Output 5:
+                                    <textarea aria-required="true" name="sampleOneOut" rows="10" cols="50" id="questionName" class="questionCreate"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="createQuestion btnfirst">Done</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+{% endblock extrafoot %}
