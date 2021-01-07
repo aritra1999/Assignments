@@ -10,6 +10,8 @@ from .views import (
     assignment_create,
     question_create,
     question_delete,
+    remove_student,
+    submissions_view,
 )
 
 urlpatterns = [
@@ -22,4 +24,6 @@ urlpatterns = [
     path('create/<class_slug>', assignment_create, name='assignmentCreate'),
     path('create/questions/<assignment_slug>', question_create, name='questionCreate'),
     path('questions/delete/<assignment_slug>/<question_slug>', question_delete, name='questionDelete'),
+    path('class/remove/<class_slug>/<student_email>', remove_student, name='removeStudent'),
+    path('submissions/<question_slug>', submissions_view, name='submission'),
 ]

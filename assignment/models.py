@@ -67,7 +67,7 @@ class Submission(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Question, self).save(*args, **kwargs)
+            super(Submission, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.slug)
@@ -82,7 +82,7 @@ class BestSubmission(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Question, self).save(*args, **kwargs)
+            super(BestSubmission, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.slug)

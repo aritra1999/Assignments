@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <style>
+        td.passVerdict{
+            color: #109b67 !important;
+        }
+        td.failVerdict{
+            color: #ff6347 !important;
+        }
+    </style>
+{% endblock extrahead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+     <div class="assignmentCont">
+        <div class="class_cont">
+            <div class="questionCont">
+                <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
+            </div>
+            <div class="tableCont">
+                <table class="questionTable" id="submissionTable">
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Verdict</th>
+                            <th>Time Taken</th>
+                            <th>Memory Usage</th>
+                            <th>Last Run</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if submissionSelected %}
+                            {% for submission in submissionSelected %}
+                                <tr>
+                                    <td>{{ questionSelected.allowed_lang }}</td>
+                                    <td>Passed</td>
+                                    <td>Time</td>
+                                    <td>Memory</td>
+                                    <td>Run</td>
+                                    <td id="score">{{ submission.score }}</td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
+{% endblock content %}
+{% block extrafoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script>
+
+        function check(){
+            let verdict = document.getElementById("verdict")
+            let score = parseInt(document.getElementById("score").innerText)
+            let table = document.getElementById("submissionTable")
+            let length = table.rows.length
+            if (score>=80){
+                verdict.innerText = "Passed"
+                verdict.classList.add("passVerdict")
+            }
+            else {
+                verdict.innerText = "Failed"
+                verdict.classList.add("failVerdict")
+            }
+        }
+        check()
+
+    </script>
+{% endblock extrafoot %}

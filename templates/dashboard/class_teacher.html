@@ -101,7 +101,7 @@
                                     <td>{{ student.rollNo }}</td>
                                     <td>{{ student.timestamp }}</td>
                                     <td>NA</td>
-                                    <td style="color: #ff6347">Remove Student</td>
+                                    <td><a style="color: #ff6347; text-decoration: none" href="/dashboard/class/remove/{{ classSelected.slug }}/{{ student.student.email }}">Remove Student</a></td>
                                 </tr>
                             {% endfor %}
                             {% else %}

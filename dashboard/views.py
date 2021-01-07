@@ -4,13 +4,13 @@ import asyncio
 import aiohttp
 
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
 
-from assignment.models import Assignment, Class
+from assignment.models import Assignment, Class, Submission
 
 
 def home_view(request):
@@ -236,3 +236,24 @@ def question_delete(request, question_slug, assignment_slug):
     questionSelected = Question.objects.get(slug=question_slug)
     questionSelected.delete()
     return redirect("/dashboard/assignment/"+assignment_slug)
+
+
+@login_required
+def remove_student(request, class_slug, student_email):
+    return HttpResponse("This page is not coded")
+
+
+@login_required
+def submissions_view(request, question_slug):
+    questionSelected = Question.objects.get(slug=question_slug)
+    user = request.user
+    try:
+        submissionSelected = Submission.objects.filter(submitted_by=user, question=questionSelected)
+    except:
+        submissionSelected = None
+    context = {
+        'title': 'Submissions',
+        'questionSelected': questionSelected,
+        'submissionSelected': submissionSelected,
+    }
+    return render(request, 'dashboard/submissions.html', context)
