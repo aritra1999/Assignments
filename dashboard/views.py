@@ -246,10 +246,11 @@ def remove_student(request, class_slug, student_email):
 @login_required
 def submissions_view(request, question_slug):
     user = request.user
-    userType = Profile.objects.get(user=user)
+    userType = Profile.objects.get(user=request.user)
     questionSelected = Question.objects.get(slug=question_slug)
-    if userType == "student":
-        user = request.user
+    user = request.user
+    print(userType.type)
+    if userType.type == "student":
         try:
             submissionSelected = Submission.objects.filter(submitted_by=user, question=questionSelected)
         except:
@@ -261,8 +262,6 @@ def submissions_view(request, question_slug):
         }
         return render(request, 'dashboard/submissions.html', context)
     else:
-        questionSelected = Question.objects.get(slug=question_slug)
-        user = request.user
         try:
             submissionSelected = Submission.objects.filter(question=questionSelected)
         except:
