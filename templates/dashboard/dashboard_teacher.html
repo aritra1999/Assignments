@@ -52,9 +52,9 @@
             </svg>
         </div>
         <h1 class="head">Create a classroom</h1>
-        <form action="" method="post">{% csrf_token %}
-            <input type="text" required name="class_name" class="class_name input" placeholder="Enter class name">
-            <input type="text" required name="section" class="section input" placeholder="Enter section">
+        <form action="" id="creationForm" method="post">{% csrf_token %}
+            <input type="text" required name="class_name" aria-required="true" class="class_name input" placeholder="Enter class name">
+            <input type="text" required name="section" aria-required="true" class="section input" placeholder="Enter section">
             <div class="btn">
                 <button type="submit" class="cancel submit">Submit</button>
             </div>

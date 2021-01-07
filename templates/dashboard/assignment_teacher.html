@@ -3,10 +3,11 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
     <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 {% endblock extrahead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-    <div class="assignmentCont">
+     <div class="assignmentCont">
         <div class="tags">
             <button class="tags activeBtn">Assignments</button>
             <button class="tags">Statistics</button>
@@ -17,32 +18,44 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg> Back
             </span>
-            <h1 class="yourAssignments">{{ classSelected.name }}</h1>
-            <h1 class="tagBatch">{{ classSelected.batch }}</h1>
-            <p class="youCan">You can view all assignments and scores for each submission here.</p>
-            <p class="createdBy">Created By: {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
-            <div class="assignmentsView">
-                {% for assignment in assignments %}
-                    <a href="/dashboard/assignment/{{ assignment.slug }}">
-                        <div class="assignmentCard">
-                            <div class="assignmentCardHead">
-                                <h1 class="assignment">{{ assignment.name }}</h1>
-                                <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
-                            </div>
-                            <div class="assignmentCardFoot">
-                                <h1 class="assignmentDue">Assignment Due</h1>
-                                <h2 class="due">{{ assignment.due_date }}</h2>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+            <div class="questionCont">
+                <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
+                <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
+                <a href="/dashboard/create/questions/{{ assignmentSelected.slug }}" class="addQuestion">Add Questions</a>
+            </div>
+            <div class="tableCont">
+                <table class="questionTable">
+                    <thead>
+                        <tr>
+                            <th>Program Name</th>
+                            <th>Average Score</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if questions %}
+                            {% for question in questions %}
+                                <tr>
+                                    <td><a href="/dashboard/question/{{ question.slug }}" class="question">{{ question.title }}</a></td>
+                                    <td>80/100</td>
+                                    <td><a href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}" class="delete">Delete Question</a></td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
+     </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
-    <script src="{% static 'js/assignments.js' %}"></script>
     <script>
         window.goBack = function (e){
             let defaultLocation = "http://localhost:8000/dashboard/";

@@ -23,14 +23,14 @@
         <div class="class_cont class_teacher_cont" id="class_teacher_cont">
             <div class="classTeacherTile">
                 <div class="cont1">
-                    <h1 class="classTitle">Machine Learning</h1>
-                    <h2 class="classBatch">IT-5</h2>
+                    <h1 class="classTitle">{{ classSelected.name }}</h1>
+                    <h2 class="classBatch">{{ classSelected.batch }}</h2>
                     <p class="invite">Invite students by sharing this joining code</p>
                     <span class="joinLink">
                         Class ID:
-                        <span class="linkText">xxx-xxx-xxx</span>
+                        <span class="linkText" id="linkText">{{ classSelected.slug }}</span>
                         <span class="copy">
-                            <svg class="copy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg id="linkTextToggle" class="copy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
                         </span>
@@ -39,7 +39,7 @@
                 <div class="cont2">
                     <p class="assignmentCountHead">Number of active assignments</p>
                     <h1 class="assignmentCount">{{ assignmentNumber }}</h1>
-                    <button type="button" class="createAssignment">Create Assignment</button>
+                    <a href="/dashboard/create/{{ classSelected.slug }}" class="createAssignment">Create Assignment</a>
                 </div>
             </div>
             <h1 class="yourAssg">Your Assignments</h1>
@@ -58,7 +58,7 @@
                         {% if assignments %}
                             {% for assignment in assignments %}
                                 <tr>
-                                    <td>{{ assignment.name }}</td>
+                                    <td><a href="/dashboard/assignment/{{ assignment.slug }}" class="question">{{ assignment.name }}</a></td>
                                     <td>{{ assignment.timestamp }}</td>
                                     <td>{{ assignment.due_date }}</td>
                                     <td>NA</td>
@@ -97,11 +97,11 @@
                         {% if students %}
                             {% for student in students %}
                                 <tr>
-                                    <td>{{ student.student.first_name }} {{ student.student.last_name }}</td>
+                                    <td><a href="#" class="question">{{ student.student.first_name }} {{ student.student.last_name }}</a></td>
                                     <td>{{ student.rollNo }}</td>
                                     <td>{{ student.timestamp }}</td>
                                     <td>NA</td>
-                                    <td style="color: #ff6347">Remove Student</td>
+                                    <td><a style="color: #ff6347; text-decoration: none" href="/dashboard/class/remove/{{ classSelected.slug }}/{{ student.student.email }}">Remove Student</a></td>
                                 </tr>
                             {% endfor %}
                             {% else %}
@@ -165,6 +165,18 @@
                     e.preventPropagation();
             }
             return false;
+        }
+
+        document.getElementById("linkTextToggle").addEventListener("click", copyLink)
+        function copyLink() {
+            let copyText = document.getElementById("linkText")
+            let textArea = document.createElement("textarea")
+            textArea.value = copyText.textContent
+            document.body.appendChild(textArea)
+            textArea.select()
+            document.execCommand("Copy")
+            alert("Code Copied")
+            textArea.remove()
         }
     </script>
 {% endblock extrafoot %}

@@ -35,7 +35,7 @@ span.joinLink{
     padding: 10px 20px;
     color: #ffffff;
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     position: relative;
     border-radius: 4px;
     margin-top: 10px;
@@ -50,6 +50,7 @@ span.linkText{
 svg.copy{
     height: 20px;
     color: #efefef;
+    cursor: pointer;
 }
 div.cont2{
     margin-left: 40px;
@@ -65,7 +66,7 @@ h1.assignmentCount{
     margin: 10px 0 20px 0;
     font-family: "Mulish-Reg", sans-serif;
 }
-button.createAssignment{
+a.createAssignment{
     border: none;
     outline: none;
     background-color: #0078d4;
@@ -76,6 +77,7 @@ button.createAssignment{
     letter-spacing: 0.03rem;
     font-size: 0.9rem;
     cursor: pointer;
+    text-decoration: none;
 }
 h1.yourAssg{
     color: #ffffff;
