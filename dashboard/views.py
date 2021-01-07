@@ -245,15 +245,32 @@ def remove_student(request, class_slug, student_email):
 
 @login_required
 def submissions_view(request, question_slug):
-    questionSelected = Question.objects.get(slug=question_slug)
     user = request.user
-    try:
-        submissionSelected = Submission.objects.filter(submitted_by=user, question=questionSelected)
-    except:
-        submissionSelected = None
-    context = {
-        'title': 'Submissions',
-        'questionSelected': questionSelected,
-        'submissionSelected': submissionSelected,
-    }
-    return render(request, 'dashboard/submissions.html', context)
+    userType = Profile.objects.get(user=user)
+    questionSelected = Question.objects.get(slug=question_slug)
+    if userType == "student":
+        user = request.user
+        try:
+            submissionSelected = Submission.objects.filter(submitted_by=user, question=questionSelected)
+        except:
+            submissionSelected = None
+        context = {
+            'title': 'Submissions',
+            'questionSelected': questionSelected,
+            'submissionSelected': submissionSelected,
+        }
+        return render(request, 'dashboard/submissions.html', context)
+    else:
+        questionSelected = Question.objects.get(slug=question_slug)
+        user = request.user
+        try:
+            submissionSelected = Submission.objects.filter(question=questionSelected)
+        except:
+            submissionSelected = None
+        print(submissionSelected)
+        context = {
+            'title': 'Submissions',
+            'questionSelected': questionSelected,
+            'submissionSelected': submissionSelected,
+        }
+        return render(request, 'dashboard/submission_teacher.html', context)
