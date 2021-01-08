@@ -241,7 +241,9 @@ def question_delete(request, question_slug, assignment_slug):
 
 @login_required
 def remove_student(request, class_slug, student_email):
-    return HttpResponse("This page is not coded")
+    student = Enrolled.objects.filter(class_name=Class.objects.get(slug=class_slug), student=User.objects.get(email=student_email))
+    student.delete()
+    return redirect("/dashboard/class/"+class_slug)
 
 
 @login_required
