@@ -101,7 +101,7 @@ def class_view(request, class_slug):
 def assignment_view(request, assignment_slug):
     user = request.user
     userType = Profile.objects.get(user=user)
-    if userType == "student":
+    if userType.type == "student":
         assignmentSelected = Assignment.objects.get(slug=assignment_slug)
         try:
             questions = Question.objects.filter(assignment=assignmentSelected)
@@ -202,13 +202,13 @@ def assignment_create(request, class_slug):
         'title': 'Create',
     }
     if request.method == "POST":
-        Assignment.objects.create(
+        newAssignment = Assignment.objects.create(
             created_by=request.user,
             class_name=classSelected,
             due_date=request.POST.get('assignmentDate'),
             name=request.POST.get('assignmentName'),
         )
-        return redirect("/dashboard/class/"+class_slug)
+        return redirect("/dashboard/assignment/"+newAssignment.slug)
     return render(request, 'dashboard/assignmentCreation.html', context)
 
 
