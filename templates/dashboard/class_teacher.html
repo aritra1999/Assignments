@@ -35,6 +35,15 @@
                             </svg>
                         </span>
                     </span>
+                    <p class="invite invLink">Or share the invite link</p>
+                    <span class="joinLink joinLinkMain">
+                        <span class="linkTextMain" id="linkTextMain">localhost:8000/join/{{ classSelected.slug }}</span>
+                        <span class="copy">
+                            <svg id="linkTextToggleMain" class="copy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </span>
+                    </span>
                 </div>
                 <div class="cont2">
                     <p class="assignmentCountHead">Number of active assignments</p>
@@ -170,6 +179,17 @@
         document.getElementById("linkTextToggle").addEventListener("click", copyLink)
         function copyLink() {
             let copyText = document.getElementById("linkText")
+            let textArea = document.createElement("textarea")
+            textArea.value = copyText.textContent
+            document.body.appendChild(textArea)
+            textArea.select()
+            document.execCommand("Copy")
+            alert("Code Copied")
+            textArea.remove()
+        }
+        document.getElementById("linkTextToggleMain").addEventListener("click", copyMain)
+        function copyMain() {
+            let copyText = document.getElementById("linkTextMain")
             let textArea = document.createElement("textarea")
             textArea.value = copyText.textContent
             document.body.appendChild(textArea)

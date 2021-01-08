@@ -26,6 +26,9 @@ div.cont1 p.invite{
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.9rem;
 }
+div.cont1 p.invLink{
+    margin-top: 10px;
+}
 span.joinLink{
     display: flex;
     align-items: center;
@@ -40,12 +43,18 @@ span.joinLink{
     border-radius: 4px;
     margin-top: 10px;
 }
+span.joinLinkMain{
+    width: 300px !important;
+}
 span.copy{
     position: absolute;
     right: 15px;
 }
 span.linkText{
     margin-left: 10px;
+}
+span.linkTextMain{
+    margin-left: 0 !important;
 }
 svg.copy{
     height: 20px;
