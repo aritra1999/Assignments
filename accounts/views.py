@@ -11,7 +11,6 @@ def signin_view(request):
     context = {
         'title': 'Sign In'
     }
-
     if request.method == "POST":
         username = request.POST.get('email')
         password = request.POST.get('password')

@@ -345,3 +345,12 @@ div.btn button.submit{
 	color: #ffffff;
 	margin-left: 15px;
 }
+ul.messages{
+	display: block;
+	margin: 20px 0;
+}
+ul.messages li{
+	color: #E16541;
+	font-family: "Mulish-Reg", sans-serif;
+	font-size: 0.9rem;
+}
