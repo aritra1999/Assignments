@@ -38,6 +38,21 @@
             </div>
         </div>
     </div>
+    <div class="classCreate" id="classBody">
+        <div class="topBar">
+            <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
+            <svg class="close" id="closeBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+        <h1 class="head">Join a classroom</h1>
+        <form action="" id="creationForm" method="post">{% csrf_token %}
+            <input type="text" required name="class_slug" aria-required="true" class="class_name input" placeholder="Enter class ID">
+            <div class="btn">
+                <button type="submit" class="cancel submit">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>

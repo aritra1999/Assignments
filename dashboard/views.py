@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
+from django.contrib.auth.models import User
 
 from assignment.models import Assignment, Class, Submission
 
@@ -26,7 +27,7 @@ def home_view(request):
 
 @login_required
 def dashboard_view(request):
-    user = request.user    
+    user = request.user
     profile = Profile.objects.get(user=request.user)
     if profile.type == "teacher":
         if request.method == "POST":
@@ -149,7 +150,7 @@ def report_view(request, email):
 def submit(request, question_slug):
     if request.method == "POST":
         response = {}
-        try: 
+        try:
             question = Question.objects.get(slug=question_slug)
         except:
             return JsonResponse({'error': 'Bad Request'})
@@ -158,7 +159,7 @@ def submit(request, question_slug):
         response['totalscore'] = 0
         for it in range(1, 6):
             input = open("media/io/" + question_slug + "_" + str(it) + ".in", "rt").read()
-            output = open("media/io/"+ question_slug + "_" + str(it) + ".out", "rt").read().strip()
+            output = open("media/io/" + question_slug + "_" + str(it) + ".out", "rt").read().strip()
 
             payload = {
                 "language": question.allowed_lang,
@@ -206,7 +207,7 @@ def assignment_create(request, class_slug):
             due_date=request.POST.get('assignmentDate'),
             name=request.POST.get('assignmentName'),
         )
-        return redirect("/dashboard/assignment/"+newAssignment.slug)
+        return redirect("/dashboard/assignment/" + newAssignment.slug)
     return render(request, 'dashboard/assignmentCreation.html', context)
 
 
@@ -227,7 +228,7 @@ def question_create(request, assignment_slug):
             output_format=request.POST.get('outputFormat'),
             allowed_lang=request.POST.get('allowedLang'),
         )
-        return redirect("/dashboard/assignment/"+assignment_slug)
+        return redirect("/dashboard/assignment/" + assignment_slug)
     return render(request, 'dashboard/questionCreate.html', context)
 
 
@@ -235,7 +236,7 @@ def question_create(request, assignment_slug):
 def question_delete(request, question_slug, assignment_slug):
     questionSelected = Question.objects.get(slug=question_slug)
     questionSelected.delete()
-    return redirect("/dashboard/assignment/"+assignment_slug)
+    return redirect("/dashboard/assignment/" + assignment_slug)
 
 
 @login_required
