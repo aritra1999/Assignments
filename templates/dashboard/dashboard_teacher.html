@@ -63,4 +63,9 @@
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
+    <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 {% endblock extrafoot %}

@@ -6,6 +6,7 @@ import aiohttp
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
@@ -47,6 +48,19 @@ def dashboard_view(request):
         }
         return render(request, 'dashboard/dashboard_teacher.html', context)
     elif user.profile.type == "student":
+        if request.method == "POST":
+            classSlug = request.POST.get('class_slug')
+            classEnrolled = Class.objects.get(slug=classSlug)
+            checkEnroll = Enrolled.objects.filter(class_name=Class.objects.get(slug=classSlug), student=request.user)
+            if checkEnroll.count() == 0:
+                instance = Enrolled.objects.create(
+                    student=request.user,
+                    class_name=classEnrolled,
+                )
+                instance.save()
+                return redirect("/dashboard/class/" + classSlug)
+            else:
+                messages.info(request, 'Already present in the classroom!')
         context = {
             'title': 'Dashboard',
             'user': request.user,
@@ -83,7 +97,6 @@ def class_view(request, class_slug):
             assignments = Assignment.objects.filter(class_name=classSelected)
         except:
             assignments = None
-
         for student in students:
             student.rollNo = (Profile.objects.get(user=student.student)).rollNo
         context = {
@@ -241,7 +254,8 @@ def question_delete(request, question_slug, assignment_slug):
 
 @login_required
 def remove_student(request, class_slug, student_email):
-    student = Enrolled.objects.filter(class_name=Class.objects.get(slug=class_slug), student=User.objects.get(email=student_email))
+    student = Enrolled.objects.filter(class_name=Class.objects.get(slug=class_slug),
+                                      student=User.objects.get(email=student_email))
     student.delete()
     return redirect("/dashboard/class/"+class_slug)
 
@@ -276,3 +290,20 @@ def submissions_view(request, question_slug):
             'submissionSelected': submissionSelected,
         }
         return render(request, 'dashboard/submission_teacher.html', context)
+
+
+def join_view(request, class_slug):
+    if request.user.is_authenticated:
+        classSelected = Class.objects.get(slug=class_slug)
+        user = request.user
+        checkEnrollStatus = Enrolled.objects.filter(class_name=classSelected, student=user)
+        if checkEnrollStatus.count() == 0:
+            instance = Enrolled.objects.create(
+                student=request.user,
+                class_name=classSelected,
+            )
+            instance.save()
+        return redirect("/dashboard/class/" + class_slug)
+    else:
+        nextUrl = "/dashboard/class/" + class_slug
+        return redirect('/auth/signin')

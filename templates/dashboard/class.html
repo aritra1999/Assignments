@@ -20,22 +20,28 @@
             <h1 class="yourAssignments">{{ classSelected.name }}</h1>
             <h1 class="tagBatch">{{ classSelected.batch }}</h1>
             <p class="youCan">You can view all assignments and scores for each submission here.</p>
-            <p class="createdBy">Created By: {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
+            <p class="createdBy"><span style="color: #44a2e5;">Created By:</span> {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
             <div class="assignmentsView">
-                {% for assignment in assignments %}
-                    <a href="/dashboard/assignment/{{ assignment.slug }}">
-                        <div class="assignmentCard">
-                            <div class="assignmentCardHead">
-                                <h1 class="assignment">{{ assignment.name }}</h1>
-                                <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
+                {% if assignments %}
+                    {% for assignment in assignments %}
+                        <a href="/dashboard/assignment/{{ assignment.slug }}">
+                            <div class="assignmentCard">
+                                <div class="assignmentCardHead">
+                                    <h1 class="assignment">{{ assignment.name }}</h1>
+                                    <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
+                                </div>
+                                <div class="assignmentCardFoot">
+                                    <h1 class="assignmentDue">Assignment Due</h1>
+                                    <h2 class="due">{{ assignment.due_date }}</h2>
+                                </div>
                             </div>
-                            <div class="assignmentCardFoot">
-                                <h1 class="assignmentDue">Assignment Due</h1>
-                                <h2 class="due">{{ assignment.due_date }}</h2>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                        </a>
+                    {% endfor %}
+                    {% else %}
+                    <div class="noClass">
+                       <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
+                   </div>
+                {% endif %}
             </div>
         </div>
     </div>

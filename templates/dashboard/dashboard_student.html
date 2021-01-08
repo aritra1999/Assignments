@@ -14,6 +14,13 @@
                 </span>
                 <button type="button" id="createClass" class="join">Join a class</button>
             </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             <div class="classes">
                 {% if classes %}
                     {% for class in classes %}
@@ -56,4 +63,9 @@
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
+    <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 {% endblock extrafoot %}
