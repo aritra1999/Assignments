@@ -12,6 +12,11 @@
     {% include 'base/dashnav.html' %}
     <div class="assignmentCont">
         <div class="class_cont questionCreateBody">
+            <span class="goBack" onclick="goBack();">
+                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg> Back
+            </span>
             <h1 class="createAssignment">Add a question</h1>
             <div class="assignmentPart">
                 <div class="questionBody">
@@ -112,4 +117,28 @@
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>
+    <script>
+    window.goBack = function (e){
+            let defaultLocation = "http://localhost:8000/dashboard/";
+            let oldHash = window.location.hash;
+
+            history.back();
+            let newHash = window.location.hash;
+            if(
+                newHash === oldHash &&
+                (typeof(document.referrer) !== "string" || document.referrer  === "")
+            ){
+                window.setTimeout(function(){
+                    window.location.href = defaultLocation;
+                },1000);
+            }
+            if(e){
+                if(e.preventDefault)
+                    e.preventDefault();
+                if(e.preventPropagation)
+                    e.preventPropagation();
+            }
+            return false;
+        }
+    </script>
 {% endblock extrafoot %}

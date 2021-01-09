@@ -130,7 +130,8 @@ div.studentView{
 a.addQuestion{
     color: #ffffff;
     text-decoration: none;
-    background-color: #0078d4;
+    background-color: transparent;
+    border: 3px solid #0078d4;
     padding: 8px 25px;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.9rem;
@@ -139,4 +140,11 @@ a.addQuestion{
     border-radius: 6px;
     display: inline-block;
     margin-top: 10px;
+}
+a.publish{
+    margin-left: 15px;
+    background-color: #0078d4 !important;
+}
+a.archive{
+    background-color: transparent !important;
 }

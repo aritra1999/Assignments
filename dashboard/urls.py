@@ -12,6 +12,8 @@ from .views import (
     question_delete,
     remove_student,
     submissions_view,
+    publish_assignment,
+    deactivate_assignment,
 )
 
 urlpatterns = [
@@ -26,4 +28,6 @@ urlpatterns = [
     path('questions/delete/<assignment_slug>/<question_slug>', question_delete, name='questionDelete'),
     path('class/remove/<class_slug>/<student_email>', remove_student, name='removeStudent'),
     path('submissions/<question_slug>', submissions_view, name='submission'),
+    path('assignment/active/<assignment_slug>', publish_assignment, name='activate'),
+    path('assignment/deactivate/<assignment_slug>', deactivate_assignment, name='deactivate'),
 ]

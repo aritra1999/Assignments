@@ -45,6 +45,7 @@ def dashboard_view(request):
             'title': 'Dashboard',
             'user': request.user,
             'createdClass': classInstances,
+            'profile': profile,
         }
         return render(request, 'dashboard/dashboard_teacher.html', context)
     elif user.profile.type == "student":
@@ -65,7 +66,7 @@ def dashboard_view(request):
             'title': 'Dashboard',
             'user': request.user,
             'profile': Profile.objects.get(user=request.user),
-            'classes': Enrolled.objects.filter(student=request.user)
+            'classes': Enrolled.objects.filter(student=request.user),
         }
         return render(request, 'dashboard/dashboard_student.html', context)
 
@@ -77,13 +78,14 @@ def class_view(request, class_slug):
     if userType.type == "student":
         classSelected = Class.objects.get(slug=class_slug)
         try:
-            assignments = Assignment.objects.filter(class_name=classSelected)
+            assignments = Assignment.objects.filter(class_name=classSelected, isActive=True)
         except:
             assignments = None
         context = {
             'title': 'Class',
             'assignments': assignments,
             'classSelected': classSelected,
+            'profile': Profile.objects.get(user=request.user),
         }
         return render(request, 'dashboard/class.html', context)
     else:
@@ -107,6 +109,7 @@ def class_view(request, class_slug):
             'studentNumber': studentNumber,
             'students': students,
             'assignmentsAll': assignmentsAll,
+            'profile': Profile.objects.get(user=request.user),
         }
         return render(request, 'dashboard/class_teacher.html', context)
 
@@ -309,3 +312,13 @@ def join_view(request, class_slug):
     else:
         nextUrl = "/dashboard/class/" + class_slug
         return redirect('/auth/signin')
+
+
+def publish_assignment(request, assignment_slug):
+    Assignment.objects.filter(slug=assignment_slug).update(isActive=True)
+    return redirect("/dashboard/assignment/"+assignment_slug)
+
+
+def deactivate_assignment(request, assignment_slug):
+    Assignment.objects.filter(slug=assignment_slug).update(isActive=False)
+    return redirect("/dashboard/assignment/"+assignment_slug)
