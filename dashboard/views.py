@@ -39,7 +39,7 @@ def dashboard_view(request):
             )
         classInstances = Class.objects.filter(created_by=user)
         for classInstance in classInstances:
-            classInstance.assignmentNumber = Assignment.objects.filter(class_name=classInstance).count()
+            classInstance.assignmentNumber = Assignment.objects.filter(class_name=classInstance, isActive=True).count()
             classInstance.studentNumber = Enrolled.objects.filter(class_name=classInstance).count()
         context = {
             'title': 'Dashboard',
@@ -322,3 +322,15 @@ def publish_assignment(request, assignment_slug):
 def deactivate_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=False)
     return redirect("/dashboard/assignment/"+assignment_slug)
+
+
+def remove_class(request, class_slug):
+    classSelected = Class.objects.get(created_by=request.user, slug=class_slug)
+    classSelected.delete()
+    return redirect("/dashboard")
+
+
+def remove_assignment(request, assignment_slug, class_slug):
+    removeAssignment = Assignment.objects.filter(created_by=request.user, slug=assignment_slug)
+    removeAssignment.delete()
+    return redirect("/dashboard/class/"+class_slug)
