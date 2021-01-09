@@ -25,7 +25,7 @@ SECRET_KEY = ')dvix1ludr$qm+v2p9uv%s9-zui=rc458@*ku@#0_rlpl6)ek='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['codevox.herokuapp.com']
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
 
 ROOT_URLCONF = 'Assignments.urls'
@@ -85,6 +86,8 @@ DATABASES = {
     }
 }
 
+import django_heroku
+django_heroku.settings(locals())
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -128,6 +131,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -135,4 +140,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # /media/io/4L1-BIM-IOA_1.in
 
 LOGOUT_REDIRECT_URL = '/'
-
