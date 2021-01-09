@@ -27,7 +27,7 @@ class Assignment(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     due_date = models.DateTimeField(max_length=50, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    isActive = models.BooleanField(default=True)
+    isActive = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.slug is None:

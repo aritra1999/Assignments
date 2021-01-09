@@ -44,7 +44,7 @@ span.joinLink{
     margin-top: 10px;
 }
 span.joinLinkMain{
-    width: 300px !important;
+    width: 350px !important;
 }
 span.copy{
     position: absolute;
@@ -93,4 +93,9 @@ h1.yourAssg{
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.5rem;
     margin: 40px 0 20px 0;
+}
+svg.threeDots{
+    height: 18px;
+    color: #E16541;
+    cursor: pointer;
 }

@@ -12,36 +12,38 @@
             <button class="tags">Statistics</button>
         </div>
         <div class="class_cont">
-            <span class="goBack" onclick="goBack();">
+            <div class="assignmentSubPart">
+                <span class="goBack" onclick="goBack();">
                 <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg> Back
-            </span>
-            <h1 class="yourAssignments">{{ classSelected.name }}</h1>
-            <h1 class="tagBatch">{{ classSelected.batch }}</h1>
-            <p class="youCan">You can view all assignments and scores for each submission here.</p>
-            <p class="createdBy"><span style="color: #44a2e5;">Created By:</span> {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
-            <div class="assignmentsView">
-                {% if assignments %}
-                    {% for assignment in assignments %}
-                        <a href="/dashboard/assignment/{{ assignment.slug }}">
-                            <div class="assignmentCard">
-                                <div class="assignmentCardHead">
-                                    <h1 class="assignment">{{ assignment.name }}</h1>
-                                    <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
+                </span>
+                <h1 class="yourAssignments">{{ classSelected.name }}</h1>
+                <h1 class="tagBatch">{{ classSelected.batch }}</h1>
+                <p class="youCan">You can view all assignments and scores for each submission here.</p>
+                <p class="createdBy"><span style="color: #44a2e5;">Created By:</span> {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
+                <div class="assignmentsView">
+                    {% if assignments %}
+                        {% for assignment in assignments %}
+                            <a href="/dashboard/assignment/{{ assignment.slug }}">
+                                <div class="assignmentCard">
+                                    <div class="assignmentCardHead">
+                                        <h1 class="assignment">{{ assignment.name }}</h1>
+                                        <h2 class="lastEdit">Last edited on 20 Nov, 2020</h2>
+                                    </div>
+                                    <div class="assignmentCardFoot">
+                                        <h1 class="assignmentDue">Assignment Due</h1>
+                                        <h2 class="due">{{ assignment.due_date }}</h2>
+                                    </div>
                                 </div>
-                                <div class="assignmentCardFoot">
-                                    <h1 class="assignmentDue">Assignment Due</h1>
-                                    <h2 class="due">{{ assignment.due_date }}</h2>
-                                </div>
-                            </div>
-                        </a>
-                    {% endfor %}
-                    {% else %}
-                    <div class="noClass">
-                       <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
-                   </div>
-                {% endif %}
+                            </a>
+                        {% endfor %}
+                        {% else %}
+                        <div class="noClass">
+                           <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
+                       </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
