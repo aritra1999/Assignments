@@ -12,7 +12,7 @@ from accounts.models import Profile, Enrolled
 from assignment.models import Question
 from django.contrib.auth.models import User
 
-from assignment.models import Assignment, Class, Submission, IO
+from assignment.models import Assignment, Class, Submission, BestSubmission, IO
 
 
 def home_view(request):
@@ -206,8 +206,12 @@ def submit(request, question_slug):
                 response['verdict' + str(it)] = "wrong"
 
             
+        Submission.objects.create(
+            submitted_by=request.user,
+            question=question,
+            score=response['totalscore']
+        )
 
-        print(response)
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
