@@ -212,6 +212,23 @@ def submit(request, question_slug):
             score=response['totalscore']
         )
 
+        try:
+            best = BestSubmission.objects.get(
+                submitted_by=request.user,
+                question=question
+            )
+            if response['totalscore'] > best.score:
+                print('Updating')
+                best.score = response['totalscore']
+                best.save()
+        except:
+            BestSubmission.objects.create(
+                submitted_by=request.user,
+                question=question,
+                score=response['totalscore']
+            )
+
+
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})

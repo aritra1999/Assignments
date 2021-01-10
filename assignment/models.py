@@ -61,31 +61,19 @@ class Question(models.Model):
 class Submission(models.Model):
     submitted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=11, blank=True, null=True)
     score = models.IntegerField(null=True, blank=True, default=0)
 
-    def save(self, *args, **kwargs):
-        if self.slug is None:
-            self.slug = slug_generator()
-            super(Submission, self).save(*args, **kwargs)
-
     def __str__(self):
-        return str(self.slug)
+        return str(self.submitted_by)
 
 
 class BestSubmission(models.Model):
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
-    slug = models.SlugField(max_length=11, blank=True, null=True)
-    score = models.IntegerField(default=0)
-
-    def save(self, *args, **kwargs):
-        if self.slug is None:
-            self.slug = slug_generator()
-            super(BestSubmission, self).save(*args, **kwargs)
+    score = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
-        return str(self.slug)
+        return str(self.submitted_by)
 
 
 class Executions(models.Model):
