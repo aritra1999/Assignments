@@ -12,7 +12,7 @@ from accounts.models import Profile, Enrolled
 from assignment.models import Question
 from django.contrib.auth.models import User
 
-from assignment.models import Assignment, Class, Submission
+from assignment.models import Assignment, Class, Submission, IO
 
 
 def home_view(request):
@@ -170,13 +170,15 @@ def submit(request, question_slug):
             question = Question.objects.get(slug=question_slug)
         except:
             return JsonResponse({'error': 'Bad Request'})
-        print(question)
+
+        io = IO.objects.get(question=question).__dict__
 
         response['totalscore'] = 0
         for it in range(1, 6):
-            input = open("media/io/" + question_slug + "_" + str(it) + ".in", "rt").read()
-            output = open("media/io/" + question_slug + "_" + str(it) + ".out", "rt").read().strip()
-
+            
+            input = io['input' + str(it)]
+            output = io['output' + str(it)]
+            
             payload = {
                 "language": question.allowed_lang,
                 "code": request.POST.get('code'),
@@ -237,7 +239,7 @@ def question_create(request, assignment_slug):
         'title': 'Add Questions',
     }
     if request.method == 'POST':
-        Question.objects.create(
+        question = Question.objects.create(
             assignment=assignmentSelected,
             added_by=request.user,
             title=request.POST.get('questionName'),
@@ -246,6 +248,21 @@ def question_create(request, assignment_slug):
             output_format=request.POST.get('outputFormat'),
             allowed_lang=request.POST.get('allowedLang'),
         )
+
+        IO.objects.create(
+            question = question,
+            input1 = request.POST.get('input1'),
+            input2 = request.POST.get('input2'),
+            input3 = request.POST.get('input3'),
+            input4 = request.POST.get('input4'),
+            input5 = request.POST.get('input5'),
+            output1 = request.POST.get('output1'),
+            output2 = request.POST.get('output2'),
+            output3 = request.POST.get('output3'),
+            output4 = request.POST.get('output4'),
+            output5 =request.POST.get('output5'),
+        )
+
         return redirect("/dashboard/assignment/" + assignment_slug)
     return render(request, 'dashboard/questionCreate.html', context)
 

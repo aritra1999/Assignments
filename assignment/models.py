@@ -76,7 +76,7 @@ class Submission(models.Model):
 class BestSubmission(models.Model):
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
-    slug = models.SlugField(max_length=10, blank=True, null=True)
+    slug = models.SlugField(max_length=11, blank=True, null=True)
     score = models.IntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -100,3 +100,27 @@ class Executions(models.Model):
 
     def __str__(self):
         return str(self.language)
+
+
+class IO(models.Model):
+    question = models.OneToOneField(Question, on_delete=models.CASCADE)
+    input1 = models.TextField(null=True, blank=True)
+    input2 = models.TextField(null=True, blank=True)
+    input3 = models.TextField(null=True, blank=True)
+    input4 = models.TextField(null=True, blank=True)
+    input5 = models.TextField(null=True, blank=True)
+    output1 = models.TextField(null=True, blank=True)
+    output2 = models.TextField(null=True, blank=True)
+    output3 = models.TextField(null=True, blank=True)
+    output4 = models.TextField(null=True, blank=True)
+    output5 = models.TextField(null=True, blank=True)
+    slug = models.SlugField(max_length=11, blank=True, null=True)
+    
+    def save(self, *args, **kwargs):
+        if self.slug is None:
+            self.slug = slug_generator()
+            super(IO, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.question)
+    
