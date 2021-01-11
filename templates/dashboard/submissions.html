@@ -37,9 +37,9 @@
                             {% for submission in submissionSelected %}
                                 <tr>
                                     <td>{{ questionSelected.allowed_lang }}</td>
-                                    <td>Passed</td>
-                                    <td>Time</td>
-                                    <td>Memory</td>
+                                    <td>{{ submission.status }}</td>
+                                    <td>{{ submission.timeTaken }}</td>
+                                    <td>{{ submission.memory }}</td>
                                     <td>Run</td>
                                     <td id="score">{{ submission.score }}</td>
                                 </tr>

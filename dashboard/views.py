@@ -199,19 +199,22 @@ def submit(request, question_slug):
             response['memory' + str(it)] = r['memory']
 
             if r['output'].strip() == output:
-                response['verdict' + str(it)] = "correct"
+                response['verdict'] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
+                response['time'] = response['time' + str(it)]
+                response['memory'] = response['memory' + str(it)]
             else:
-                response['verdict' + str(it)] = "wrong"
+                response['verdict'] = "Failed"
 
-            
         Submission.objects.create(
             submitted_by=request.user,
             question=question,
-            score=response['totalscore']
+            score=response['totalscore'],
+            timeTaken=response['time'],
+            memory=response['memory'],
+            status=response['verdict'],
         )
-
         try:
             best = BestSubmission.objects.get(
                 submitted_by=request.user,
@@ -227,8 +230,6 @@ def submit(request, question_slug):
                 question=question,
                 score=response['totalscore']
             )
-
-
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
