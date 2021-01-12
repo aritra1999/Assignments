@@ -56,7 +56,8 @@
                     <table class="questionTable">
                         <thead>
                             <tr>
-                                <th>Class Mates</th>
+                                <th>Classmates</th>
+                                <th>Roll Number</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,10 +65,12 @@
                                 {% for student in students %}
                                     <tr>
                                         <td>{{ student.student.first_name }} {{ student.student.last_name }}</td>
+                                        <td>{{ student.rollNo }}</td>
                                     </tr>
                                 {% endfor %}
                                 {% else %}
                                     <tr>
+                                        <td>NA</td>
                                         <td>NA</td>
                                     </tr>
                             {% endif %}
