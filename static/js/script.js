@@ -27,6 +27,8 @@ function submit_code() {
     var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
     var slug = document.getElementById('slug').innerHTML;
     $("#processing").css({"display": "block"});
+    $(".success").css({"display": "none"});
+    $(".error").css({"display": "none"});
     
     $("#success_message").empty();
     $("#error_message").empty();
@@ -44,7 +46,7 @@ function submit_code() {
         $("#processing").css({"display": "none"});
         if (data.status === "success") {
             for (let i = 1; i <= 5; i++) {
-                $("#success_message").append(i + "." + data['verdict' + i] + " Time taken: " + data['time' + i] + " Memory used: " + data['memory' + i] + " Score: " + data['score' + i] + "<br>");
+                $("#success_message").append("<p class='messageText'>" + i + ". " + data['verdict' + i] + ". Time taken: " + data['time' + i] + ", Memory used: " + data['memory' + i] + ", Score: " + data['score' + i] + "</p>");
             }
             $("#success_message").append("Total Score: " + data['totalscore'] + "/100<br><br>" );
             if(data['totalscore'] > 20){

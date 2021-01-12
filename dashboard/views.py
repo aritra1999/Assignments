@@ -79,13 +79,18 @@ def class_view(request, class_slug):
         classSelected = Class.objects.get(slug=class_slug)
         try:
             assignments = Assignment.objects.filter(class_name=classSelected, isActive=True)
+            students = Enrolled.objects.filter(class_name=classSelected)
         except:
             assignments = None
+            students = None
+        for student in students:
+            student.rollNo = (Profile.objects.get(user=student.student)).rollNo
         context = {
             'title': 'Class',
             'assignments': assignments,
             'classSelected': classSelected,
             'profile': Profile.objects.get(user=request.user),
+            'students': students,
         }
         return render(request, 'dashboard/class.html', context)
     else:
@@ -199,19 +204,18 @@ def submit(request, question_slug):
             response['memory' + str(it)] = r['memory']
 
             if r['output'].strip() == output:
-                response['verdict' + str(it)] = "correct"
+                response['verdict'] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
             else:
-                response['verdict' + str(it)] = "wrong"
+                response['verdict'] = "Failed"
 
-            
         Submission.objects.create(
             submitted_by=request.user,
             question=question,
-            score=response['totalscore']
+            score=response['totalscore'],
+            status=response['verdict'],
         )
-
         try:
             best = BestSubmission.objects.get(
                 submitted_by=request.user,
@@ -227,8 +231,6 @@ def submit(request, question_slug):
                 question=question,
                 score=response['totalscore']
             )
-
-
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
@@ -271,17 +273,17 @@ def question_create(request, assignment_slug):
         )
 
         IO.objects.create(
-            question = question,
-            input1 = request.POST.get('input1'),
-            input2 = request.POST.get('input2'),
-            input3 = request.POST.get('input3'),
-            input4 = request.POST.get('input4'),
-            input5 = request.POST.get('input5'),
-            output1 = request.POST.get('output1'),
-            output2 = request.POST.get('output2'),
-            output3 = request.POST.get('output3'),
-            output4 = request.POST.get('output4'),
-            output5 =request.POST.get('output5'),
+            question=question,
+            input1=request.POST.get('input1'),
+            input2=request.POST.get('input2'),
+            input3=request.POST.get('input3'),
+            input4=request.POST.get('input4'),
+            input5=request.POST.get('input5'),
+            output1=request.POST.get('output1'),
+            output2=request.POST.get('output2'),
+            output3=request.POST.get('output3'),
+            output4=request.POST.get('output4'),
+            output5=request.POST.get('output5'),
         )
 
         return redirect("/dashboard/assignment/" + assignment_slug)

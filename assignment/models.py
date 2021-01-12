@@ -62,6 +62,8 @@ class Submission(models.Model):
     submitted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
     score = models.IntegerField(null=True, blank=True, default=0)
+    lastRun = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    status = models.CharField(null=True, max_length=7, blank=True, default="Wrong")
 
     def __str__(self):
         return str(self.submitted_by)
@@ -111,4 +113,3 @@ class IO(models.Model):
 
     def __str__(self):
         return str(self.question)
-    
