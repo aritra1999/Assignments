@@ -79,13 +79,16 @@ def class_view(request, class_slug):
         classSelected = Class.objects.get(slug=class_slug)
         try:
             assignments = Assignment.objects.filter(class_name=classSelected, isActive=True)
+            students = Enrolled.objects.filter(class_name=classSelected)
         except:
             assignments = None
+            students = None
         context = {
             'title': 'Class',
             'assignments': assignments,
             'classSelected': classSelected,
             'profile': Profile.objects.get(user=request.user),
+            'students': students,
         }
         return render(request, 'dashboard/class.html', context)
     else:
@@ -202,8 +205,6 @@ def submit(request, question_slug):
                 response['verdict'] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
-                response['time'] = response['time' + str(it)]
-                response['memory'] = response['memory' + str(it)]
             else:
                 response['verdict'] = "Failed"
 
@@ -211,8 +212,6 @@ def submit(request, question_slug):
             submitted_by=request.user,
             question=question,
             score=response['totalscore'],
-            timeTaken=response['time'],
-            memory=response['memory'],
             status=response['verdict'],
         )
         try:
@@ -272,17 +271,17 @@ def question_create(request, assignment_slug):
         )
 
         IO.objects.create(
-            question = question,
-            input1 = request.POST.get('input1'),
-            input2 = request.POST.get('input2'),
-            input3 = request.POST.get('input3'),
-            input4 = request.POST.get('input4'),
-            input5 = request.POST.get('input5'),
-            output1 = request.POST.get('output1'),
-            output2 = request.POST.get('output2'),
-            output3 = request.POST.get('output3'),
-            output4 = request.POST.get('output4'),
-            output5 =request.POST.get('output5'),
+            question=question,
+            input1=request.POST.get('input1'),
+            input2=request.POST.get('input2'),
+            input3=request.POST.get('input3'),
+            input4=request.POST.get('input4'),
+            input5=request.POST.get('input5'),
+            output1=request.POST.get('output1'),
+            output2=request.POST.get('output2'),
+            output3=request.POST.get('output3'),
+            output4=request.POST.get('output4'),
+            output5=request.POST.get('output5'),
         )
 
         return redirect("/dashboard/assignment/" + assignment_slug)

@@ -35,6 +35,7 @@ div.left{
     overflow-y: auto;
     box-sizing: border-box;
     padding: 40px;
+    position: relative;
 }
 div.right{
     width: 50%;
@@ -121,6 +122,7 @@ div.idk a.submit{
     border-radius: 4px;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.85rem;
+    cursor: pointer;
 }
 
 #editor {
@@ -138,13 +140,17 @@ div.idk a.submit{
 
 .alert {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 30%;
-    border-radius: 5px;
-    padding: 20px 30px;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
     color: #ffffff;
     font-weight: 600;
+    padding: 30px;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
 }
 
 .processing {
@@ -154,18 +160,22 @@ div.idk a.submit{
 }
 
 .error {
-    background-color: #ff4e2e;
+    background-color: #ff6961;
 }
 
 .success {
-    background-color: #4ad369;
+    background-color: #00AB66;
 }
-
+p.messageText{
+    margin: 5px 0;
+    font-family: "GT-Reg", sans-serif;
+    font-size: 1rem;
+}
 .closebtn {
     margin-left: 15px;
     color: #ffffff;
     float: right;
-    font-size: 22px;
+    font-size: 3rem;
     line-height: 26px;
     cursor: pointer;
     transition: 0.3s;

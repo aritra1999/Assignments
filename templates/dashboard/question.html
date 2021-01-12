@@ -38,6 +38,18 @@
                         </p>
                     </div>
                 </div>
+                <div class="alert processing hidden" id="processing">
+                    Processing . . .
+                </div>
+                <div class="alert error hidden" id="error">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <div id="error_message"></div>
+                </div>
+
+                <div class="alert success hidden" id="success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <div id="success_message"></div>
+                </div>
             </div>
             <div class="right">
                 <div class="top">
@@ -55,20 +67,6 @@ print(int(a) + int(b))</div>
             </div>
         </div>
     </div>
-    <div class="alert processing hidden" id="processing">
-        Processing . . .
-    </div>
-    <div class="alert error hidden" id="error">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <div id="error_message"></div>
-    </div>
-
-    <div class="alert success hidden" id="success">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <div id="success_message"></div>
-    </div>
-
-
     {% include 'base/aceCDN.html' %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
