@@ -140,9 +140,12 @@ def assignment_view(request, assignment_slug):
             except:
                 question.lastRun = None
             try:
-                question.verdict = (Submission.objects.get(submitted_by=user, question=question)).status
+                if (BestSubmission.objects.get(submitted_by=user, question=question)).score > 40:
+                    question.verdict = "Passed"
+                else:
+                    question.verdict = "Failed"
             except:
-                question.verdict = None
+                question.verdict = "Submission Not Found"
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -158,7 +161,7 @@ def assignment_view(request, assignment_slug):
         for question in questions:
             question.totalBestSub = (BestSubmission.objects.filter(question=question)).count()
             question.bestScoreSum = BestSubmission.objects.aggregate(Sum('score')).get('score__sum', 0.00)
-            question.averageScore = question.bestScoreSum/question.totalBestSub
+            question.averageScore = question.bestScoreSum / question.totalBestSub
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -198,10 +201,10 @@ def submit(request, question_slug):
 
         response['totalscore'] = 0
         for it in range(1, 6):
-            
+
             input = io['input' + str(it)]
             output = io['output' + str(it)]
-            
+
             payload = {
                 "language": question.allowed_lang,
                 "code": request.POST.get('code'),
@@ -323,7 +326,7 @@ def remove_student(request, class_slug, student_email):
     student = Enrolled.objects.filter(class_name=Class.objects.get(slug=class_slug),
                                       student=User.objects.get(email=student_email))
     student.delete()
-    return redirect("/dashboard/class/"+class_slug)
+    return redirect("/dashboard/class/" + class_slug)
 
 
 @login_required
@@ -377,12 +380,12 @@ def join_view(request, class_slug):
 
 def publish_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=True)
-    return redirect("/dashboard/assignment/"+assignment_slug)
+    return redirect("/dashboard/assignment/" + assignment_slug)
 
 
 def deactivate_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=False)
-    return redirect("/dashboard/assignment/"+assignment_slug)
+    return redirect("/dashboard/assignment/" + assignment_slug)
 
 
 def remove_class(request, class_slug):
@@ -394,4 +397,4 @@ def remove_class(request, class_slug):
 def remove_assignment(request, assignment_slug, class_slug):
     removeAssignment = Assignment.objects.filter(created_by=request.user, slug=assignment_slug)
     removeAssignment.delete()
-    return redirect("/dashboard/class/"+class_slug)
+    return redirect("/dashboard/class/" + class_slug)

@@ -1,4 +1,4 @@
-span.goBack{
+span.goBack {
     cursor: pointer;
     color: var(--font_color_subTwo);
     font-family: "Mulish-Reg", sans-serif;
@@ -7,42 +7,50 @@ span.goBack{
     align-items: center;
     width: 60px;
 }
-svg.goBack{
+
+svg.goBack {
     display: inline-block;
     height: 20px;
     margin-right: 10px;
 }
-div.questionCont{
+
+div.questionCont {
     width: 100%;
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-h1.assignmentHead{
+
+h1.assignmentHead {
     color: var(--font_color);
     font-family: "GT-Reg", sans-serif;
     font-size: 1.5rem;
     letter-spacing: 0.03rem;
 }
-p.due{
+
+p.due {
     color: var(--error_colorTwo);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.9rem;
     margin-top: 10px;
     letter-spacing: 0.03rem;
 }
-p.due span{
+
+p.due span {
     color: var(--font_color);
 }
-div.tableCont{
+
+div.tableCont {
     margin: 20px auto 0 auto;
 }
+
 table.questionTable {
     width: 100%;
     background-color: var(--table_back);
     border-collapse: collapse;
 }
+
 table.questionTable td, table.questionTable th {
     border-bottom-width: 1px;
     border-color: rgba(255, 255, 255, 0.4);
@@ -50,32 +58,45 @@ table.questionTable td, table.questionTable th {
     padding: 15px 25px;
     text-align: left;
 }
-table.questionTable th{
+
+table.questionTable th {
     color: var(--font_color_sub);
     font-family: "GT-Med", sans-serif;
     font-size: 0.9rem;
 }
-table.questionTable td{
+
+table.questionTable td {
     color: var(--font_color);
     font-family: "GT-Med", sans-serif;
     font-size: 0.9rem;
 }
-table.questionTable span.passStatus{
+
+table.questionTable span.passStatus {
     background-color: #109b67;
     color: #FFFFFF;
     padding: 4px 10px;
     border-radius: 4px;
 }
-a.question{
+
+table.questionTable span.failed {
+    background-color: #E16541;
+    color: #FFFFFF;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+a.question {
     color: var(--font_color);
     border-bottom: 2px solid var(--pop_btn_background);
     padding: 0 5px;
 }
-a.delete{
+
+a.delete {
     color: var(--error_color);
     text-decoration: none;
 }
-span.quesLink{
+
+span.quesLink {
     display: flex;
     justify-content: flex-end;
 }
