@@ -99,7 +99,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg> Back
             </span>
-            <h1 class="studentHead">Student Statistics</h1>
+            <h1 class="studentHead">Student Details</h1>
             <h2 class="students">Students({{ studentNumber }})</h2>
             <p class="youCan">You can view the scores of students in this class, click on the name of each student for detailed view.</p>
             <div class="tableCont studentView">
@@ -109,7 +109,6 @@
                             <th>Student's Name</th>
                             <th>Roll Number</th>
                             <th>Date Joined</th>
-                            <th>Total Score</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -120,7 +119,6 @@
                                     <td><a href="#" class="question">{{ student.student.first_name }} {{ student.student.last_name }}</a></td>
                                     <td>{{ student.rollNo }}</td>
                                     <td>{{ student.timestamp }}</td>
-                                    <td>NA</td>
                                     <td><a style="color: #ff6347; text-decoration: none" href="/dashboard/class/remove/{{ classSelected.slug }}/{{ student.student.email }}">Remove Student</a></td>
                                 </tr>
                             {% endfor %}

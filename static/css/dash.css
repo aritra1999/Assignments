@@ -266,6 +266,7 @@ p.due_tag{
 p.date{
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 1.6rem;
+	color: var(--light_btn);
 }
 p.teachTag{
 	color: var(--pop_btn_background);

@@ -131,9 +131,18 @@ def assignment_view(request, assignment_slug):
         except:
             questions = None
         for question in questions:
-            question.score = (BestSubmission.objects.get(submitted_by=user, question=question)).score
-            question.lastRun = (Submission.objects.get(submitted_by=user, question=question)).lastRun
-            question.verdict = (Submission.objects.get(submitted_by=user, question=question)).status
+            try:
+                question.score = (BestSubmission.objects.get(submitted_by=user, question=question)).score
+            except:
+                question.score = 0
+            try:
+                question.lastRun = (Submission.objects.get(submitted_by=user, question=question)).lastRun
+            except:
+                question.lastRun = None
+            try:
+                question.verdict = (Submission.objects.get(submitted_by=user, question=question)).status
+            except:
+                question.verdict = None
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -213,12 +222,15 @@ def submit(request, question_slug):
             response['memory' + str(it)] = r['memory']
 
             if r['output'].strip() == output:
-                response['verdict'] = "Passed"
+                response['verdict' + str(it)] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
             else:
-                response['verdict'] = "Failed"
-
+                response['verdict' + str(it)] = "Failed"
+        if response['totalscore'] < 40:
+            response['verdict'] = "Failed"
+        else:
+            response['verdict'] = "Passed"
         Submission.objects.create(
             submitted_by=request.user,
             question=question,
@@ -334,7 +346,7 @@ def submissions_view(request, question_slug):
         return render(request, 'dashboard/submissions.html', context)
     else:
         try:
-            submissionSelected = Submission.objects.filter(question=questionSelected)
+            submissionSelected = BestSubmission.objects.filter(question=questionSelected)
         except:
             submissionSelected = None
         print(submissionSelected)
