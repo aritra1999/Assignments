@@ -12,7 +12,7 @@
                     <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
                     <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
                 </span>
-                <button type="button" class="join" id="createClass">Create a classroom</button>
+                <button type="button" class="join" id="popUpOpenToggle">Create a classroom</button>
             </div>
             <div class="classes">
                 {% if createdClass %}
@@ -44,25 +44,28 @@
             </div>
         </div>
     </div>
-    <div class="classCreate" id="classBody">
-        <div class="topBar">
-            <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
-            <svg class="close" id="closeBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </div>
-        <h1 class="head">Create a classroom</h1>
-        <form action="" id="creationForm" method="post">{% csrf_token %}
-            <input type="text" required name="class_name" aria-required="true" class="class_name input" placeholder="Enter class name">
-            <input type="text" required name="section" aria-required="true" class="section input" placeholder="Enter section">
-            <div class="btn">
-                <button type="submit" class="cancel submit">Submit</button>
+    <div class="popUpsCont" id="popUpContainerWrap">
+        <div class="popUpBody createClass" id="popUpContainerW">
+            <div class="topBar">
+                <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
+                <svg class="close" id="popUpCloseToggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </div>
-        </form>
+            <h1 class="head">Create a classroom</h1>
+            <form class="formCreate" action="" id="creationForm" method="post">{% csrf_token %}
+                <input type="text" required name="class_name" aria-required="true" class="class_name input" placeholder="Enter class name">
+                <input type="text" required name="section" aria-required="true" class="section input" placeholder="Enter section">
+                <div class="btn">
+                    <button type="submit" class="cancel submit" style="margin-left: 0 !important; width: 100% !important; margin-top: 5px;">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/popUp.js' %}"></script>
     <script>
         if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );

@@ -8,10 +8,10 @@
 {% block content %}
     {% include 'base/dashnav.html' %}
      <div class="assignmentCont">
-        <div class="tags">
-            <button class="tags activeBtn">Assignments</button>
-            <button class="tags">Statistics</button>
-        </div>
+{#        <div class="tags">#}
+{#            <button class="tags activeBtn">Assignments</button>#}
+{#            <button class="tags">Statistics</button>#}
+{#        </div>#}
         <div class="class_cont">
             <span class="goBack" onclick="goBack();">
                 <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,6 +41,7 @@
                         <tr>
                             <th>Program Name</th>
                             <th>Average Score</th>
+                            <th>Total Submissions</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -49,7 +50,8 @@
                             {% for question in questions %}
                                 <tr>
                                     <td><a href="/dashboard/question/{{ question.slug }}" class="question">{{ question.title }}</a></td>
-                                    <td>80/100</td>
+                                    <td>{{ question.averageScore }}/100</td>
+                                    <td>{{ question.totalBestSub }}</td>
                                     <td style="text-align: center;"><a href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}" class="delete">Delete Question</a></td>
                                 </tr>
                             {% endfor %}

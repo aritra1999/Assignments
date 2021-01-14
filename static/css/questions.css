@@ -1,6 +1,6 @@
 span.goBack{
     cursor: pointer;
-    color: #A8A8A8;
+    color: var(--font_color_subTwo);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.9rem;
     display: flex;
@@ -20,27 +20,27 @@ div.questionCont{
     align-items: center;
 }
 h1.assignmentHead{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "GT-Reg", sans-serif;
     font-size: 1.5rem;
     letter-spacing: 0.03rem;
 }
 p.due{
-    color: #ff6347;
+    color: var(--error_colorTwo);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.9rem;
     margin-top: 10px;
     letter-spacing: 0.03rem;
 }
 p.due span{
-    color: #ffffff;
+    color: var(--font_color);
 }
 div.tableCont{
     margin: 20px auto 0 auto;
 }
 table.questionTable {
     width: 100%;
-    background-color: #1E252E;
+    background-color: var(--table_back);
     border-collapse: collapse;
 }
 table.questionTable td, table.questionTable th {
@@ -51,28 +51,28 @@ table.questionTable td, table.questionTable th {
     text-align: left;
 }
 table.questionTable th{
-    color: #A8A8A8;
+    color: var(--font_color_sub);
     font-family: "GT-Med", sans-serif;
     font-size: 0.9rem;
 }
 table.questionTable td{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "GT-Med", sans-serif;
     font-size: 0.9rem;
 }
 table.questionTable span.passStatus{
     background-color: #109b67;
-    color: #ffffff;
+    color: #FFFFFF;
     padding: 4px 10px;
     border-radius: 4px;
 }
 a.question{
-    color: #ffffff;
-    border-bottom: 2px solid #0078d4;
+    color: var(--font_color);
+    border-bottom: 2px solid var(--pop_btn_background);
     padding: 0 5px;
 }
 a.delete{
-    color: #ff6347;
+    color: var(--error_color);
     text-decoration: none;
 }
 span.quesLink{

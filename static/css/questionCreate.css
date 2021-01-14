@@ -1,16 +1,16 @@
 
 div.questionCreateBody{
     padding: 30px;
-    background-color: #161b22;
+    background-color: var(--tile_color);
     box-sizing: border-box;
 }
 div.questionCreateFormElem{
     margin-bottom: 20px;
 }
 input.questionCreate, textarea.questionCreate{
-    border: 2px solid #A8A8A8;
-    background-color: #161b22;
-    color: #A8A8A8;
+    border: 2px solid var(--font_color_subTwo);
+    background-color: var(--tile_color);
+    color: var(--font_color_subTwo);
     outline: none;
     display: block;
     padding: 8px 15px;
@@ -21,7 +21,7 @@ input.questionCreate, textarea.questionCreate{
     border-radius: 4px;
 }
 label.questionCreate{
-    color: #3187ca;
+    color: var(--light_btn);
     font-family: "GT-Med", sans-serif;
     font-size: 1rem;
     letter-spacing: 0.03rem;
@@ -37,7 +37,7 @@ div.sample{
     align-items: center;
 }
 h2.sampleText{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.3rem;
     margin-bottom: 15px;
@@ -46,8 +46,8 @@ button.createQuestion{
     border: none;
     outline: none;
     padding: 8px 20px;
-    background-color: #0078d4;
-    color: #ffffff;
+    background-color: var(--light_btn);
+    color: #FFFFFF;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
@@ -58,9 +58,9 @@ button.createQuestion{
     cursor: pointer;
 }
 select.allowedLang{
-    border: 2px solid #A8A8A8;
-    background-color: #161b22;
-    color: #A8A8A8;
+    border: 2px solid var(--font_color_subTwo);
+    background-color: var(--tile_color);
+    color: var(--font_color_subTwo);
     outline: none;
     display: block;
     padding: 8px 15px;
@@ -69,7 +69,6 @@ select.allowedLang{
     font-family: "GT-Reg", sans-serif;
     font-size: 0.95rem;
     border-radius: 4px;
-    -ms-box-sizing:content-box;
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box;
     box-sizing:content-box;

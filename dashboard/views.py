@@ -4,6 +4,7 @@ import asyncio
 import aiohttp
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -129,6 +130,10 @@ def assignment_view(request, assignment_slug):
             questions = Question.objects.filter(assignment=assignmentSelected)
         except:
             questions = None
+        for question in questions:
+            question.score = (BestSubmission.objects.get(submitted_by=user, question=question)).score
+            question.lastRun = (Submission.objects.get(submitted_by=user, question=question)).lastRun
+            question.verdict = (Submission.objects.get(submitted_by=user, question=question)).status
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -141,6 +146,10 @@ def assignment_view(request, assignment_slug):
             questions = Question.objects.filter(assignment=assignmentSelected)
         except:
             questions = None
+        for question in questions:
+            question.totalBestSub = (BestSubmission.objects.filter(question=question)).count()
+            question.bestScoreSum = BestSubmission.objects.aggregate(Sum('score')).get('score__sum', 0.00)
+            question.averageScore = question.bestScoreSum/question.totalBestSub
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,

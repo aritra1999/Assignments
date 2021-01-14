@@ -9,7 +9,7 @@ nav.dash_nav{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #161b22;
+	background-color: var(--navbar_color);
 	height: 65px;
 	z-index: 100;
 	position: relative;
@@ -45,7 +45,7 @@ ul.cta li a{
 	font-weight: 600;
 	letter-spacing: 0.06rem;
 	font-size: 0.85rem;
-	color: #fff;
+	color: #FFFFFF;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -96,6 +96,7 @@ div.popUp{
  	backdrop-filter: blur(5px);
 	border-radius: 0 0 4px 4px;
 	display: none;
+	width: 350px;
 }
 @keyframes anim {
 	from{
@@ -109,7 +110,7 @@ div.popUpShow{
 	display: block !important;
 }
 h1.namePop{
-	color: #ffffff;
+	color: #FFFFFF;
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 2rem;
 	margin-bottom: 20px;
@@ -123,7 +124,7 @@ p.tagEmail{
 	animation: anim 400ms ease-in;
 }
 p.email{
-	color: #ffffff;
+	color: #FFFFFF;
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 1.3rem;
 	margin-bottom: 20px;
@@ -135,27 +136,28 @@ div.ctaPop{
 	justify-content: space-between;
 	align-items: center;
 	animation: anim 400ms ease-in;
+	margin-top: 15px;
 }
 a.logout{
 	width: 100px;
 	text-align: center;
 	padding: 10px 15px;
 	border-radius: 4px;
-	background-color: #0078d4;
-	color: #ffffff;
+	background-color: var(--light_btn);
+	color: #FFFFFF;
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 0.9rem;
-	border: none;
+	border: 3px solid var(--light_btn);
 	margin-right: 15px;
 }
 a.viewProfile{
 	padding: 10px 15px;
-	width: 100px;
+	width: 150px;
 	text-align: center;
 	border-radius: 4px;
-	border: 1px solid #0078d4;
+	border: 3px solid var(--light_btn);
 	background: transparent;
-	color: #ffffff;
+	color: #FFFFFF;
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 0.9rem;
 }
@@ -168,7 +170,7 @@ a.viewProfile{
 div.dash_cont{
 	height: auto;
 	min-height: calc(100vh - 65px);
-	background-color: #06090f;
+	background-color: var(--body_color);
 	width: 100%;
 }
 div.class_cont{
@@ -192,12 +194,12 @@ input.search{
 	width: 400px;
 	border: none;
 	padding: 12px 40px;
-	background-color: #161b22;
+	background-color: var(--tile_color);
 	font-family: "Mulish-Reg", sans-serif;
 	font-weight: 600;
 	letter-spacing: 0.06rem;
 	font-size: 0.85rem;
-	color: #fff;
+	color: var(--font_color);
 	outline: none;
 	border-radius: 4px;
 }
@@ -211,8 +213,8 @@ img.search{
 }
 button.join{
 	border: none;
-	background-color: #0078d4;
-	color: #ffffff;
+	background-color: var(--pop_btn_background);
+	color: #FFFFFF;
 	font-family: "Mulish-Reg", sans-serif;
 	font-weight: 600;
 	letter-spacing: 0.06rem;
@@ -220,6 +222,7 @@ button.join{
 	padding: 12px 25px;
 	border-radius: 4px;
 	cursor: pointer;
+	outline: none;
 }
 div.classes{
 	width: 100%;
@@ -227,17 +230,19 @@ div.classes{
 	flex-wrap: wrap;
 }
 div.class_tile{
-	background-color: #161b22;
-	height: 250px;
-	width: 250px;
-	color: #ffffff;
+	background-color: var(--tile_color);
+	/*background: #6441A5;*/
+	/*background: var(--tile_gradient_class);*/
+	height: 280px;
+	width: 280px;
+	color: var(--font_color);
 	padding: 25px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	border-radius: 8px;
-	background-image: url("../Illustrations/CardBg1.png");
-	background-size: 100% 100%;
+	background-image: url("../Illustrations/CardBg1.svg");
+	background-size: 60%;
 	background-position: right bottom;
 	background-repeat: no-repeat;
 	margin: 10px;
@@ -246,15 +251,16 @@ h3.class_head{
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 1.5rem;
 	margin-bottom: 10px;
+	color: var(--font_color);
 }
 p.section{
 	font-family: "Mulish-reg", sans-serif;
-	color: #efefef;
+	color: var(--font_color_sub);
 }
 p.due_tag{
 	font-family: "Mulish-reg", sans-serif;
 	font-size: 0.8rem;
-	color: #efefef;
+	color: var(--font_color_sub);
 	margin-bottom: 15px;
 }
 p.date{
@@ -262,7 +268,7 @@ p.date{
 	font-size: 1.6rem;
 }
 p.teachTag{
-	color: #0078d4;
+	color: var(--pop_btn_background);
 }
 div.teacherTag{
     margin-bottom: 20px !important;
@@ -279,49 +285,40 @@ img.noClass{
 	max-width: 100%;
 }
 
-
-div.classCreate{
-    position: absolute;
-    padding: 30px;
-    background-color: #1E252E;
-	width: 400px;
-    z-index: 99;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+div.createClass{
+	width: 500px;
 }
-div.classCreate div.topBar{
+div.popUpBody div.topBar{
 	display: flex;
-	height: 50px;
 	justify-content: space-between;
 	align-items: center;
 }
-div.classCreate img.logo{
-	height: 40px;
+img.logo{
+	height: 50px;
 }
-div.classCreate svg.close{
-	height: 25px;
-	color: #efefef;
+svg.close{
+	height: 30px;
+	color: var(--font_color);
 	cursor: pointer;
 }
-div.classCreate h1.head{
-	color: #ffffff;
-	margin: 25px 0;
+h1.head{
+	color: var(--font_color);
+	margin: 20px 0;
 	font-size: 1.8rem;
 	font-family: "Mulish-Reg", sans-serif;
 }
-div.classCreate input.input{
-    display: block;
-    height: 40px;
+form.formCreate input.input{
+	display: block;
+    height: 45px;
     padding: 10px 15px;
-    width: calc(100% - 30px);
-    background-color: #161b22;
+    width: 100%;
+    background-color: var(--body_color);
     border: none;
     margin-bottom: 15px;
     border-radius: 4px;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.96rem;
-    color: #ffffff;
+    color: var(--font_color);
     outline: none;
 }
 div.classCreate div.btn{
@@ -341,16 +338,76 @@ div.btn button.cancel{
 	border-radius: 4px;
 }
 div.btn button.submit{
-	background-color: #0078d4;
-	color: #ffffff;
+	background-color: var(--light_btn);
+	color: #FFFFFF;
 	margin-left: 15px;
 }
+
 ul.messages{
 	display: block;
 	margin: 20px 0;
 }
 ul.messages li{
-	color: #E16541;
+	color: var(--error_color);
 	font-family: "Mulish-Reg", sans-serif;
 	font-size: 0.9rem;
+}
+
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+.theme-switch-wrapper em {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
