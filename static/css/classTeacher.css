@@ -2,11 +2,12 @@ div.classTeacherTile{
     width: 100%;
     box-sizing: border-box;
     padding: 30px;
-    background-color: var(--table_back);
-    background-image: url("../Illustrations/CardBg1.svg");
-    background-size: 9%;
-    background-position: bottom right;
-    background-repeat: no-repeat;
+    background: var(--assignment_grad);
+    /*background-color: var(--table_back);*/
+    /*background-image: url("../Illustrations/CardBg1.svg");*/
+    /*background-size: 9%;*/
+    /*background-position: bottom right;*/
+    /*background-repeat: no-repeat;*/
     display: flex;
     position: relative;
 }

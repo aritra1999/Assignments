@@ -15,6 +15,7 @@
     --question_back: #F8F7FC;
     --question_bottom: #171926;
     --tag_back: #EEEDF3;
+    --class_card: #EEEDF3;
     --tile_gradient_class: linear-gradient(248.66deg, #FDFCFB, #E2D1C3);
 }
 [data-theme="dark"]{
@@ -34,5 +35,6 @@
     --question_back: #2B2F3B;
     --question_bottom: #171926;
     --tag_back: #06090f;
+    --class_card: #161B22;
     --tile_gradient_class: linear-gradient(248.66deg, #614385, #516395);
 }

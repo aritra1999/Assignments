@@ -8,10 +8,6 @@
 {% block content %}
     {% include 'base/dashnav.html' %}
     <div class="assignmentCont">
-        {#        <div class="tags">#}
-        {#            <button class="tags activeBtn">Assignments</button>#}
-        {#            <button class="tags">Statistics</button>#}
-        {#        </div>#}
         <div class="class_cont">
             <span class="goBack" onclick="goBack();">
                 <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -22,8 +18,10 @@
             </span>
             <div class="questionCont">
                 <div class="xyz">
-                    <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
-                    <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
+                    <form action="" method="post">
+                        <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
+                        <p class="due">Assignment Due:<span>{{ assignmentSelected.due_date }}</span></p>
+                    </form>
                 </div>
                 <div class="abc">
                     <span class="quesLink">
@@ -56,7 +54,7 @@
                                 <td><a href="/dashboard/question/{{ question.slug }}"
                                        class="question">{{ question.title }}</a></td>
                                 <td>{{ question.averageScore }}/100</td>
-                                <td>{{ question.totalBestSub }}</td>
+                                <td>{{ question.totalBestSub }} <a href="/dashboard/submissions/{{ question.slug }}" class="viewSubTeacher">(View Submissions)</a></td>
                                 <td style="text-align: center;"><a
                                         href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}"
                                         class="delete">Delete Question</a></td>

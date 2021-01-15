@@ -230,9 +230,10 @@ div.classes{
 	flex-wrap: wrap;
 }
 div.class_tile{
-	background-color: var(--tile_color);
-	/*background: #6441A5;*/
-	/*background: var(--tile_gradient_class);*/
+	/*background-color: var(--tile_color);*/
+	/*background-image: linear-gradient(to top, #ff859d, #ff93b2, #ffa1c5, #ffafd7, #ffbde6);*/
+	/*background: var(--assignment_grad);*/
+	background: var(--assignment_grad);
 	height: 280px;
 	width: 280px;
 	color: var(--font_color);
@@ -241,10 +242,10 @@ div.class_tile{
 	flex-direction: column;
 	justify-content: space-between;
 	border-radius: 8px;
-	background-image: url("../Illustrations/CardBg1.svg");
-	background-size: 60%;
-	background-position: right bottom;
-	background-repeat: no-repeat;
+	/*background-image: url("../Illustrations/CardBg1.svg");*/
+	/*background-size: 60%;*/
+	/*background-position: right bottom;*/
+	/*background-repeat: no-repeat;*/
 	margin: 10px;
 }
 h3.class_head{

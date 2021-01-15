@@ -78,3 +78,31 @@ button.createAssignment{
     margin-top: 30px;
     border-radius: 8px;
 }
+div.upDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div.upDate button.upDate{
+    background-color: var(--light_btn);
+    border: 3px solid var(--light_btn);
+    color: #FFFFFF;
+    padding: 8px 25px;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+h1.YoCanNow{
+    color: var(--font_color_sub);
+    font-family: "Mulish-Reg", sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.04rem;
+    margin-bottom: 20px;
+    display: none;
+}

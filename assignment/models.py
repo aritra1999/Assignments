@@ -105,7 +105,7 @@ class IO(models.Model):
     output4 = models.TextField(null=True, blank=True)
     output5 = models.TextField(null=True, blank=True)
     slug = models.SlugField(max_length=11, blank=True, null=True)
-    
+
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()

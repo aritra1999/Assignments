@@ -36,11 +36,19 @@ p.due {
     margin-top: 10px;
     letter-spacing: 0.03rem;
 }
-
-p.due span {
+p.due span{
     color: var(--font_color);
+    display: inline-block;
+    margin-left: 10px;
 }
-
+input.updateDate{
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: var(--font_color);
+    font-family: "Mulish-Reg", sans-serif;
+    display: none;
+}
 div.tableCont {
     margin: 20px auto 0 auto;
 }
@@ -49,6 +57,7 @@ table.questionTable {
     width: 100%;
     background-color: var(--table_back);
     border-collapse: collapse;
+    /*background: var(--assignment_grad);*/
 }
 
 table.questionTable td, table.questionTable th {
@@ -70,7 +79,10 @@ table.questionTable td {
     font-family: "GT-Med", sans-serif;
     font-size: 0.9rem;
 }
-
+a.viewSubTeacher{
+    text-decoration: none;
+    color: var(--light_btn);
+}
 table.questionTable span.passStatus {
     background-color: #109b67;
     color: #FFFFFF;
@@ -80,6 +92,12 @@ table.questionTable span.passStatus {
 
 table.questionTable span.failed {
     background-color: #E16541;
+    color: #FFFFFF;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+table.questionTable span.notFound{
+    background-color: #cba625;
     color: #FFFFFF;
     padding: 4px 10px;
     border-radius: 4px;

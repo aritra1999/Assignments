@@ -160,8 +160,11 @@ def assignment_view(request, assignment_slug):
             questions = None
         for question in questions:
             question.totalBestSub = (BestSubmission.objects.filter(question=question)).count()
-            question.bestScoreSum = BestSubmission.objects.aggregate(Sum('score')).get('score__sum', 0.00)
-            question.averageScore = question.bestScoreSum / question.totalBestSub
+            bestScoreSum = BestSubmission.objects.filter(question=question).aggregate(Sum('score')).get('score__sum', 0.00)
+            try:
+                question.averageScore = bestScoreSum / question.totalBestSub
+            except:
+                question.averageScore = 0
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -172,12 +175,45 @@ def assignment_view(request, assignment_slug):
 
 @login_required
 def question_view(request, question_slug):
-    question = Question.objects.get(slug=question_slug)
-    context = {
-        'title': 'Question',
-        'question': question
-    }
-    return render(request, 'dashboard/question.html', context)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    if profile.type == "student":
+        question = Question.objects.get(slug=question_slug)
+        context = {
+            'title': 'Question',
+            'question': question,
+        }
+        return render(request, 'dashboard/question.html', context)
+    else:
+        question = Question.objects.get(slug=question_slug)
+        io = IO.objects.get(question=question)
+        if request.method == "POST":
+            Question.objects.filter(slug=question_slug).update(
+                title=request.POST.get('questionName'),
+                allowed_lang=request.POST.get('allowedLang'),
+                input_format=request.POST.get('inputFormat'),
+                body=request.POST.get('problemStatement'),
+                output_format=request.POST.get('outputFormat')
+            )
+            IO.objects.filter(question=question).update(
+                input1=request.POST.get('input1'),
+                input2=request.POST.get('input2'),
+                input3=request.POST.get('input3'),
+                input4=request.POST.get('input4'),
+                input5=request.POST.get('input5'),
+                output1=request.POST.get('output1'),
+                output2=request.POST.get('output2'),
+                output3=request.POST.get('output3'),
+                output4=request.POST.get('output4'),
+                output5=request.POST.get('output5'),
+            )
+            return redirect("/dashboard/assignment/" + question.assignment.slug)
+        context = {
+            'title': 'Question',
+            'question': question,
+            'io': io,
+        }
+        return render(request, 'dashboard/question_teacher.html', context)
 
 
 @login_required
@@ -361,6 +397,7 @@ def submissions_view(request, question_slug):
         return render(request, 'dashboard/submission_teacher.html', context)
 
 
+@login_required
 def join_view(request, class_slug):
     if request.user.is_authenticated:
         classSelected = Class.objects.get(slug=class_slug)
@@ -378,23 +415,45 @@ def join_view(request, class_slug):
         return redirect('/auth/signin')
 
 
+@login_required
 def publish_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=True)
     return redirect("/dashboard/assignment/" + assignment_slug)
 
 
+@login_required
 def deactivate_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=False)
     return redirect("/dashboard/assignment/" + assignment_slug)
 
 
+@login_required
 def remove_class(request, class_slug):
     classSelected = Class.objects.get(created_by=request.user, slug=class_slug)
     classSelected.delete()
     return redirect("/dashboard")
 
 
+@login_required
 def remove_assignment(request, assignment_slug, class_slug):
     removeAssignment = Assignment.objects.filter(created_by=request.user, slug=assignment_slug)
     removeAssignment.delete()
     return redirect("/dashboard/class/" + class_slug)
+
+
+@login_required
+def student_details(request, class_slug, student_email):
+    user = request.user
+    userType = Profile.objects.get(user=user).type
+    studentSelected = User.objects.get(email=student_email)
+    studentProfile = Profile.objects.get(user=studentSelected)
+    classSelected = Class.objects.get(slug=class_slug)
+    if userType == "teacher":
+        context = {
+            'title': 'Details',
+            'studentSelected': studentSelected,
+            'studentProfile': studentProfile,
+        }
+        return render(request, 'dashboard/studentDetails.html', context)
+    else:
+        return HttpResponse("Hello Student")

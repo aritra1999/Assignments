@@ -42,21 +42,29 @@
                     Processing . . .
                 </div>
                 <div class="alert error hidden" id="error">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">
+                        <svg class="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </span>
                     <div id="error_message"></div>
                 </div>
 
                 <div class="alert success hidden" id="success">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">
+                        <svg class="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </span>
                     <div id="success_message"></div>
                 </div>
             </div>
             <div class="right">
                 <div class="top">
-                    <input type="hidden" id="lang" value='{{ question.allowed_lang }}'>
-                    <div id="editor">a, b = input().split()
+                <input type="hidden" id="lang" value='{{ question.allowed_lang }}'>
+                <div id="editor">a, b = input().split()
 print(int(a) + int(b))</div>
-                    {% csrf_token %}
+                {% csrf_token %}
                 </div>
                 <div class="bottom">
                     <div class="idk">

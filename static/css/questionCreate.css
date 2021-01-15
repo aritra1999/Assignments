@@ -20,6 +20,9 @@ input.questionCreate, textarea.questionCreate{
     font-size: 0.95rem;
     border-radius: 4px;
 }
+textarea.questionCreate{
+    resize: none;
+}
 label.questionCreate{
     color: var(--light_btn);
     font-family: "GT-Med", sans-serif;
@@ -65,7 +68,7 @@ select.allowedLang{
     display: block;
     padding: 8px 15px;
     margin-top: 10px;
-    width: 100%;
+    width: calc(100% - 34px);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.95rem;
     border-radius: 4px;

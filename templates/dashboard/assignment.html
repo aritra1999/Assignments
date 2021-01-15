@@ -30,7 +30,6 @@
                     <tr>
                         <th>Program Name</th>
                         <th>Success Rate</th>
-{#                        <th>Last Run</th>#}
                         <th>Score</th>
                         <th>Status</th>
                     </tr>
@@ -42,13 +41,14 @@
                                 <td><a href="/dashboard/question/{{ question.slug }}"
                                        class="question">{{ question.title }}</a></td>
                                 <td>Overall SR: <span>65%</span></td>
-{#                                <td>{{ question.lastRun }}</td>#}
                                 <td>{{ question.score }}/100</td>
                                 <td>
                                     {% if question.verdict == "Passed" %}
                                         <span class="passStatus verdictSubmission">{{ question.verdict }}</span>
-                                    {% else %}
+                                    {% elif question.verdict == "Failed" %}
                                         <span class="passStatus verdictSubmission failed">{{ question.verdict }}</span>
+                                    {% else %}
+                                        <span class="passStatus verdictSubmission notFound">{{ question.verdict }}</span>
                                     {% endif %}
                                 </td>
                             </tr>
