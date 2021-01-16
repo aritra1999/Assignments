@@ -135,6 +135,9 @@ p.errorText{
         justify-content: center;
         align-items: center;
     }
+    div.part1, div.part2{
+        width: 100%;
+    }
 }
 
 select.university{
