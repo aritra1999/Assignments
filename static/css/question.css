@@ -58,7 +58,7 @@ div.cta a.submissions{
     display: inline-block;
     padding: 10px 20px;
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.8rem;
+    font-size: 1rem;
     border-radius: 8px;
     letter-spacing: 0.05rem;
 }
@@ -109,7 +109,7 @@ div.bottom div.idk{
 div.idk p.allowed{
     color: #FFFFFF;
     font-family: "GT-Reg", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 p.allowed span{
     font-family: "GT-Med", sans-serif;
@@ -121,17 +121,17 @@ div.idk a.submit{
     padding: 13px 35px;
     border-radius: 4px;
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.85rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 div.idk a.run{
     color: #FFFFFF;
     text-decoration: none;
-    background-color: var(--error_color);
+    background-color: var(--error_colorTwo);
     padding: 13px 35px;
     border-radius: 4px;
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.85rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 #editor {

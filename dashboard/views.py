@@ -79,7 +79,7 @@ def class_view(request, class_slug):
     if userType.type == "student":
         classSelected = Class.objects.get(slug=class_slug)
         try:
-            assignments = Assignment.objects.filter(class_name=classSelected, isActive=True)
+            assignments = Assignment.objects.filter(class_name=classSelected, isActive=True).order_by('-timestamp')
             students = Enrolled.objects.filter(class_name=classSelected)
         except:
             assignments = None
@@ -102,7 +102,7 @@ def class_view(request, class_slug):
         students = Enrolled.objects.filter(class_name=classSelected)
         classSelected = Class.objects.get(slug=class_slug)
         try:
-            assignments = Assignment.objects.filter(class_name=classSelected)
+            assignments = Assignment.objects.filter(class_name=classSelected).order_by('-timestamp')
         except:
             assignments = None
         for student in students:

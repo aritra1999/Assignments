@@ -37,11 +37,11 @@
                                 <td><a href="/dashboard/question/{{ question.slug }}"
                                        class="question">{{ question.title }}</a></td>
                                 {% if question.SR < 40 %}
-                                    <td>Overall SR: <span class="sr">{{ question.SR }}%</span></td>
+                                    <td>Overall SR: <span class="sr low">{{ question.SR }}%</span></td>
                                 {% elif question.SR > 40 and question.SR < 70 %}
-                                    <td>Overall SR: <span>{{ question.SR }}%</span></td>
+                                    <td>Overall SR: <span class="sr avg">{{ question.SR }}%</span></td>
                                 {% else %}
-                                    <td>Overall SR: <span>{{ question.SR }}%</span></td>
+                                    <td>Overall SR: <span class="sr great">{{ question.SR }}%</span></td>
                                 {% endif %}
                                 <td>{{ question.score }}/100</td>
                                 <td>

@@ -3,13 +3,9 @@ div.classTeacherTile{
     box-sizing: border-box;
     padding: 30px;
     background: var(--assignment_grad);
-    /*background-color: var(--table_back);*/
-    /*background-image: url("../Illustrations/CardBg1.svg");*/
-    /*background-size: 9%;*/
-    /*background-position: bottom right;*/
-    /*background-repeat: no-repeat;*/
     display: flex;
     position: relative;
+    border-radius: 8px;
 }
 div.removeClass{
     position: absolute;
@@ -80,6 +76,11 @@ span.linkText{
 }
 span.linkTextMain{
     margin-left: 0 !important;
+    width: 220px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 svg.copy{
     height: 20px;

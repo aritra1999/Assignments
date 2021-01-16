@@ -64,8 +64,8 @@ div.assignmentsView{
     flex-wrap: wrap;
 }
 div.assignmentCard{
-    width: 300px;
-    height: 200px;
+    width: 350px;
+    height: 250px;
     /*background: var(--assignment_grad);*/
     background-color: var(--class_card);
     border-radius: 10px;
