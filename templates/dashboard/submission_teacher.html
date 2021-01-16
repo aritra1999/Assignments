@@ -17,6 +17,13 @@
     {% include 'base/dashnav.html' %}
      <div class="assignmentCont">
         <div class="class_cont">
+            <span class="goBack" onclick="goBack();">
+                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg> Back
+            </span>
             <div class="questionCont">
                 <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
             </div>
@@ -25,13 +32,15 @@
                     <thead>
                         <tr>
                             <th>Student Name</th>
-                            <th>Score</th>
+                            <th>Email</th>
+                            <th>Best Score</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if submissionSelected %}
                             {% for submission in submissionSelected %}
                                 <tr>
+                                    <td>{{ submission.submitted_by.first_name }} {{ submission.submitted_by.last_name }}</td>
                                     <td>{{ submission.submitted_by }}</td>
                                     <td id="score">{{ submission.score }}</td>
                                 </tr>
@@ -68,5 +77,29 @@
         }
         check()
 
+    </script>
+    <script>
+        window.goBack = function (e) {
+            let defaultLocation = "http://localhost:8000/dashboard/";
+            let oldHash = window.location.hash;
+
+            history.back();
+            let newHash = window.location.hash;
+            if (
+                newHash === oldHash &&
+                (typeof (document.referrer) !== "string" || document.referrer === "")
+            ) {
+                window.setTimeout(function () {
+                    window.location.href = defaultLocation;
+                }, 1000);
+            }
+            if (e) {
+                if (e.preventDefault)
+                    e.preventDefault();
+                if (e.preventPropagation)
+                    e.preventPropagation();
+            }
+            return false;
+        }
     </script>
 {% endblock extrafoot %}

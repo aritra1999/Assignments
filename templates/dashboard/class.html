@@ -3,6 +3,7 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
     <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 {% endblock extrahead %}
 {% block content %}
@@ -19,10 +20,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg> Back
                 </span>
-                <h1 class="yourAssignments">{{ classSelected.name }}</h1>
-                <h1 class="tagBatch">{{ classSelected.batch }}</h1>
-                <p class="youCan">You can view all assignments and scores for each submission here.</p>
-                <p class="createdBy"><span style="color: #44a2e5;">Created By:</span> {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
+                <div class="classTeacherTile">
+                    <div class="cont1">
+                        <h1 class="yourAssignments">{{ classSelected.name }}</h1>
+                        <h1 class="tagBatch">{{ classSelected.batch }}</h1>
+                        <p class="createdBy"><span style="color: #44a2e5;">Created By:</span> {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
+                        <p class="youCan">You can view all assignments and scores for each submission here.</p>
+                    </div>
+                </div>
                 <div class="assignmentsView">
                     {% if assignments %}
                         {% for assignment in assignments %}

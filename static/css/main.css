@@ -42,6 +42,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+*{
+	box-sizing: border-box;
+}
 
 /*RESET ENDS*/
 
@@ -150,3 +153,63 @@ ul.nav_cta li a{
 }
 
 /*NAVBAR ENDS*/
+
+/*POPUP*/
+
+div.popUpsCont{
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	background: rgba(22,27,34,0.6);
+	z-index: 200;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+div.popUpBody{
+	background-color: var(--popUp_background);
+	padding: 30px;
+	border-radius: 8px;
+}
+h1.warning{
+	color: var(--font_color);
+	font-family: "Mulish-Reg", sans-serif;
+	font-size: 1.4rem;
+	letter-spacing: 0.03rem;
+}
+div.ctaPopUp{
+	width: 60%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px auto 0 auto;
+}
+div.ctaPopUp button.closePop{
+	background-color: var(--pop_btn_background);
+	border: 3px solid var(--pop_btn_background);
+	border-radius: 6px;
+	padding: 5px 25px;
+	font-family: "Mulish-Reg", sans-serif;
+	color: #FFFFFF;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.04rem;
+	box-sizing: content-box;
+	outline: none;
+	cursor: pointer;
+}
+div.ctaPopUp a.acceptPop{
+	background-color: var(--error_color);
+	border: 3px solid var(--error_color);
+	border-radius: 6px;
+	padding: 8px 25px;
+	font-family: "Mulish-Reg", sans-serif;
+	color: #FFFFFF;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.04rem;
+	box-sizing: content-box;
+}

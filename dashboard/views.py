@@ -4,6 +4,7 @@ import asyncio
 import aiohttp
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -129,6 +130,22 @@ def assignment_view(request, assignment_slug):
             questions = Question.objects.filter(assignment=assignmentSelected)
         except:
             questions = None
+        for question in questions:
+            try:
+                question.score = (BestSubmission.objects.get(submitted_by=user, question=question)).score
+            except:
+                question.score = 0
+            try:
+                question.lastRun = (Submission.objects.get(submitted_by=user, question=question)).lastRun
+            except:
+                question.lastRun = None
+            try:
+                if (BestSubmission.objects.get(submitted_by=user, question=question)).score > 40:
+                    question.verdict = "Passed"
+                else:
+                    question.verdict = "Failed"
+            except:
+                question.verdict = "Submission Not Found"
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -141,6 +158,13 @@ def assignment_view(request, assignment_slug):
             questions = Question.objects.filter(assignment=assignmentSelected)
         except:
             questions = None
+        for question in questions:
+            question.totalBestSub = (BestSubmission.objects.filter(question=question)).count()
+            bestScoreSum = BestSubmission.objects.filter(question=question).aggregate(Sum('score')).get('score__sum', 0.00)
+            try:
+                question.averageScore = bestScoreSum / question.totalBestSub
+            except:
+                question.averageScore = 0
         context = {
             'title': 'Dashboard',
             'assignmentSelected': assignmentSelected,
@@ -151,12 +175,45 @@ def assignment_view(request, assignment_slug):
 
 @login_required
 def question_view(request, question_slug):
-    question = Question.objects.get(slug=question_slug)
-    context = {
-        'title': 'Question',
-        'question': question
-    }
-    return render(request, 'dashboard/question.html', context)
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    if profile.type == "student":
+        question = Question.objects.get(slug=question_slug)
+        context = {
+            'title': 'Question',
+            'question': question,
+        }
+        return render(request, 'dashboard/question.html', context)
+    else:
+        question = Question.objects.get(slug=question_slug)
+        io = IO.objects.get(question=question)
+        if request.method == "POST":
+            Question.objects.filter(slug=question_slug).update(
+                title=request.POST.get('questionName'),
+                allowed_lang=request.POST.get('allowedLang'),
+                input_format=request.POST.get('inputFormat'),
+                body=request.POST.get('problemStatement'),
+                output_format=request.POST.get('outputFormat')
+            )
+            IO.objects.filter(question=question).update(
+                input1=request.POST.get('input1'),
+                input2=request.POST.get('input2'),
+                input3=request.POST.get('input3'),
+                input4=request.POST.get('input4'),
+                input5=request.POST.get('input5'),
+                output1=request.POST.get('output1'),
+                output2=request.POST.get('output2'),
+                output3=request.POST.get('output3'),
+                output4=request.POST.get('output4'),
+                output5=request.POST.get('output5'),
+            )
+            return redirect("/dashboard/assignment/" + question.assignment.slug)
+        context = {
+            'title': 'Question',
+            'question': question,
+            'io': io,
+        }
+        return render(request, 'dashboard/question_teacher.html', context)
 
 
 @login_required
@@ -180,10 +237,10 @@ def submit(request, question_slug):
 
         response['totalscore'] = 0
         for it in range(1, 6):
-            
+
             input = io['input' + str(it)]
             output = io['output' + str(it)]
-            
+
             payload = {
                 "language": question.allowed_lang,
                 "code": request.POST.get('code'),
@@ -204,12 +261,15 @@ def submit(request, question_slug):
             response['memory' + str(it)] = r['memory']
 
             if r['output'].strip() == output:
-                response['verdict'] = "Passed"
+                response['verdict' + str(it)] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
             else:
-                response['verdict'] = "Failed"
-
+                response['verdict' + str(it)] = "Failed"
+        if response['totalscore'] < 40:
+            response['verdict'] = "Failed"
+        else:
+            response['verdict'] = "Passed"
         Submission.objects.create(
             submitted_by=request.user,
             question=question,
@@ -302,7 +362,7 @@ def remove_student(request, class_slug, student_email):
     student = Enrolled.objects.filter(class_name=Class.objects.get(slug=class_slug),
                                       student=User.objects.get(email=student_email))
     student.delete()
-    return redirect("/dashboard/class/"+class_slug)
+    return redirect("/dashboard/class/" + class_slug)
 
 
 @login_required
@@ -325,7 +385,7 @@ def submissions_view(request, question_slug):
         return render(request, 'dashboard/submissions.html', context)
     else:
         try:
-            submissionSelected = Submission.objects.filter(question=questionSelected)
+            submissionSelected = BestSubmission.objects.filter(question=questionSelected)
         except:
             submissionSelected = None
         print(submissionSelected)
@@ -337,6 +397,7 @@ def submissions_view(request, question_slug):
         return render(request, 'dashboard/submission_teacher.html', context)
 
 
+@login_required
 def join_view(request, class_slug):
     if request.user.is_authenticated:
         classSelected = Class.objects.get(slug=class_slug)
@@ -354,23 +415,45 @@ def join_view(request, class_slug):
         return redirect('/auth/signin')
 
 
+@login_required
 def publish_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=True)
-    return redirect("/dashboard/assignment/"+assignment_slug)
+    return redirect("/dashboard/assignment/" + assignment_slug)
 
 
+@login_required
 def deactivate_assignment(request, assignment_slug):
     Assignment.objects.filter(slug=assignment_slug).update(isActive=False)
-    return redirect("/dashboard/assignment/"+assignment_slug)
+    return redirect("/dashboard/assignment/" + assignment_slug)
 
 
+@login_required
 def remove_class(request, class_slug):
     classSelected = Class.objects.get(created_by=request.user, slug=class_slug)
     classSelected.delete()
     return redirect("/dashboard")
 
 
+@login_required
 def remove_assignment(request, assignment_slug, class_slug):
     removeAssignment = Assignment.objects.filter(created_by=request.user, slug=assignment_slug)
     removeAssignment.delete()
-    return redirect("/dashboard/class/"+class_slug)
+    return redirect("/dashboard/class/" + class_slug)
+
+
+@login_required
+def student_details(request, class_slug, student_email):
+    user = request.user
+    userType = Profile.objects.get(user=user).type
+    studentSelected = User.objects.get(email=student_email)
+    studentProfile = Profile.objects.get(user=studentSelected)
+    classSelected = Class.objects.get(slug=class_slug)
+    if userType == "teacher":
+        context = {
+            'title': 'Details',
+            'studentSelected': studentSelected,
+            'studentProfile': studentProfile,
+        }
+        return render(request, 'dashboard/studentDetails.html', context)
+    else:
+        return HttpResponse("Hello Student")

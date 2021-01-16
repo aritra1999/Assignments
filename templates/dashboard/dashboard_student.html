@@ -12,7 +12,7 @@
                     <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
                     <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
                 </span>
-                <button type="button" id="createClass" class="join">Join a class</button>
+                <button type="button" id="popUpOpenToggle" class="join">Join a class</button>
             </div>
             {% if messages %}
                 <ul class="messages">
@@ -31,8 +31,8 @@
                                     <p class="section">{{ class.class_name.batch }}</p>
                                 </div>
                                 <div class="tags">
-                                    <p class="due_tag">Assignment due</p>
-                                    <p class="date">Nov 18, 2020</p>
+                                    <p class="due_tag">Assignment Pending</p>
+                                    <p class="date">1</p>
                                 </div>
                             </div>
                         </a>
@@ -45,24 +45,27 @@
             </div>
         </div>
     </div>
-    <div class="classCreate" id="classBody">
-        <div class="topBar">
-            <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
-            <svg class="close" id="closeBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </div>
-        <h1 class="head">Join a classroom</h1>
-        <form action="" id="creationForm" method="post">{% csrf_token %}
-            <input type="text" required name="class_slug" aria-required="true" class="class_name input" placeholder="Enter class ID">
-            <div class="btn">
-                <button type="submit" class="cancel submit">Submit</button>
+    <div class="popUpsCont" id="popUpContainerWrap">
+        <div class="popUpBody createClass" id="popUpContainerW">
+            <div class="topBar">
+                <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
+                <svg class="close" id="popUpCloseToggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </div>
-        </form>
+            <h1 class="head">Join a classroom</h1>
+            <form class="formCreate" action="" id="creationForm" method="post">{% csrf_token %}
+                <input type="text" required name="class_slug" aria-required="true" class="class_name input" placeholder="Enter class ID">
+                <div class="btn">
+                    <button type="submit" class="cancel submit" style="margin-left: 0 !important; width: 100% !important; margin-top: 5px;">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/popUp.js' %}"></script>
     <script>
         if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );

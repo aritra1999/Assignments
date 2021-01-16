@@ -13,14 +13,12 @@
             <button class="tags activeBtn" id="assignmentToggle">Assignments</button>
             <button class="tags" id="studentToggle">Students</button>
         </div>
-        <div class="class_cont">
+        <div class="class_cont class_teacher_cont" id="class_teacher_cont">
             <span class="goBack" onclick="goBack();">
                 <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg> Back
             </span>
-        </div>
-        <div class="class_cont class_teacher_cont" id="class_teacher_cont">
             <div class="classTeacherTile">
                 <div class="cont1">
                     <h1 class="classTitle">{{ classSelected.name }}</h1>
@@ -51,17 +49,17 @@
                     <a href="/dashboard/create/{{ classSelected.slug }}" class="createAssignment">Create Assignment</a>
                 </div>
                 <div class="removeClass">
-                    <a href="/dashboard/class/remove/{{ classSelected.slug }}" class="removeClass">
+                    <button class="removeClass popUpToggleOpen" id="popUpOpenToggle">
                         <svg class="deleteClass" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                         Delete Class
-                    </a>
+                    </button>
                 </div>
             </div>
             <h1 class="yourAssg">Your Assignments</h1>
              <div class="tableCont">
-                <table class="questionTable" style="background-color: #161b22 !important;">
+                <table class="questionTable">
                     <thead>
                         <tr>
                             <th>Assignment Name</th>
@@ -96,17 +94,21 @@
             </div>
         </div>
         <div class="class_cont student_cont" id="student_cont">
-            <h1 class="studentHead">Student Statistics</h1>
+            <span class="goBack" onclick="goBack();">
+                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg> Back
+            </span>
+            <h1 class="studentHead">Student Details</h1>
             <h2 class="students">Students({{ studentNumber }})</h2>
             <p class="youCan">You can view the scores of students in this class, click on the name of each student for detailed view.</p>
             <div class="tableCont studentView">
-                <table class="questionTable" style="background-color: #161b22 !important;">
+                <table class="questionTable">
                     <thead>
                         <tr>
                             <th>Student's Name</th>
                             <th>Roll Number</th>
                             <th>Date Joined</th>
-                            <th>Total Score</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -114,10 +116,9 @@
                         {% if students %}
                             {% for student in students %}
                                 <tr>
-                                    <td><a href="#" class="question">{{ student.student.first_name }} {{ student.student.last_name }}</a></td>
+                                    <td><a href="/dashboard/student/{{ classSelected.slug }}/{{ student.student.email }}" class="question">{{ student.student.first_name }} {{ student.student.last_name }}</a></td>
                                     <td>{{ student.rollNo }}</td>
                                     <td>{{ student.timestamp }}</td>
-                                    <td>NA</td>
                                     <td><a style="color: #ff6347; text-decoration: none" href="/dashboard/class/remove/{{ classSelected.slug }}/{{ student.student.email }}">Remove Student</a></td>
                                 </tr>
                             {% endfor %}
@@ -135,10 +136,20 @@
             </div>
         </div>
     </div>
+    <div class="popUpsCont" id="popUpContainerWrap">
+        <div class="popUpBody" id="popUpContainerW">
+            <h1 class="warning">Are you sure you want to delete the classroom?</h1>
+            <div class="ctaPopUp">
+                <button class="closePop popUpCloseToggle" type="button" id="popUpCloseToggle">Cancel</button>
+                <a href="/dashboard/class/remove/{{ classSelected.slug }}" class="acceptPop">Delete</a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>
+    <script src="{% static 'js/popUp.js' %}"></script>
     <script>
         let assignmentToggle = document.getElementById("assignmentToggle")
         let studentToggle = document.getElementById("studentToggle")

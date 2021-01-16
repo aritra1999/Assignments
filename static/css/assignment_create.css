@@ -1,39 +1,39 @@
 h1.createAssignment{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 0.05rem;
 }
 p.createAssignment{
-    color: #a7a7a7;
+    color: var(--font_color_subTwo);
     font-family: "Mulish-Reg", sans-serif;
     margin-top: 10px;
     font-size: 0.9rem;
 }
 div.assignmentPart{
-    background-color: #161b22;
+    background-color: var(--tile_color);
     padding: 30px;
     box-sizing: border-box;
     margin-top: 20px;
 }
 h2.assignmentInfo{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
 label.assignmentInfo{
-    color: #3187ca;
+    color: var(--light_btn);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.95rem;
     width: 400px;
     letter-spacing: 0.03rem;
 }
 input.assignmentInfo{
-    border: 2px solid #A8A8A8;
-    background-color: #161b22;
-    color: #A8A8A8;
+    border: 2px solid var(--font_color_sub);
+    background-color: var(--tile_color);
+    color: var(--font_color_sub);
     outline: none;
     display: block;
     padding: 8px 15px;
@@ -49,27 +49,27 @@ input.assignmentDate{
     margin-top: 10px;
     width: 250px;
     border-radius: 4px;
-    border: 2px solid #A8A8A8;
-    color: #A8A8A8;
+    border: 2px solid var(--font_color_sub);
+    color: var(--font_color_subTwo);
     padding: 8px 15px;
-    background-color: #161b22;
+    background-color: var(--tile_color);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.95rem;
 }
 input.assignmentDate::-webkit-calendar-picker-indicator{
-    background-color: #A8A8A8;
+    background-color: var(--tile_color);
 }
 div.questionPart{
     margin-top: 30px;
     padding: 30px;
-    background-color: #161b22;
+    background-color: var(--body_color);
 }
 button.createAssignment{
     border: none;
     padding: 8px 15px;
-    background-color: #0078d4;
+    background-color: var(--light_btn);
     outline: none;
-    color: #ffffff;
+    color: #FFFFFF;
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
@@ -77,4 +77,32 @@ button.createAssignment{
     display: inline-block;
     margin-top: 30px;
     border-radius: 8px;
+}
+div.upDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div.upDate button.upDate{
+    background-color: var(--light_btn);
+    border: 3px solid var(--light_btn);
+    color: #FFFFFF;
+    padding: 8px 25px;
+    font-family: "Mulish-Reg", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+h1.YoCanNow{
+    color: var(--font_color_sub);
+    font-family: "Mulish-Reg", sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.04rem;
+    margin-bottom: 20px;
+    display: none;
 }

@@ -26,9 +26,7 @@
                         <tr>
                             <th>Language</th>
                             <th>Verdict</th>
-                            <th>Time Taken</th>
-                            <th>Memory Usage</th>
-                            <th>Last Run</th>
+                            <th>Submitted on</th>
                             <th>Score</th>
                         </tr>
                     </thead>
@@ -38,16 +36,12 @@
                                 <tr>
                                     <td>{{ questionSelected.allowed_lang }}</td>
                                     <td>{{ submission.status }}</td>
-                                    <td>{{ submission.timeTaken }}</td>
-                                    <td>{{ submission.memory }}</td>
-                                    <td>Run</td>
+                                    <td>{{ submission.lastRun }}</td>
                                     <td id="score">{{ submission.score }}</td>
                                 </tr>
                             {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td>NA</td>
-                                    <td>NA</td>
                                     <td>NA</td>
                                     <td>NA</td>
                                     <td>NA</td>

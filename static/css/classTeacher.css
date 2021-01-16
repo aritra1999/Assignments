@@ -2,11 +2,12 @@ div.classTeacherTile{
     width: 100%;
     box-sizing: border-box;
     padding: 30px;
-    background-color: #161b22;
-    background-image: url("../Illustrations/CardBg1.svg");
-    background-size: 17%;
-    background-position: bottom right;
-    background-repeat: no-repeat;
+    background: var(--assignment_grad);
+    /*background-color: var(--table_back);*/
+    /*background-image: url("../Illustrations/CardBg1.svg");*/
+    /*background-size: 9%;*/
+    /*background-position: bottom right;*/
+    /*background-repeat: no-repeat;*/
     display: flex;
     position: relative;
 }
@@ -15,35 +16,38 @@ div.removeClass{
     top: 30px;
     right: 30px;
 }
-div.removeClass a.removeClass{
+div.removeClass button.removeClass{
     text-decoration: none;
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "GT-Reg", sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.05rem;
     padding: 5px 15px;
     border-radius: 6px;
-    border: 3px solid #E16541;
+    border: 3px solid var(--error_color);
     position: relative;
-    width: 105px;
+    width: 140px;
     text-align: right;
     display: inline-block;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
 }
 div.cont1 h1.classTitle{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 2rem;
     letter-spacing: 0.04rem;
 }
 div.cont1 h2.classBatch{
-    color: #efefef;
+    color: var(--font_color_subTwo);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.2rem;
     margin: 10px 0 20px 0;
 }
 div.cont1 p.invite{
-    color: #a7a7a7;
+    color: var(--font_color_sub);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.9rem;
 }
@@ -55,9 +59,9 @@ span.joinLink{
     align-items: center;
     box-sizing: border-box;
     width: 250px;
-    background-color: #06090F;
+    background-color: var(--body_color);
     padding: 10px 20px;
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 0.85rem;
     position: relative;
@@ -79,19 +83,19 @@ span.linkTextMain{
 }
 svg.copy{
     height: 20px;
-    color: #efefef;
+    color: var(--font_color_sub);
     cursor: pointer;
 }
 div.cont2{
     margin-left: 40px;
 }
 p.assignmentCountHead{
-    color: #ffffff;
+    color: var(--font_color);
     font-size: 1rem;
     font-family: "Mulish-Reg", sans-serif;
 }
 h1.assignmentCount{
-    color: #ffffff;
+    color: var(--font_color);
     font-size: 2rem;
     margin: 10px 0 20px 0;
     font-family: "Mulish-Reg", sans-serif;
@@ -99,8 +103,8 @@ h1.assignmentCount{
 a.createAssignment{
     border: none;
     outline: none;
-    background-color: #0078d4;
-    color: #ffffff;
+    background-color: var(--pop_btn_background);
+    color: #FFFFFF;
     padding: 10px 20px;
     font-family: "Mulish-Reg", sans-serif;
     border-radius: 5px;
@@ -110,18 +114,18 @@ a.createAssignment{
     text-decoration: none;
 }
 h1.yourAssg{
-    color: #ffffff;
+    color: var(--font_color);
     font-family: "Mulish-Reg", sans-serif;
     font-size: 1.5rem;
     margin: 40px 0 20px 0;
 }
 svg.threeDots{
     height: 18px;
-    color: #E16541;
+    color: var(--error_color);
     cursor: pointer;
 }
 svg.deleteClass{
-    color: #ffffff;
+    color: var(--font_color);
     height: 1rem;
     position: absolute;
     top: 50%;

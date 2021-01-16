@@ -7,30 +7,32 @@
 {% endblock extrahead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-     <div class="assignmentCont">
-        <div class="tags">
-            <button class="tags activeBtn">Assignments</button>
-            <button class="tags">Statistics</button>
-        </div>
+    <div class="assignmentCont">
         <div class="class_cont">
             <span class="goBack" onclick="goBack();">
-                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg> Back
             </span>
             <div class="questionCont">
                 <div class="xyz">
-                    <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
-                    <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
+                    <form action="" method="post">
+                        <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
+                        <p class="due">Assignment Due:<span>{{ assignmentSelected.due_date }}</span></p>
+                    </form>
                 </div>
                 <div class="abc">
                     <span class="quesLink">
                         <a href="/dashboard/create/questions/{{ assignmentSelected.slug }}" class="addQuestion">Add Questions</a>
                         {% if assignmentSelected.isActive == False %}
-                            <a href="/dashboard/assignment/active/{{ assignmentSelected.slug }}" class="addQuestion publish">Publish Assignment</a>
+                            <a href="/dashboard/assignment/active/{{ assignmentSelected.slug }}"
+                               class="addQuestion publish">Publish Assignment</a>
                         {% endif %}
-                    {% if assignmentSelected.isActive == True %}
-                            <a href="/dashboard/assignment/deactivate/{{ assignmentSelected.slug }}" class="addQuestion publish archive">Archive Assignment</a>
+                        {% if assignmentSelected.isActive == True %}
+                            <a href="/dashboard/assignment/deactivate/{{ assignmentSelected.slug }}"
+                               class="addQuestion publish archive">Archive Assignment</a>
                         {% endif %}
                     </span>
                 </div>
@@ -38,55 +40,60 @@
             <div class="tableCont">
                 <table class="questionTable">
                     <thead>
-                        <tr>
-                            <th>Program Name</th>
-                            <th>Average Score</th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Average Score</th>
+                        <th>Total Submissions</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {% if questions %}
-                            {% for question in questions %}
-                                <tr>
-                                    <td><a href="/dashboard/question/{{ question.slug }}" class="question">{{ question.title }}</a></td>
-                                    <td>80/100</td>
-                                    <td style="text-align: center;"><a href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}" class="delete">Delete Question</a></td>
-                                </tr>
-                            {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                </tr>
-                        {% endif %}
+                    {% if questions %}
+                        {% for question in questions %}
+                            <tr>
+                                <td><a href="/dashboard/question/{{ question.slug }}"
+                                       class="question">{{ question.title }}</a></td>
+                                <td>{{ question.averageScore }}/100</td>
+                                <td>{{ question.totalBestSub }} <a href="/dashboard/submissions/{{ question.slug }}" class="viewSubTeacher">(View Submissions)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="/dashboard/questions/delete/{{ assignmentSelected.slug }}/{{ question.slug }}"
+                                        class="delete">Delete Question</a></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                        </tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
         </div>
-     </div>
+    </div>
 {% endblock content %}
 {% block extrafoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
     <script>
-        window.goBack = function (e){
+        window.goBack = function (e) {
             let defaultLocation = "http://localhost:8000/dashboard/";
             let oldHash = window.location.hash;
 
             history.back();
             let newHash = window.location.hash;
-            if(
+            if (
                 newHash === oldHash &&
-                (typeof(document.referrer) !== "string" || document.referrer  === "")
-            ){
-                window.setTimeout(function(){
+                (typeof (document.referrer) !== "string" || document.referrer === "")
+            ) {
+                window.setTimeout(function () {
                     window.location.href = defaultLocation;
-                },1000);
+                }, 1000);
             }
-            if(e){
-                if(e.preventDefault)
+            if (e) {
+                if (e.preventDefault)
                     e.preventDefault();
-                if(e.preventPropagation)
+                if (e.preventPropagation)
                     e.preventPropagation();
             }
             return false;
