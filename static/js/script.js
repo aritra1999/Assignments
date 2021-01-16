@@ -26,9 +26,11 @@ function submit_code() {
     var language = document.getElementById('lang').value;
     var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
     var slug = document.getElementById('slug').innerHTML;
+    
     $("#processing").css({"display": "block"});
-    $(".success").css({"display": "none"});
-    $(".error").css({"display": "none"});
+    
+    $(".success_message").css({"display": "none"});
+    $(".error_message").css({"display": "none"});
     
     $("#success_message").empty();
     $("#error_message").empty();
@@ -56,6 +58,46 @@ function submit_code() {
                 $("#error").css({"display": "block"});
                 $("#error_message").append("Wrong Answer!");
             }
+        } else {
+            $("#error").css({"display": "block"});
+            $('#error_message').text(data['error']['message'] + "<br>");
+            $('#error_message').append(data['error']['output']);
+        }
+    })
+    .fail(function (data, status) {
+        $('#error_message').text(data);
+    });
+}
+
+function run_code(){
+    var code = editor.getValue();
+    var language = document.getElementById('lang').value;
+    var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    var slug = document.getElementById('slug').innerHTML;
+    
+    $("#processing").css({"display": "block"});
+    
+    $(".success").css({"display": "none"});
+    $(".error").css({"display": "none"});
+    
+    $("#success_message").empty();
+    $("#error_message").empty();
+
+    $.ajax({
+        method: 'POST',
+        url: '/dashboard/run/' + slug,
+        data: {
+            language: language,
+            code: code,
+            csrfmiddlewaretoken: csrf,
+        }
+    })
+    .done(function (data, status) {
+        $("#processing").css({"display": "none"});
+        console.log(data);
+        if (data.status === "success") {
+            $("#success_message").append("<p class='messageText'>" + data['verdict'] + ". Time taken: " + data['time'] + ", Memory used: " + data['memory'] + "</p>");    
+            $("#success").css({"display": "block"});
         } else {
             $("#error").css({"display": "block"});
             $('#error_message').text(data['error']['message'] + "<br>");

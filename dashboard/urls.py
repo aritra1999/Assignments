@@ -17,15 +17,19 @@ from .views import (
     remove_class,
     remove_assignment,
     student_details,
+    run,
 )
 
 urlpatterns = [
     path('', dashboard_view, name='dash'),
+    
+    path('submit/<question_slug>', submit, name='submit'),
+    path('run/<question_slug>', run, name='run'),
+    
     path('class/<class_slug>', class_view, name='class'),
     path('assignment/<assignment_slug>', assignment_view, name='assignment'),
     path('question/<question_slug>', question_view, name='question'),
     path('report/<email>', report_view, name='report'),
-    path('submit/<question_slug>', submit, name='submit'),
     path('create/<class_slug>', assignment_create, name='assignmentCreate'),
     path('create/questions/<assignment_slug>', question_create, name='questionCreate'),
     path('questions/delete/<assignment_slug>/<question_slug>', question_delete, name='questionDelete'),

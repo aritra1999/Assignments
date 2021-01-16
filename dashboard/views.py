@@ -266,6 +266,8 @@ def submit(request, question_slug):
                 response['totalscore'] += 20
             else:
                 response['verdict' + str(it)] = "Failed"
+
+
         if response['totalscore'] < 40:
             response['verdict'] = "Failed"
         else:
@@ -294,6 +296,48 @@ def submit(request, question_slug):
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
+
+
+def run(request, question_slug):
+    if request.method == "POST":
+        response = {}
+        try:
+            question = Question.objects.get(slug=question_slug)
+        except:
+            return JsonResponse({'error': 'Bad Request'})
+
+        io = IO.objects.get(question=question)
+
+        input = io.input1
+        output = io.output1
+
+        payload = {
+                "language": question.allowed_lang,
+                "code": request.POST.get('code'),
+                "input": input
+            }
+
+        url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
+        r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+
+        if r['verdict'] == "error":
+            return JsonResponse({
+                'status': 'error',
+                'error': r
+            })
+
+        response['status'] = "success"
+        response['time'] = r['time']
+        response['memory'] = r['memory']
+
+        if r['output'].strip() == output:
+            response['verdict'] = "Passed"
+        else:
+            response['verdict'] = "Failed"
+
+        return JsonResponse(response)
+    else:
+        return JsonResponse({'error': 'Bad Request'})        
 
 
 @login_required
