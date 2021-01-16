@@ -44,9 +44,16 @@
                     </span>
                 </div>
                 <div class="cont2">
-                    <p class="assignmentCountHead">Number of active assignments</p>
-                    <h1 class="assignmentCount">{{ assignmentNumber }}</h1>
-                    <a href="/dashboard/create/{{ classSelected.slug }}" class="createAssignment">Create Assignment</a>
+                    <div class="activeAssg">
+                        <p class="assignmentCountHead">Number of active assignments</p>
+                        <h1 class="assignmentCount">{{ assignmentNumber }}</h1>
+                        <a href="/dashboard/create/{{ classSelected.slug }}" class="createAssignment">Create Assignment</a>
+                    </div>
+                    <div class="activeAssg collab">
+                        <p class="assignmentCountHead">Add Partner Tutor</p>
+                        <h1 class="assignmentCount">0</h1>
+                        <a href="#" class="createAssignment secondary">Invite Tutor</a>
+                    </div>
                 </div>
                 <div class="removeClass">
                     <button class="removeClass popUpToggleOpen" id="popUpOpenToggle">

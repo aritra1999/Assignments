@@ -90,6 +90,12 @@ svg.copy{
 div.cont2{
     margin-left: 40px;
 }
+div.cont2 > div{
+    display: inline-block;
+}
+div.collab{
+    margin-left: 40px;
+}
 p.assignmentCountHead{
     color: var(--font_color);
     font-size: 1rem;
@@ -102,17 +108,22 @@ h1.assignmentCount{
     font-family: "Mulish-Reg", sans-serif;
 }
 a.createAssignment{
-    border: none;
     outline: none;
     background-color: var(--pop_btn_background);
+    border: 3px solid var(--pop_btn_background);
     color: #FFFFFF;
-    padding: 10px 20px;
+    padding: 5px 20px;
     font-family: "Mulish-Reg", sans-serif;
     border-radius: 5px;
     letter-spacing: 0.03rem;
     font-size: 0.9rem;
     cursor: pointer;
     text-decoration: none;
+}
+.secondary{
+    border: 3px solid var(--pop_btn_background);
+    background: transparent !important;
+    color: var(--font_color) !important;
 }
 h1.yourAssg{
     color: var(--font_color);
