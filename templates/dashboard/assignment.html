@@ -36,7 +36,13 @@
                             <tr>
                                 <td><a href="/dashboard/question/{{ question.slug }}"
                                        class="question">{{ question.title }}</a></td>
-                                <td>Overall SR: <span>{{ question.SR }}%</span></td>
+                                {% if question.SR < 40 %}
+                                    <td>Overall SR: <span class="sr">{{ question.SR }}%</span></td>
+                                {% elif question.SR > 40 and question.SR < 70 %}
+                                    <td>Overall SR: <span>{{ question.SR }}%</span></td>
+                                {% else %}
+                                    <td>Overall SR: <span>{{ question.SR }}%</span></td>
+                                {% endif %}
                                 <td>{{ question.score }}/100</td>
                                 <td>
                                     {% if question.verdict == "Passed" %}
