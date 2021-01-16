@@ -108,6 +108,10 @@ a.question {
     border-bottom: 2px solid var(--pop_btn_background);
     padding: 0 5px;
 }
+span.sr{
+    padding: 5px 10px;
+    background-color: #00AB66;
+}
 
 a.delete {
     color: var(--error_color);

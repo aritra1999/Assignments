@@ -140,6 +140,13 @@ def assignment_view(request, assignment_slug):
             except:
                 question.lastRun = None
             try:
+                passSubs = Submission.objects.filter(status="Passed", submitted_by=user, question=question).count()
+                totalSubs = Submission.objects.filter(submitted_by=user, question=question).count()
+                question.SR = int((passSubs/totalSubs)*100)
+                print(question.SR)
+            except:
+                question.SR = 0
+            try:
                 if (BestSubmission.objects.get(submitted_by=user, question=question)).score > 40:
                     question.verdict = "Passed"
                 else:

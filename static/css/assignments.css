@@ -87,7 +87,7 @@ h2.lastEdit{
     font-size: 0.8rem;
 }
 h1.assignmentDue{
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 10px;
     color: var(--font_color_sub);
 }
@@ -98,7 +98,7 @@ span.goBack{
     cursor: pointer;
     color: var(--font_color_subTwo);
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     width: 60px;
@@ -135,7 +135,7 @@ a.addQuestion{
     border: 3px solid var(--light_btn);
     padding: 8px 25px;
     font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     letter-spacing: 0.05rem;
     font-weight: 600;
     border-radius: 6px;
