@@ -24,10 +24,10 @@
                 <h2 class="assignmentInfo">Assignment Information</h2>
                 <form action="" method="POST" class="assignmentInfo" id="assignmentInfo">{% csrf_token %}
                     <label for="assignmentName" class="assignmentInfo">Assignment Name:
-                        <input type="text" name="assignmentName" id="assignmentName" aria-required="true" class="assignmentInfo" placeholder="Assignment Name">
+                        <input type="text" name="assignmentName" id="assignmentName" aria-required="true" class="assignmentInfo" placeholder="Assignment Name" required>
                     </label>
                     <label for="assignmentName" class="assignmentInfo">Due Date:
-                        <input type="datetime-local" name="assignmentDate" id="assignmentDate" aria-required="true" class="assignmentDate">
+                        <input type="datetime-local" name="assignmentDate" id="assignmentDate" aria-required="true" class="assignmentDate" required>
                     </label>
                     <button class="createAssignment" type="submit">Create Assignment</button>
                 </form>

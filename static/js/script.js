@@ -94,7 +94,6 @@ function run_code(){
     })
     .done(function (data, status) {
         $("#processing").css({"display": "none"});
-        console.log(data);
         if (data.status === "success") {
             $("#success_message").append("<p class='messageText'>" + data['verdict'] + ". Time taken: " + data['time'] + ", Memory used: " + data['memory'] + "</p>");    
             $("#success").css({"display": "block"});

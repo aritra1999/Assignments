@@ -148,4 +148,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # /media/io/4L1-BIM-IOA_1.in
 # /media/io/4L1-BIM-IOA_1.in
 
+LOGIN_URL = '/auth/signin'
+LOGIN_REDIRECT_URL = '/auth/signin'
 LOGOUT_REDIRECT_URL = '/'

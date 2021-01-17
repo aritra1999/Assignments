@@ -1,7 +1,6 @@
 import json
 import requests
-import asyncio
-import aiohttp
+from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
@@ -186,9 +185,15 @@ def question_view(request, question_slug):
     profile = Profile.objects.get(user=user)
     if profile.type == "student":
         question = Question.objects.get(slug=question_slug)
+        timeup = False
+        if question.assignment.due_date < timezone.now():
+            timeup = True
+        
+        
         context = {
             'title': 'Question',
             'question': question,
+            'timeup': timeup
         }
         return render(request, 'dashboard/question.html', context)
     else:
@@ -244,7 +249,7 @@ def submit(request, question_slug):
 
         response['totalscore'] = 0
         for it in range(1, 6):
-
+            
             input = io['input' + str(it)]
             output = io['output' + str(it)]
 
@@ -279,27 +284,31 @@ def submit(request, question_slug):
             response['verdict'] = "Failed"
         else:
             response['verdict'] = "Passed"
-        Submission.objects.create(
-            submitted_by=request.user,
-            question=question,
-            score=response['totalscore'],
-            status=response['verdict'],
-        )
-        try:
-            best = BestSubmission.objects.get(
-                submitted_by=request.user,
-                question=question
-            )
-            if response['totalscore'] > best.score:
-                print('Updating')
-                best.score = response['totalscore']
-                best.save()
-        except:
-            BestSubmission.objects.create(
+
+        timeup = False
+        if question.assignment.due_date >= timezone.now():
+            timeup = True
+            Submission.objects.create(
                 submitted_by=request.user,
                 question=question,
-                score=response['totalscore']
+                score=response['totalscore'],
+                status=response['verdict'],
             )
+            try:
+                best = BestSubmission.objects.get(
+                    submitted_by=request.user,
+                    question=question
+                )
+                if response['totalscore'] > best.score:
+                    print('Updating')
+                    best.score = response['totalscore']
+                    best.save()
+            except:
+                BestSubmission.objects.create(
+                    submitted_by=request.user,
+                    question=question,
+                    score=response['totalscore']
+                )
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
