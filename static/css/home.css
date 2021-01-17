@@ -57,15 +57,19 @@ section.one div.sectionOneCont {
   position: relative;
 }
 
-section.one div.sectionOneCont nav.navbar {
+section.one div.sectionOneCont nav.navbarMob {
+  display: none !important;
+}
+
+section.one div.sectionOneCont nav.navbarDesk {
   background-color: #fff;
   height: 90px;
   max-width: 1200px;
   width: 80%;
   margin: 0 auto;
   border-radius: 20px;
-  -webkit-box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.13);
-          box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -78,22 +82,22 @@ section.one div.sectionOneCont nav.navbar {
   padding: 2rem;
 }
 
-section.one div.sectionOneCont nav.navbar a.logo {
+section.one div.sectionOneCont nav.navbarDesk a.logo {
   text-decoration: none;
 }
 
-section.one div.sectionOneCont nav.navbar a.logo img {
+section.one div.sectionOneCont nav.navbarDesk a.logo img {
   height: 35px;
   width: auto;
 }
 
-section.one div.sectionOneCont nav.navbar ul.navbar li.navlinks {
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks {
   list-style: none;
   display: inline-block;
   margin: 0 10px;
 }
 
-section.one div.sectionOneCont nav.navbar ul.navbar li.navlinks a {
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks a {
   text-decoration: none;
   color: #000000;
   font-size: 0.95rem;
@@ -101,17 +105,17 @@ section.one div.sectionOneCont nav.navbar ul.navbar li.navlinks a {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 8px 15px;
+  padding: 4px 15px;
   border-radius: 6px;
   -webkit-transition: 100ms ease-in;
   transition: 100ms ease-in;
 }
 
-section.one div.sectionOneCont nav.navbar ul.navbar li.navlinks:hover a {
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks:hover a {
   background-color: #f5f5f5;
 }
 
-section.one div.sectionOneCont nav.navbar div.ctaNav a.navCta {
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta {
   text-decoration: none;
   padding: 8px 20px;
   border-radius: 8px;
@@ -119,13 +123,13 @@ section.one div.sectionOneCont nav.navbar div.ctaNav a.navCta {
   font-size: 0.95rem;
 }
 
-section.one div.sectionOneCont nav.navbar div.ctaNav a.navCta.login {
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta.login {
   background-color: #E8E8E8;
   color: #000000;
   margin-right: 5px;
 }
 
-section.one div.sectionOneCont nav.navbar div.ctaNav a.navCta.signup {
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta.signup {
   background-color: #000000;
   color: #fff;
 }
@@ -161,10 +165,15 @@ section.one div.sectionOneCont div.sectionOneData h1.description {
   max-width: 30rem;
 }
 
+section.one div.sectionOneCont div.sectionOneData h1.description span {
+  background: -webkit-linear-gradient(129.08deg, #3BF0E4 4.54%, #9867F0 25.3%, #C2A0FD 41.12%, #EA5DAD 57.44%, #FF7571 75.24%, #FFE580 99.46%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 section.one div.sectionOneCont div.sectionOneData p.subText {
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.12rem;
-  line-height: 1.6rem;
   text-align: center;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -173,12 +182,11 @@ section.one div.sectionOneCont div.sectionOneData p.subText {
 
 section.one div.sectionOneCont div.sectionOneData div.cta a.cta {
   text-decoration: none;
-  padding: 15px 25px;
+  padding: 10px 25px;
   display: inline-block;
   border-radius: 8px;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.99rem;
-  letter-spacing: 0.05rem;
 }
 
 section.one div.sectionOneCont div.sectionOneData div.cta a.cta.signup {
@@ -225,7 +233,7 @@ section.two div.sectionTwoCont {
   background-color: #F5F5F5;
   width: 100%;
   border-radius: 20px;
-  padding: 10rem 1rem 4rem 1rem;
+  padding: 18rem 1rem 4rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -289,10 +297,9 @@ section.three div.sectionThreeCont div.features div.part h3 {
 }
 
 section.three div.sectionThreeCont div.features div.part p {
-  font-size: 1.12rem;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.6rem;
+  color: #4D4D4D;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 section.four {
@@ -343,15 +350,13 @@ section.four div.sectionFourCont div.cont div.divide div.part h1 {
   font-size: 2.4rem;
   line-height: 3rem;
   color: #000000;
-  font-weight: 600;
 }
 
 section.four div.sectionFourCont div.cont div.divide div.part p {
+  color: #4D4D4D;
   margin-top: 1rem;
-  font-size: 1.12rem;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.6rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
 }
 
 section.six {
@@ -388,13 +393,13 @@ section.six div.sectionSixCont div.cont {
 }
 
 section.six div.sectionSixCont div.cont p.getStarted {
-  font-size: 1.12rem;
+  font-size: 0.9rem;
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
   max-width: 40rem;
-  line-height: 1.6rem;
-  margin: 0 0 1rem 0;
+  line-height: 1.5rem;
+  margin: 1rem 0;
 }
 
 section.six div.sectionSixCont div.cont h1.getStarted {
@@ -407,12 +412,18 @@ section.six div.sectionSixCont div.cont h1.getStarted {
   max-width: 30rem;
 }
 
+section.six div.sectionSixCont div.cont h1.getStarted span {
+  background: -webkit-linear-gradient(129.08deg, #3BF0E4 4.54%, #9867F0 25.3%, #C2A0FD 41.12%, #EA5DAD 57.44%, #FF7571 75.24%, #FFE580 99.46%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 section.six div.sectionSixCont div.cont div.cta a.cta {
   text-decoration: none;
-  padding: 15px 25px;
+  padding: 10px 25px;
   display: inline-block;
   border-radius: 8px;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.99rem;
 }
 
@@ -493,7 +504,7 @@ section.foot div.footCont div.footBar ul.footLink li a {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 8px 15px;
+  padding: 4px 15px;
   border-radius: 6px;
   -webkit-transition: 100ms ease-in;
   transition: 100ms ease-in;
@@ -501,4 +512,197 @@ section.foot div.footCont div.footBar ul.footLink li a {
 
 section.foot div.footCont div.footBar ul.footLink li:hover a {
   background-color: #202020;
+}
+
+@media (max-width: 1400px) {
+  body section.one div.sectionOneCont nav.navbarDesk {
+    max-width: none;
+    width: 100%;
+  }
+  body section.two div.sectionTwoCont {
+    padding: 11rem 1rem 4rem 1rem;
+  }
+  body section.three div.sectionThreeCont {
+    padding: 6rem 2rem;
+  }
+  body section.three div.sectionThreeCont div.cont {
+    max-width: none;
+    width: 100%;
+  }
+  body section.foot div.footCont {
+    padding: 25rem 0 3rem 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  body section.one {
+    height: auto !important;
+  }
+  body section.one div.imageWrapper {
+    max-width: none !important;
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+            transform: none !important;
+  }
+  body section.two div.sectionTwoCont {
+    padding: 2rem 0 !important;
+  }
+  body section.six div.sectionSixCont {
+    padding: 1rem !important;
+  }
+  body section.six div.sectionSixCont div.cont {
+    padding: 0 !important;
+  }
+  body section.six div.sectionSixCont div.imageWrapper {
+    position: relative !important;
+    max-width: none !important;
+    width: 100% !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+            transform: none !important;
+    top: 0 !important;
+    margin-top: 4rem;
+  }
+  body section.foot div.footCont {
+    padding: 1rem !important;
+  }
+  body section.foot div.footCont div.footBar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  body section.foot div.footCont div.footBar a img {
+    height: 25px;
+  }
+  body section.foot div.footCont div.footBar ul {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  body section.one div.sectionOneCont nav.navbarDesk {
+    display: none !important;
+  }
+  body section.one div.sectionOneCont nav.navbarMob {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+            box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+    padding: 1rem;
+    position: relative;
+    display: block !important;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib a img {
+    height: 25px;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib div.ham span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: #000000;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib div.ham span:first-child {
+    margin-bottom: 4px;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.dropDown {
+    display: none;
+    position: absolute;
+  }
+}
+
+@media (max-width: 650px) {
+  body section.one div.sectionOneCont {
+    border-radius: 1rem;
+  }
+  body section.one div.sectionOneData {
+    padding: 3rem 0 5rem 0 !important;
+  }
+  body section.one div.sectionOneData h1 {
+    font-size: 2.3rem !important;
+    line-height: 3rem !important;
+  }
+  body section.one div.sectionOneData div.cta a {
+    padding: 15px 25px !important;
+  }
+  body section.one div.sectionOneData div.cta a.signup {
+    margin-right: 1.1rem !important;
+  }
+  body section.one div.imageWrapper img {
+    border-radius: 1rem !important;
+  }
+  body section.two div.sectionTwoCont {
+    border-radius: 1rem !important;
+  }
+  body section.two div.sectionTwoCont div.languages img {
+    height: 3rem;
+    margin: 0 2rem;
+  }
+  body section.three div.sectionThreeCont {
+    border-radius: 1rem !important;
+  }
+  body section.three div.sectionThreeCont h1 {
+    font-size: 1.8rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.three div.sectionThreeCont div.features {
+        grid-template-columns: repeat(1, 1fr) !important;
+    -webkit-column-gap: 0 !important;
+            column-gap: 0 !important;
+    row-gap: 2rem;
+  }
+  body section.three div.sectionThreeCont div.features div.part img {
+    height: 3.5rem;
+  }
+  body section.three div.sectionThreeCont div.features div.part h3 {
+    font-size: 1.2rem !important;
+  }
+  body section.four div.sectionFourCont {
+    border-radius: 1rem !important;
+  }
+  body section.four div.sectionFourCont div.divide {
+        grid-template-columns: repeat(1, 1fr) !important;
+    -webkit-column-gap: 0;
+            column-gap: 0;
+    row-gap: 2rem;
+  }
+  body section.four div.sectionFourCont div.divide div.part h1 {
+    font-size: 1.8rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.six div.sectionSixCont {
+    border-radius: 1rem !important;
+  }
+  body section.six div.sectionSixCont div.cont h1 {
+    font-size: 2rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.six div.sectionSixCont div.cont p {
+    margin: 0.7rem 0 !important;
+  }
+  body section.six div.sectionSixCont div.cont div.cta a {
+    padding: 15px 10px !important;
+  }
+  body section.foot div.footCont {
+    border-radius: 1rem !important;
+  }
 }

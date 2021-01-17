@@ -7,7 +7,7 @@
     {% include 'base/header.html' %}
     <div class="full_height">
         <div class="left">
-            <img src="{% static 'Illustrations/Logo.svg' %}" alt="logo" class="logo">
+            <img src="{% static 'Illustrations/logoBlank.svg' %}" alt="logo" class="logo">
             <h1 class="login">Sign Up for CodeVox</h1>
             <p class="tag">Already have an account?<a style="margin-left: 8px;" href="{% url 'login_view' %}">Sign In to existing account</a></p>
             <form action="" method="post" class="subForm" id="upForm" onsubmit="return passwordValidation()" name="subForm">{% csrf_token %}
