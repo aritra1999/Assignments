@@ -16,7 +16,7 @@
         <section class="one">
             <div class="sectionOneCont">
                 <nav class="navbarDesk">
-                    <a href="#" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                    <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
                     <ul class="navbar">
                         <li class="navlinks"><a href="#">Home</a></li>
                         <li class="navlinks"><a href="#">About Us</a></li>
@@ -24,13 +24,13 @@
                         <li class="navlinks"><a href="#">Docs</a></li>
                     </ul>
                     <div class="ctaNav">
-                        <a href="#" class="navCta login">Login</a>
-                        <a href="#" class="navCta signup">Sign Up</a>
+                        <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                        <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
                     </div>
                 </nav>
                 <nav class="navbarMob">
                     <div class="mobileNavVisib">
-                        <a href="#" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                        <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
                         <div class="ham">
                             <span></span>
                             <span></span>
@@ -44,8 +44,8 @@
                             <li class="navlinks"><a href="#">Docs</a></li>
                         </ul>
                         <div class="ctaNav">
-                            <a href="#" class="navCta login">Login</a>
-                            <a href="#" class="navCta signup">Sign Up</a>
+                            <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                            <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
                         </div>
                     </div>
                 </nav>
@@ -54,7 +54,7 @@
                     <h1 class="description">A free <span>portal</span> for <span>coding</span> assignments<span id="cursor">|</span></h1>
                     <p class="subText">Free and collaborative tool to help students and teachers to assess coding skills efficiently.</p>
                     <div class="cta">
-                        <a href="#" class="cta signup">Sign Up for free</a>
+                        <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
                         <a href="#" class="cta try">Try our online IDE</a>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                                 Students and teachers can keep track of scores
                             </h1>
                             <p class="partFour">
-                                Codevox keeps track student’s submission and their scores for each question which can be viewed both by teachers and students.
+                                CodeVox keeps track student’s submission and their scores for each question which can be viewed both by teachers and students.
                             </p>
                         </div>
                         <div class="part">
@@ -144,7 +144,7 @@
                         It hardly takes few minutes to set up an assignment.  Codevox is one of the platform which is helping to automate the submissin of coding assignments and checking simpler and faster.
                     </p>
                     <div class="cta">
-                        <a href="#" class="cta signup">Sign Up for free</a>
+                        <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
                         <a href="#" class="cta try">Try our online IDE</a>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
         <section class="foot">
             <div class="footCont">
                 <div class="footBar">
-                    <a href="#" class="logo">
+                    <a href="{% url 'home' %}" class="logo">
                         <img src="{% static 'Illustrations/LogoLight.svg' %}" alt="logo">
                     </a>
                     <ul class="footLink">

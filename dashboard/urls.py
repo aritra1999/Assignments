@@ -22,7 +22,6 @@ from .views import (
 
 urlpatterns = [
     path('', dashboard_view, name='dash'),
-    
     path('submit/<question_slug>', submit, name='submit'),
     path('run/<question_slug>', run, name='run'),
     path('class/<class_slug>', class_view, name='class'),
