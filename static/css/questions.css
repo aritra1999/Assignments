@@ -57,7 +57,7 @@ table.questionTable {
     width: 100%;
     background-color: var(--table_back);
     border-collapse: collapse;
-    /*background: var(--assignment_grad);*/
+    border-radius: 8px;
 }
 
 table.questionTable td, table.questionTable th {
@@ -109,9 +109,21 @@ a.question {
     padding: 0 5px;
 }
 span.sr{
-    padding: 5px 10px;
-    background-color: #00AB66;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-align: center;
 }
+span.great{
+    background-color: #109b67;
+}
+span.low{
+    background-color: #E16541;
+}
+span.avg {
+    background-color: #dba017;
+}
+
 
 a.delete {
     color: var(--error_color);

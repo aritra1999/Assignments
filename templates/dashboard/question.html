@@ -69,13 +69,15 @@ print(int(a) + int(b))</div>
                 <div class="bottom">
                     <div class="idk">
                         <p class="allowed">Allowed language : <span id="lang">{{ question.allowed_lang }}</span></p>
-                        <a class="run" onclick="run_code()">Run</a>
-                        <a class="submit" onclick="submit_code()">
-                            Submit
-                            {% if timeup %}
-                                ( Practice )
-                            {% endif %}
-                        </a>
+                        <span>
+                            <a class="run" onclick="run_code()">Run</a>
+                            <a class="submit" onclick="submit_code()">
+                                Submit
+                                {% if timeup %}
+                                    ( Practice )
+                                {% endif %}
+                            </a>
+                        </span>
                     </div>
                 </div>
             </div>

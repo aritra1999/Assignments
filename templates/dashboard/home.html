@@ -1,34 +1,174 @@
-{% extends "base/base.html" %}
 {% load static %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
-{% endblock extrahead %}
-{% block content %}
-    <div class="homeNav">
-        <span class="logo"><a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo"></a></span>
-        <nav class="homeNav">
-            <ul class="homeNav">
-                <li class="navItem"><a href="#">Home</a></li>
-                <li class="navItem"><a href="#">About Us</a></li>
-                <li class="navItem"><a href="#">Online IDE</a></li>
-                <li class="navItem"><a href="{% url 'login_view' %}">Sign In</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="homeCont">
-        <div class="content_cont">
-            <h1 class="mainHead">A free <span class="lg">portal</span> for <span class="dg">coding</span> assignments<span id="cursor">|</span></h1>
-            <p class="tag">Free and collaborative tool to help students and teachers to assess coding skills efficiently.</p>
-            <div class="cta">
-                <a href="{% url 'register_view' %}" class="signUp">Sign up for free</a>
-                <a href="#" class="try">Try our online IDE</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeVox | {{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mainCont">
+        <section class="one">
+            <div class="sectionOneCont">
+                <nav class="navbarDesk">
+                    <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                    <ul class="navbar">
+                        <li class="navlinks"><a href="#">Home</a></li>
+                        <li class="navlinks"><a href="#">About Us</a></li>
+                        <li class="navlinks"><a href="#">Online IDE</a></li>
+                        <li class="navlinks"><a href="#">Docs</a></li>
+                    </ul>
+                    <div class="ctaNav">
+                        <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                        <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
+                    </div>
+                </nav>
+                <nav class="navbarMob">
+                    <div class="mobileNavVisib">
+                        <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                        <div class="ham">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="dropDown">
+                        <ul class="navbar">
+                            <li class="navlinks"><a href="#">Home</a></li>
+                            <li class="navlinks"><a href="#">About Us</a></li>
+                            <li class="navlinks"><a href="#">Online IDE</a></li>
+                            <li class="navlinks"><a href="#">Docs</a></li>
+                        </ul>
+                        <div class="ctaNav">
+                            <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                            <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="sectionOneData">
+                    <p class="introText">Introducing CodeVox</p>
+                    <h1 class="description">A free <span>portal</span> for <span>coding</span> assignments<span id="cursor">|</span></h1>
+                    <p class="subText">Free and collaborative tool to help students and teachers to assess coding skills efficiently.</p>
+                    <div class="cta">
+                        <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
+                        <a href="#" class="cta try">Try our online IDE</a>
+                    </div>
+                </div>
+                <div class="imageWrapper">
+                    <img src="{% static 'Illustrations/HeroImage.png' %}" alt="">
+                </div>
             </div>
-        </div>
+        </section>
+        <section class="two">
+            <div class="sectionTwoCont">
+                <div class="languages">
+                    <img src="{% static 'Illustrations/python.svg' %}" alt="">
+                    <img src="{% static 'Illustrations/java.svg' %}" alt="">
+                    <img src="{% static 'Illustrations/cpp.svg' %}" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="three">
+            <div class="sectionThreeCont">
+                <div class="cont">
+                    <h1 class="sectionThree">Everything you need to assess coding skills and auto code check</h1>
+                    <div class="features">
+                        <div class="part">
+                            <img src="{% static 'Illustrations/IntegratedDashboard.svg' %}" alt="" class="tile">
+                            <h3 class="tileHead">Integrated Dashboard</h3>
+                            <p class="titleSub">Beautiful and simple dashboard for teachers and students to view their classrooms and assignments all in one place.</p>
+                        </div>
+                        <div class="part">
+                            <img src="{% static 'Illustrations/ColloborativeEnvironment.svg' %}" alt="" class="tile">
+                            <h3 class="tileHead">Collaborative Environment</h3>
+                            <p class="titleSub">Creating and assessment of codes is a work for team of teachers. Let teachers colloborate together and assess each student of the classroom</p>
+                        </div>
+                        <div class="part">
+                            <img src="{% static 'Illustrations/AutoCheck.svg' %}" alt="" class="tile">
+                            <h3 class="tileHead">Code auto-check</h3>
+                            <p class="titleSub">Gone are those days where teachers need to download pdf and check. Codevox checks the code automatically submitted by the students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="four">
+            <div class="sectionFourCont">
+                <div class="cont">
+                    <div class="divide">
+                        <div class="part">
+                            <img src="{% static 'Illustrations/Image1.png' %}" alt="" class="sectionFourImg">
+                        </div>
+                        <div class="part">
+                            <h1 class="partFour">
+                                Supercharge the student’s assessment of coding
+                            </h1>
+                            <p class="partFour">
+                                It’s simple add questions and a due date for an assignment, your assignment gets set and let codevox handle the rest from checking the code and generating score.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="four">
+            <div class="sectionFourCont">
+                <div class="cont">
+                    <div class="divide">
+                        <div class="part">
+                            <h1 class="partFour">
+                                Students and teachers can keep track of scores
+                            </h1>
+                            <p class="partFour">
+                                CodeVox keeps track student’s submission and their scores for each question which can be viewed both by teachers and students.
+                            </p>
+                        </div>
+                        <div class="part">
+                            <img src="{% static 'Illustrations/Image2.png' %}" alt="" class="sectionFourImg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="six">
+            <div class="sectionSixCont">
+                <div class="cont">
+                    <h1 class="getStarted">
+                        Get started with <span>Codevox</span>
+                    </h1>
+                    <p class="getStarted">
+                        It hardly takes few minutes to set up an assignment.  Codevox is one of the platform which is helping to automate the submissin of coding assignments and checking simpler and faster.
+                    </p>
+                    <div class="cta">
+                        <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
+                        <a href="#" class="cta try">Try our online IDE</a>
+                    </div>
+                </div>
+                <div class="imageWrapper">
+                    <img src="{% static 'Illustrations/FooterImage.png' %}" alt="footImage">
+                </div>
+            </div>
+        </section>
+        <section class="foot">
+            <div class="footCont">
+                <div class="footBar">
+                    <a href="{% url 'home' %}" class="logo">
+                        <img src="{% static 'Illustrations/LogoLight.svg' %}" alt="logo">
+                    </a>
+                    <ul class="footLink">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Online IDE</a></li>
+                        <li><a href="#">Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="floatImg">
-        <img src="{% static 'Illustrations/LandingPageIllustration.svg' %}" alt="" class="float">
-    </div>
-{% endblock %}
-{% block extrafoot %}
     <script src="{% static 'js/landing.js' %}"></script>
-{% endblock extrafoot %}
+</body>
+</html>

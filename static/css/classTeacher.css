@@ -3,13 +3,9 @@ div.classTeacherTile{
     box-sizing: border-box;
     padding: 30px;
     background: var(--assignment_grad);
-    /*background-color: var(--table_back);*/
-    /*background-image: url("../Illustrations/CardBg1.svg");*/
-    /*background-size: 9%;*/
-    /*background-position: bottom right;*/
-    /*background-repeat: no-repeat;*/
     display: flex;
     position: relative;
+    border-radius: 8px;
 }
 div.removeClass{
     position: absolute;
@@ -80,6 +76,11 @@ span.linkText{
 }
 span.linkTextMain{
     margin-left: 0 !important;
+    width: 220px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 svg.copy{
     height: 20px;
@@ -87,6 +88,12 @@ svg.copy{
     cursor: pointer;
 }
 div.cont2{
+    margin-left: 40px;
+}
+div.cont2 > div{
+    display: inline-block;
+}
+div.collab{
     margin-left: 40px;
 }
 p.assignmentCountHead{
@@ -101,17 +108,22 @@ h1.assignmentCount{
     font-family: "Mulish-Reg", sans-serif;
 }
 a.createAssignment{
-    border: none;
     outline: none;
     background-color: var(--pop_btn_background);
+    border: 3px solid var(--pop_btn_background);
     color: #FFFFFF;
-    padding: 10px 20px;
+    padding: 5px 20px;
     font-family: "Mulish-Reg", sans-serif;
     border-radius: 5px;
     letter-spacing: 0.03rem;
     font-size: 0.9rem;
     cursor: pointer;
     text-decoration: none;
+}
+.secondary{
+    border: 3px solid var(--pop_btn_background);
+    background: transparent !important;
+    color: var(--font_color) !important;
 }
 h1.yourAssg{
     color: var(--font_color);

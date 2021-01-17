@@ -1,0 +1,708 @@
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #DFE4F3;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  outline: 1px solid slategrey;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  font-family: 'Jost', sans-serif;
+  font-size: 100%;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+div.mainCont {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+}
+
+section.one {
+  padding: 0.75rem;
+  height: 100vh;
+  width: 100%;
+}
+
+section.one div.sectionOneCont {
+  height: auto;
+  min-height: 100%;
+  width: 100%;
+  background: linear-gradient(281.64deg, #FFE7C1 0.84%, rgba(255, 255, 255, 0.39) 51.03%, #DFE4F3 89.35%);
+  border-radius: 20px;
+  padding: 1rem;
+  position: relative;
+}
+
+section.one div.sectionOneCont nav.navbarMob {
+  display: none !important;
+}
+
+section.one div.sectionOneCont nav.navbarDesk {
+  background-color: #fff;
+  height: 90px;
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+          box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem;
+}
+
+section.one div.sectionOneCont nav.navbarDesk a.logo {
+  text-decoration: none;
+}
+
+section.one div.sectionOneCont nav.navbarDesk a.logo img {
+  height: 35px;
+  width: auto;
+}
+
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks {
+  list-style: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 4px 15px;
+  border-radius: 6px;
+  -webkit-transition: 100ms ease-in;
+  transition: 100ms ease-in;
+}
+
+section.one div.sectionOneCont nav.navbarDesk ul.navbar li.navlinks:hover a {
+  background-color: #f5f5f5;
+}
+
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta {
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta.login {
+  background-color: #E8E8E8;
+  color: #000000;
+  margin-right: 5px;
+}
+
+section.one div.sectionOneCont nav.navbarDesk div.ctaNav a.navCta.signup {
+  background-color: #000000;
+  color: #fff;
+}
+
+section.one div.sectionOneCont div.sectionOneData {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 6rem 0 5rem 0;
+}
+
+section.one div.sectionOneCont div.sectionOneData p.introText {
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section.one div.sectionOneCont div.sectionOneData h1.description {
+  text-align: center;
+  font-size: 3rem;
+  line-height: 3.3rem;
+  font-weight: 800;
+  color: #000000;
+  margin: 1rem 0;
+  max-width: 30rem;
+}
+
+section.one div.sectionOneCont div.sectionOneData h1.description span {
+  background: -webkit-linear-gradient(129.08deg, #3BF0E4 4.54%, #9867F0 25.3%, #C2A0FD 41.12%, #EA5DAD 57.44%, #FF7571 75.24%, #FFE580 99.46%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section.one div.sectionOneCont div.sectionOneData p.subText {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.12rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  max-width: 32rem;
+}
+
+section.one div.sectionOneCont div.sectionOneData div.cta a.cta {
+  text-decoration: none;
+  padding: 10px 25px;
+  display: inline-block;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.99rem;
+}
+
+section.one div.sectionOneCont div.sectionOneData div.cta a.cta.signup {
+  background-color: #000000;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+section.one div.sectionOneCont div.sectionOneData div.cta a.cta.try {
+  background-color: #e8e8e8;
+  color: #000000;
+}
+
+section.one div.sectionOneCont div.imageWrapper {
+  position: absolute;
+  max-width: 1200px;
+  width: 60%;
+  height: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  overflow: hidden;
+  -webkit-filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
+          filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
+}
+
+section.one div.sectionOneCont div.imageWrapper img {
+  max-width: 100%;
+  border-radius: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+section.two {
+  padding: 0.75rem;
+  height: auto;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+section.two div.sectionTwoCont {
+  background-color: #F5F5F5;
+  width: 100%;
+  border-radius: 20px;
+  padding: 18rem 1rem 4rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section.two div.sectionTwoCont div.languages img {
+  margin: 0 4rem;
+}
+
+section.three {
+  padding: 0.75rem;
+  height: auto;
+  width: 100%;
+}
+
+section.three div.sectionThreeCont {
+  height: auto;
+  width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(267.32deg, #FFE7C1 5.09%, rgba(251, 231, 199, 0.26) 37.92%, rgba(223, 227, 242, 0.47) 60.5%, #DFE3F2 100%);
+  padding: 6rem 1rem;
+}
+
+section.three div.sectionThreeCont div.cont {
+  max-width: 1200px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+section.three div.sectionThreeCont h1.sectionThree {
+  font-size: 2.4rem;
+  max-width: 60rem;
+  line-height: 3rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+section.three div.sectionThreeCont div.features {
+  display: -ms-grid;
+  display: grid;
+      grid-template-columns: repeat(3, 1fr);
+  -webkit-column-gap: 4rem;
+          column-gap: 4rem;
+  margin-top: 2rem;
+}
+
+section.three div.sectionThreeCont div.features div.part img {
+  display: block;
+  -webkit-box-shadow: 0 1.5rem 2rem -0.5rem rgba(0, 0, 0, 0.07), 0 0.25rem 2rem 0 rgba(0, 0, 0, 0.03);
+          box-shadow: 0 1.5rem 2rem -0.5rem rgba(0, 0, 0, 0.07), 0 0.25rem 2rem 0 rgba(0, 0, 0, 0.03);
+}
+
+section.three div.sectionThreeCont div.features div.part h3 {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+section.three div.sectionThreeCont div.features div.part p {
+  color: #4D4D4D;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+section.four {
+  padding: 0.75rem;
+  width: 100%;
+  height: auto;
+}
+
+section.four div.sectionFourCont {
+  padding: 6rem 0;
+  background-color: #F5F5F5;
+  border-radius: 20px;
+}
+
+section.four div.sectionFourCont div.cont {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+section.four div.sectionFourCont div.cont div.divide {
+  display: -ms-grid;
+  display: grid;
+      grid-template-columns: repeat(2, 1fr);
+  -webkit-column-gap: 4rem;
+          column-gap: 4rem;
+}
+
+section.four div.sectionFourCont div.cont div.divide div.part {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section.four div.sectionFourCont div.cont div.divide div.part img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+section.four div.sectionFourCont div.cont div.divide div.part h1 {
+  font-size: 2.4rem;
+  line-height: 3rem;
+  color: #000000;
+}
+
+section.four div.sectionFourCont div.cont div.divide div.part p {
+  color: #4D4D4D;
+  margin-top: 1rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+
+section.six {
+  padding: 0.75rem;
+  width: 100%;
+  height: auto;
+}
+
+section.six div.sectionSixCont {
+  background: linear-gradient(267.32deg, #FFE7C1 5.09%, rgba(251, 231, 199, 0.26) 37.92%, rgba(223, 227, 242, 0.47) 60.5%, #DFE3F2 100%);
+  padding: 6rem 0 0 0;
+  border-radius: 20px;
+  position: relative;
+}
+
+section.six div.sectionSixCont div.cont {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 14rem;
+}
+
+section.six div.sectionSixCont div.cont p.getStarted {
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  max-width: 40rem;
+  line-height: 1.5rem;
+  margin: 1rem 0;
+}
+
+section.six div.sectionSixCont div.cont h1.getStarted {
+  text-align: center;
+  font-size: 3rem;
+  line-height: 3.3rem;
+  font-weight: 800;
+  color: #000000;
+  margin: 1rem 0;
+  max-width: 30rem;
+}
+
+section.six div.sectionSixCont div.cont h1.getStarted span {
+  background: -webkit-linear-gradient(129.08deg, #3BF0E4 4.54%, #9867F0 25.3%, #C2A0FD 41.12%, #EA5DAD 57.44%, #FF7571 75.24%, #FFE580 99.46%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section.six div.sectionSixCont div.cont div.cta a.cta {
+  text-decoration: none;
+  padding: 10px 25px;
+  display: inline-block;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.99rem;
+}
+
+section.six div.sectionSixCont div.cont div.cta a.cta.signup {
+  background-color: #000000;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+section.six div.sectionSixCont div.cont div.cta a.cta.try {
+  background-color: #e8e8e8;
+  color: #000000;
+}
+
+section.six div.sectionSixCont div.imageWrapper {
+  position: absolute;
+  max-width: 1200px;
+  width: 60%;
+  height: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  overflow: hidden;
+  top: 28rem;
+  -webkit-filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
+          filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
+}
+
+section.six div.sectionSixCont div.imageWrapper img {
+  max-width: 100%;
+  border-radius: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+section.foot {
+  padding: 0.75rem;
+  width: 100%;
+  height: auto;
+}
+
+section.foot div.footCont {
+  border-radius: 20px;
+  background-color: #000000;
+  padding: 35rem 0 3rem 0;
+}
+
+section.foot div.footCont div.footBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+section.foot div.footCont div.footBar a img {
+  height: 35px;
+  display: block;
+}
+
+section.foot div.footCont div.footBar ul.footLink li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+section.foot div.footCont div.footBar ul.footLink li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 4px 15px;
+  border-radius: 6px;
+  -webkit-transition: 100ms ease-in;
+  transition: 100ms ease-in;
+}
+
+section.foot div.footCont div.footBar ul.footLink li:hover a {
+  background-color: #202020;
+}
+
+@media (max-width: 1400px) {
+  body section.one div.sectionOneCont nav.navbarDesk {
+    max-width: none;
+    width: 100%;
+  }
+  body section.two div.sectionTwoCont {
+    padding: 11rem 1rem 4rem 1rem;
+  }
+  body section.three div.sectionThreeCont {
+    padding: 6rem 2rem;
+  }
+  body section.three div.sectionThreeCont div.cont {
+    max-width: none;
+    width: 100%;
+  }
+  body section.foot div.footCont {
+    padding: 25rem 0 3rem 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  body section.one {
+    height: auto !important;
+  }
+  body section.one div.imageWrapper {
+    max-width: none !important;
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+            transform: none !important;
+  }
+  body section.two div.sectionTwoCont {
+    padding: 2rem 0 !important;
+  }
+  body section.six div.sectionSixCont {
+    padding: 1rem !important;
+  }
+  body section.six div.sectionSixCont div.cont {
+    padding: 0 !important;
+  }
+  body section.six div.sectionSixCont div.imageWrapper {
+    position: relative !important;
+    max-width: none !important;
+    width: 100% !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+            transform: none !important;
+    top: 0 !important;
+    margin-top: 4rem;
+  }
+  body section.foot div.footCont {
+    padding: 1rem !important;
+  }
+  body section.foot div.footCont div.footBar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  body section.foot div.footCont div.footBar a img {
+    height: 25px;
+  }
+  body section.foot div.footCont div.footBar ul {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  body section.one div.sectionOneCont nav.navbarDesk {
+    display: none !important;
+  }
+  body section.one div.sectionOneCont nav.navbarMob {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+            box-shadow: 0 1px 20px rgba(0, 0, 0, 0.13);
+    padding: 1rem;
+    position: relative;
+    display: block !important;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib a img {
+    height: 25px;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib div.ham span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: #000000;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.mobileNavVisib div.ham span:first-child {
+    margin-bottom: 4px;
+  }
+  body section.one div.sectionOneCont nav.navbarMob div.dropDown {
+    display: none;
+    position: absolute;
+  }
+}
+
+@media (max-width: 650px) {
+  body section.one div.sectionOneCont {
+    border-radius: 1rem;
+  }
+  body section.one div.sectionOneData {
+    padding: 3rem 0 5rem 0 !important;
+  }
+  body section.one div.sectionOneData h1 {
+    font-size: 2.3rem !important;
+    line-height: 3rem !important;
+  }
+  body section.one div.sectionOneData div.cta a {
+    padding: 15px 25px !important;
+  }
+  body section.one div.sectionOneData div.cta a.signup {
+    margin-right: 1.1rem !important;
+  }
+  body section.one div.imageWrapper img {
+    border-radius: 1rem !important;
+  }
+  body section.two div.sectionTwoCont {
+    border-radius: 1rem !important;
+  }
+  body section.two div.sectionTwoCont div.languages img {
+    height: 3rem;
+    margin: 0 2rem;
+  }
+  body section.three div.sectionThreeCont {
+    border-radius: 1rem !important;
+  }
+  body section.three div.sectionThreeCont h1 {
+    font-size: 1.8rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.three div.sectionThreeCont div.features {
+        grid-template-columns: repeat(1, 1fr) !important;
+    -webkit-column-gap: 0 !important;
+            column-gap: 0 !important;
+    row-gap: 2rem;
+  }
+  body section.three div.sectionThreeCont div.features div.part img {
+    height: 3.5rem;
+  }
+  body section.three div.sectionThreeCont div.features div.part h3 {
+    font-size: 1.2rem !important;
+  }
+  body section.four div.sectionFourCont {
+    border-radius: 1rem !important;
+  }
+  body section.four div.sectionFourCont div.divide {
+        grid-template-columns: repeat(1, 1fr) !important;
+    -webkit-column-gap: 0;
+            column-gap: 0;
+    row-gap: 2rem;
+  }
+  body section.four div.sectionFourCont div.divide div.part h1 {
+    font-size: 1.8rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.six div.sectionSixCont {
+    border-radius: 1rem !important;
+  }
+  body section.six div.sectionSixCont div.cont h1 {
+    font-size: 2rem !important;
+    line-height: 2.5rem !important;
+  }
+  body section.six div.sectionSixCont div.cont p {
+    margin: 0.7rem 0 !important;
+  }
+  body section.six div.sectionSixCont div.cont div.cta a {
+    padding: 15px 10px !important;
+  }
+  body section.foot div.footCont {
+    border-radius: 1rem !important;
+  }
+}
