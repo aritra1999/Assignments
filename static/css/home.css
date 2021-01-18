@@ -691,12 +691,19 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
     padding: 3rem 0 5rem 0 !important;
   }
   body section.one div.sectionOneData h1 {
-    font-size: 2.3rem !important;
-    line-height: 3rem !important;
+    font-size: 1.9rem !important;
+    line-height: 2.5rem !important;
+    max-width: none !important;
+  }
+  body section.one div.sectionOneData p{
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    font-weight: 400 !important;
   }
   body section.one div.sectionOneData div.cta a {
     padding: 15px 25px !important;
     width: 100% !important;
+    text-align: center;
   }
   body section.one div.sectionOneData div.cta a.signup {
     margin-right: 0 !important;
@@ -747,6 +754,9 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
   body section.six div.sectionSixCont {
     border-radius: 1rem !important;
   }
+  body section.six div.sectionSixCont div.cont{
+    width: 100% !important  ;
+  }
   body section.six div.sectionSixCont div.cont h1 {
     font-size: 2rem !important;
     line-height: 2.5rem !important;
@@ -757,6 +767,7 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
   body section.six div.sectionSixCont div.cont div.cta a {
     padding: 15px 10px !important;
     width: 100%;
+    text-align: center;
   }
   body section.six div.sectionSixCont div.cont div.cta a.signup {
     margin-bottom: 1rem;
