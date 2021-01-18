@@ -66,14 +66,16 @@ div.assignmentsView{
 div.assignmentCard{
     width: 350px;
     height: 250px;
-    /*background: var(--assignment_grad);*/
-    background-color: var(--class_card);
+    background-color: var(--tile_color);
     border-radius: 10px;
     margin: 10px;
     display: flex;
     padding: 20px;
     justify-content: space-between;
     flex-direction: column;
+    background-image: url("../Illustrations/animationBack.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
 }
 div.assignmentCardHead, div.assignmentCardFoot{
     color: var(--font_color);
