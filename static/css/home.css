@@ -520,7 +520,7 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
     width: 100%;
   }
   body section.two div.sectionTwoCont {
-    padding: 11rem 1rem 4rem 1rem;
+    padding: 10rem 1rem 4rem 1rem;
   }
   body section.three div.sectionThreeCont {
     padding: 6rem 2rem;
@@ -534,7 +534,7 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   body section.one {
     height: auto !important;
   }
@@ -547,7 +547,7 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
             transform: none !important;
   }
   body section.two div.sectionTwoCont {
-    padding: 2rem 0 !important;
+    padding: 1rem 0 2rem 0 !important;
   }
   body section.six div.sectionSixCont {
     padding: 1rem !important;
