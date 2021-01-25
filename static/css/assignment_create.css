@@ -50,6 +50,10 @@ input.assignmentInfo, input.assignmentDate, select.assignmentInfo, textarea.assi
 input.assignmentDate::-webkit-calendar-picker-indicator{
     background-color: var(--fontColorSubTwo);
 }
+div.updateBtn{
+    display: flex;
+    justify-content: flex-end;
+}
 button.createAssignment{
     background-color: var(--primaryColor);
     color: #FFFFFF;

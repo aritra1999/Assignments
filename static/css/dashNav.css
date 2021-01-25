@@ -83,7 +83,7 @@ div.partToggle{
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    display: none;
+    display: block;
 }
 button.tag{
     padding: 8px 20px;

@@ -1,6 +1,3 @@
-div.partToggle{
-    display: block;
-}
 div.insideCont{
     max-width: 1357px;
     width: 100%;
@@ -175,9 +172,6 @@ div.assignmentCardFoot p.due{
     font-size: 1.1rem;
     margin-top: 0.3rem;
 }
-div.studentView{
-    display: none;
-}
 div.tableCont {
     margin: 20px auto 0 auto;
 }
@@ -234,4 +228,28 @@ a.submitDel{
     background: #E16541;
     color: #FFFFFF;
     border: 3px solid #E16541;
+}
+div.studentPartCont{
+    display: none;
+}
+h1.studentHead{
+    color: vaR(--fontColor);
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+h2.students{
+    color: var(--fontColorSub);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+}
+p.youCan{
+    color: var(--fontColorSubTwo);
+    font-size: 1rem;
+}
+h1.yourAssg{
+    color: var(--fontColor);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
 }

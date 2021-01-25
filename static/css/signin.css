@@ -20,7 +20,7 @@ div.form{
     width: 100%;
     height: auto;
     padding: 3rem;
-    background-color: #F8F7FC;
+    background-color: #ffffff;
     border-radius: 0.4rem;
 }
 h2.formHead{
@@ -63,17 +63,16 @@ div.links{
     align-items: center;
 }
 input.input, select.select{
-    display: block;
     width: 100%;
-    padding: 8px 20px;
+    padding: 1.2rem;
+    border: none;
     outline: none;
-    background: none;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    font-family: 'Roboto', sans-serif;
+    background-color: var(--inputBack);
+    border-radius: 3px 3px 0 0;
+    font-family: 'Jost', sans-serif;
     font-size: 1rem;
-    color: #000000;
-    border-radius: 4px;
-    font-weight: 400;
+    color: var(--fontColorSub);
+    border-bottom: 3px solid var(--inputBorder);
 }
 input.rollNo{
     display: none;

@@ -34,7 +34,7 @@
             <p class="avatar">{{ user.first_name|make_list|first }}{{ user.last_name|make_list|first }}</p>
         </div>
     </div>
-    {% if classSelected %}
+    {% if "/dashboard/class/" in request.path %}
         <div class="partToggle">
             <button class="tag activeTag" type="button" id="assignmentToggle">Assignments</button>
             <button class="tag" type="button" id="studentToggle">Students</button>
