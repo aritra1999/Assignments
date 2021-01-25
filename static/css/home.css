@@ -534,7 +534,7 @@ section.foot div.footCont div.footBar ul.footLink li:hover a {
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   body section.one {
     height: auto !important;
   }
