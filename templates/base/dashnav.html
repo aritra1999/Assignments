@@ -1,38 +1,64 @@
 {% load static %}
-<nav class="dash_nav">
-    <div class="left_cta">
-        <a href="{% url 'dash' %}" class="logo"><img src="{% static 'Illustrations/logoBlank.svg' %}" class="dash_logo" alt=""></a>
-        <ul class="cta">
-            <li><a href="{% url 'dash' %}">Classrooms</a></li>
-            {% if profile.type == 'teacher' %}
-                <li><a href="#">Assignments</a></li>
+<nav class="dashNav">
+    <div class="logoCont">
+{#        <div class="classSlideToggle" id="classSlideToggle">#}
+{#            <span></span>#}
+{#            <span></span>#}
+{#        </div>#}
+        <a href="{% url 'home' %}" class="logo">
+            <svg class="logo" width="118" height="21" viewBox="0 0 118 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.508 21C7.07107 21 4.4605 20.1033 2.6763 18.3098C0.8921 16.5163 0 14.0732 0 10.9804V10.7608C0 7.77778 0.967225 5.36209 2.90167 3.51373C4.83612 1.66536 7.29644 0.741177 10.2826 0.741177C12.9871 0.741177 15.1657 1.37255 16.8184 2.63529C18.4712 3.87974 19.4102 5.76471 19.6356 8.2902H13.6914C13.466 6.22222 12.3392 5.18824 10.3108 5.18824C8.99613 5.18824 7.96317 5.6732 7.21193 6.64314C6.46068 7.61307 6.08506 8.97647 6.08506 10.7333V10.9529C6.08506 12.7281 6.46068 14.1007 7.21193 15.0706C7.96317 16.0222 9.0243 16.498 10.3953 16.498C11.4283 16.498 12.2734 16.2327 12.9308 15.702C13.6069 15.1529 14.0107 14.3477 14.1421 13.2863H19.8891C19.7013 15.7752 18.7623 17.6876 17.072 19.0235C15.3817 20.3412 13.1937 21 10.508 21Z" fill="black"/>
+                <path d="M28.8737 17.349C29.8127 17.349 30.5264 17.0288 31.0147 16.3882C31.5218 15.7294 31.7753 14.7961 31.7753 13.5882V13.3686C31.7753 10.8614 30.8081 9.60784 28.8737 9.60784C27.9346 9.60784 27.2116 9.9281 26.7045 10.5686C26.1974 11.1909 25.9438 12.1059 25.9438 13.3137V13.5333C25.9438 16.0771 26.9204 17.349 28.8737 17.349ZM34.6207 18.9961C33.0994 20.332 31.1744 21 28.8455 21C26.5167 21 24.5916 20.3412 23.0703 19.0235C21.5491 17.7059 20.7884 15.9216 20.7884 13.6706V13.451C20.7884 11.1817 21.5491 9.36079 23.0703 7.98824C24.6104 6.61569 26.5448 5.92941 28.8737 5.92941C31.1837 5.92941 33.0994 6.60654 34.6207 7.96078C36.1419 9.29673 36.9026 11.081 36.9026 13.3137V13.5333C36.9026 15.8209 36.1419 17.6418 34.6207 18.9961Z" fill="black"/>
+                <path d="M44.039 21C42.236 21 40.7523 20.3686 39.5879 19.1059C38.4235 17.8431 37.8413 16.0222 37.8413 13.6431V13.4235C37.8413 11.0627 38.4235 9.22353 39.5879 7.90588C40.7711 6.58824 42.2736 5.92941 44.0954 5.92941C46.1801 5.92941 47.6919 6.73464 48.631 8.3451V0H53.6737V20.6706H48.631V18.3373C48.2366 19.1242 47.6356 19.7647 46.828 20.2588C46.0392 20.7529 45.1095 21 44.039 21ZM45.8138 17.2392C46.7529 17.2392 47.4759 16.9281 47.983 16.3059C48.5089 15.6837 48.7718 14.7686 48.7718 13.5608V13.3412C48.7718 12.1333 48.5183 11.2183 48.0112 10.5961C47.5229 9.95556 46.8092 9.6353 45.8702 9.6353C43.9357 9.6353 42.9685 10.8797 42.9685 13.3686V13.5882C42.9685 14.7778 43.222 15.6837 43.7291 16.3059C44.2362 16.9281 44.9311 17.2392 45.8138 17.2392Z" fill="black"/>
+                <path d="M63.3324 21C60.966 21 59.0409 20.3503 57.5572 19.051C56.0735 17.7516 55.3316 15.9582 55.3316 13.6706V13.451C55.3316 11.2 56.0923 9.38824 57.6135 8.01569C59.1348 6.62484 61.0317 5.92941 63.3042 5.92941C65.464 5.92941 67.2482 6.55163 68.6568 7.79608C70.0842 9.04052 70.7978 10.8889 70.7978 13.3412V14.6314H60.4307C60.5058 15.583 60.8063 16.3242 61.3322 16.8549C61.8768 17.3673 62.5999 17.6235 63.5014 17.6235C64.9851 17.6235 65.8396 17.0562 66.065 15.9216H70.7978C70.5725 17.5503 69.8212 18.8039 68.5441 19.6824C67.2858 20.5608 65.5485 21 63.3324 21ZM60.487 11.8588H65.896C65.8021 10.0654 64.9381 9.16863 63.3042 9.16863C62.5342 9.16863 61.905 9.40654 61.4167 9.88235C60.9284 10.3399 60.6185 10.9987 60.487 11.8588Z" fill="black"/>
+                <path d="M76.0201 20.6706L70.6112 6.31373H75.992L79.0627 15.5647L82.077 6.31373H86.8944L81.5136 20.6706H76.0201Z" fill="black"/>
+                <path d="M94.4937 17.349C95.4327 17.349 96.1464 17.0288 96.6347 16.3882C97.1418 15.7294 97.3953 14.7961 97.3953 13.5882V13.3686C97.3953 10.8614 96.4281 9.60784 94.4937 9.60784C93.5546 9.60784 92.8315 9.9281 92.3245 10.5686C91.8174 11.1909 91.5638 12.1059 91.5638 13.3137V13.5333C91.5638 16.0771 92.5404 17.349 94.4937 17.349ZM100.241 18.9961C98.7194 20.332 96.7943 21 94.4655 21C92.1367 21 90.2116 20.3412 88.6903 19.0235C87.1691 17.7059 86.4084 15.9216 86.4084 13.6706V13.451C86.4084 11.1817 87.1691 9.36079 88.6903 7.98824C90.2304 6.61569 92.1648 5.92941 94.4937 5.92941C96.8037 5.92941 98.7194 6.60654 100.241 7.96078C101.762 9.29673 102.523 11.081 102.523 13.3137V13.5333C102.523 15.8209 101.762 17.6418 100.241 18.9961Z" fill="black"/>
+                <path d="M101.745 20.6706L106.647 13.3686L102.055 6.31373H107.858L110.14 10.102L112.366 6.31373H117.549L112.901 12.9843L118 20.6706H112.197L109.577 16.3882L106.9 20.6706H101.745Z" fill="black"/>
+            </svg>
+        </a>
+    </div>
+    <div class="profileCont">
+        {% if request.path == "/dashboard/" %}
+            <button class="callButton" id="createCta" type="button">
+                <svg class="callButtonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                {% if user.profile.type == "student" %}
+                <span class="callButtonText">Join Class</span>
                 {% else %}
-                <li><a href="#">Your Assignments</a></li>
-            {% endif %}
-            <li><a href="http://justrun.ml/">Online IDE</a></li>
-        </ul>
+                    <span class="callButtonText">Create Class</span>
+                {% endif %}
+            </button>
+        {% endif %}
+        <div class="avatar" id="popToggle">
+            <p class="avatar">{{ user.first_name|make_list|first }}{{ user.last_name|make_list|first }}</p>
+        </div>
     </div>
-    <div class="right">
-        <span class="notif"><img src="{% static 'Illustrations/bell.svg' %}" alt="" class="bell"></span>
-        <span class="profile" id="togglePop">{{ user.first_name }} <svg class="arrowTogg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-</svg></span>
-    </div>
-    <div class="popUp" id="popUp">
-        <h1 class="namePop">{{ user.first_name }} {{ user.last_name }}</h1>
-        <p class="tagEmail">Signed in as</p>
+    {% if "/dashboard/class/" in request.path %}
+        <div class="partToggle">
+            <button class="tag activeTag" type="button" id="assignmentToggle">Assignments</button>
+            <button class="tag" type="button" id="studentToggle">Students</button>
+        </div>
+    {% endif %}
+    <div class="navPopUp" id="profilePop">
+        <div class="info">
+            <div class="avatar">
+                <p class="avatar">{{ user.first_name|make_list|first }}{{ user.last_name|make_list|first }}</p>
+            </div>
+            <p class="name">{{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+        <p class="signedIn">Signed in as</p>
         <p class="email">{{ user.email }}</p>
-
+        <p class="signedIn">Toggle <span id="modeText">dark</span> mode</p>
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="checkbox">
                 <input type="checkbox" id="checkbox" />
                 <div class="slider round"></div>
             </label>
         </div>
-
-        <div class="ctaPop">
-            <a href="{% url 'logout' %}" class="logout">Logout</a>
-            <a href="#" class="viewProfile">View profile</a>
+        <div class="popUpCta">
+            <a href="{% url 'logout' %}" class="popUpLink logout">Logout</a>
+            <a href="#" class="popUpLink">Profile</a>
         </div>
     </div>
 </nav>

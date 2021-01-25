@@ -1,29 +1,39 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
-    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+{% block extraHead %}
     <style>
-        td.passVerdict{
-            color: #109b67 !important;
+        td span.passVerdict{
+            background-color: #00AB66;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
         }
-        td.failVerdict{
-            color: #ff6347 !important;
+        td span.failVerdict{
+            background-color: #E16541;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
         }
     </style>
-{% endblock extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
+{% endblock extraHead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-     <div class="assignmentCont">
-        <div class="class_cont">
-            <span class="goBack" onclick="goBack();">
-                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg> Back
-            </span>
+    <div class="bodyCont">
+        <div class="insideCont">
             <div class="questionCont">
                 <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
             </div>
@@ -55,51 +65,9 @@
                 </table>
             </div>
         </div>
-     </div>
+    </div>
 {% endblock content %}
-{% block extrafoot %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
     <script src="{% static 'js/navPop.js' %}"></script>
-    <script>
-
-        function check(){
-            let verdict = document.getElementById("verdict")
-            let score = parseInt(document.getElementById("score").innerText)
-            let table = document.getElementById("submissionTable")
-            let length = table.rows.length
-            if (score>=80){
-                verdict.innerText = "Passed"
-                verdict.classList.add("passVerdict")
-            }
-            else {
-                verdict.innerText = "Failed"
-                verdict.classList.add("failVerdict")
-            }
-        }
-        check()
-
-    </script>
-    <script>
-        window.goBack = function (e) {
-            let defaultLocation = "http://localhost:8000/dashboard/";
-            let oldHash = window.location.hash;
-
-            history.back();
-            let newHash = window.location.hash;
-            if (
-                newHash === oldHash &&
-                (typeof (document.referrer) !== "string" || document.referrer === "")
-            ) {
-                window.setTimeout(function () {
-                    window.location.href = defaultLocation;
-                }, 1000);
-            }
-            if (e) {
-                if (e.preventDefault)
-                    e.preventDefault();
-                if (e.preventPropagation)
-                    e.preventPropagation();
-            }
-            return false;
-        }
-    </script>
-{% endblock extrafoot %}
+{% endblock extraFoot %}

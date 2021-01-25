@@ -1,19 +1,13 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block extrahead %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-{% endblock extrahead %}
+{% endblock extraHead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-    <div class="dash_cont">
-        <div class="class_cont">
-            <div class="top">
-                <span class="search_cont">
-                    <img src="{% static 'Illustrations/search.svg' %}" alt="" class="search">
-                    <input type="text" name="search" id="search" class="search" placeholder="Search a classroom">
-                </span>
-                <button type="button" id="popUpOpenToggle" class="join">Join a class</button>
-            </div>
+    <div class="bodyCont">
+        <div class="classCont">
             {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
@@ -38,37 +32,38 @@
                         </a>
                     {% endfor %}
                     {% else %}
-                       <div class="noClass">
-                           <img src="{% static 'Illustrations/NoClass.svg' %}" alt="" class="noCLass">
-                       </div>
+                        <div class="noClass">
+                            <img src="{% static 'Illustrations/noClass.svg' %}" alt="" class="noCLass">
+                            <p class="noClass">There are no classes. To join a class click on join a class button in the navbar</p>
+                            <p class="orYou">Or you can try our <a href="#">Online IDE</a></p>
+                        </div>
                 {% endif %}
             </div>
         </div>
     </div>
-    <div class="popUpsCont" id="popUpContainerWrap">
-        <div class="popUpBody createClass" id="popUpContainerW">
-            <div class="topBar">
-                <img src="{% static 'Illustrations/Logo.svg' %}" alt="" class="logo">
-                <svg class="close" id="popUpCloseToggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    <div class="popUpWrapper" id="popUpContainerWrap">
+        <div class="popUpCont" id="popUpContainerW">
+            <div class="closeBar">
+                <svg class="popUpCloseToggle closeClassPop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
             </div>
-            <h1 class="head">Join a classroom</h1>
-            <form class="formCreate" action="" id="creationForm" method="post">{% csrf_token %}
-                <input type="text" required name="class_slug" aria-required="true" class="class_name input" placeholder="Enter class ID">
-                <div class="btn">
-                    <button type="submit" class="cancel submit" style="margin-left: 0 !important; width: 100% !important; margin-top: 5px;">Submit</button>
-                </div>
-            </form>
+            <div class="popFormCont">
+                <h2 class="classCta">Join a class</h2>
+                <p class="classCta">Enter the class code to join a class</p>
+                <form action="" id="creationForm" class="classCta" method="post">{% csrf_token %}
+                    <input type="text" class="classCta" name="class_slug" placeholder="Enter Class Code" aria-required="true">
+                    <div class="buttonCta">
+                        <button class="cancel popButton closeClassPopBtn" type="button">Cancel</button>
+                        <button class="submit popButton" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock content %}
-{% block extrafoot %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/popUp.js' %}"></script>
-    <script>
-        if ( window.history.replaceState ) {
-          window.history.replaceState( null, null, window.location.href );
-        }
-    </script>
-{% endblock extrafoot %}
+{% endblock extraFoot %}

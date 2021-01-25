@@ -1,81 +1,52 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block extrahead %}
+{% block extraHead %}
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
     <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
-    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
-{% endblock extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+{% endblock extraHead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-    <div class="assignmentCont">
-        <div class="class_cont class_teacher_cont" id="class_teacher_cont">
-            <span class="goBack" onclick="goBack();">
-                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg> Back
-            </span>
-            <div class="classTeacherTile">
-                <div class="cont1">
-                    <h1 class="classTitle">{{ studentSelected.first_name }} {{ studentSelected.last_name }}</h1>
-                    <h2 class="classBatch" style="margin-bottom: 0;">{{ studentProfile.rollNo }}</h2>
+    <div class="bodyCont">
+        <div class="insideCont">
+            <div class="classBlob">
+                <div class="classInfo">
+                    <h1 class="className">{{ studentSelected.first_name }} {{ studentSelected.last_name }}</h1>
+                    <p class="batch" style="margin-bottom: 0;">{{ studentProfile.rollNo }}</p>
                 </div>
             </div>
             <div class="tableCont">
                 <h1 class="yourAssg">Assignment Statistics</h1>
-                    <table class="questionTable">
-                        <thead>
-                            <tr>
-                                <th>Assignment</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% if assignments %}
-                                {% for assignment in assignments %}
-                                    <tr>
-                                        <td>{{ assignment.name }}</td>
-                                        <td>Score</td>
-                                    </tr>
-                                {% endfor %}
-                                {% else %}
-                                    <tr>
-                                        <td>NA</td>
-                                        <td>NA</td>
-                                    </tr>
-                            {% endif %}
-                        </tbody>
-                    </table>
-                </div>
+                <table class="questionTable">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if assignments %}
+                            {% for assignment in assignments %}
+                                <tr>
+                                    <td>{{ assignment.name }}</td>
+                                    <td>Score</td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock content %}
-{% block extrafoot %}
+{% block extraFoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
-    <script>
-        window.goBack = function (e) {
-            let defaultLocation = "http://localhost:8000/dashboard/";
-            let oldHash = window.location.hash;
-
-            history.back();
-            let newHash = window.location.hash;
-            if (
-                newHash === oldHash &&
-                (typeof (document.referrer) !== "string" || document.referrer === "")
-            ) {
-                window.setTimeout(function () {
-                    window.location.href = defaultLocation;
-                }, 1000);
-            }
-            if (e) {
-                if (e.preventDefault)
-                    e.preventDefault();
-                if (e.preventPropagation)
-                    e.preventPropagation();
-            }
-            return false;
-        }
-    </script>
-{% endblock extrafoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+{% endblock extraFoot %}

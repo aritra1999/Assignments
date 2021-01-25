@@ -1,215 +1,132 @@
-/*RESET*/
+::selection {
+  color: #FFFFFF;
+  background: var(--primaryColor);
+}
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+body::-webkit-scrollbar-track {
+  background-color: #DFE4F3;
 }
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primaryColor);
+  outline: 1px solid slategrey;
 }
 *{
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Jost", sans-serif;
+    font-size: 100%;
+    text-rendering: optimizespeed;
+}
+div.bodyCont{
+    background: var(--bodyGrad);
+    padding: 2rem;
+    min-height: calc(100vh - 65px);
+    width: 100%;
+    height: auto;
+    position: relative;
 }
 
-/*RESET ENDS*/
-
-/*FONTS*/
-
-@font-face {
-	font-family: "Mulish-Reg";
-	src: url("../Mulish/Mulish-VariableFont_wght.ttf");
+div.popUpWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
-@font-face {
-	font-family: "Mulish-It";
-	src: url("../Mulish/Mulish-Italic-VariableFont_wght.ttf");
+div.popUpCont{
+    max-width: 700px;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: var(--popBack);
+    border-radius: 10px;
 }
-@font-face {
-	font-family: "GT-Reg";
-	src: url("../GTWalsheimProRegular.ttf");
+div.popFormCont{
+    width: 100%;
+    margin-top: 1rem;
 }
-@font-face {
-	font-family: "GT-Med";
-	src: url("../GTWalsheimProMedium.ttf");
+form.classCta{
+    width: 100%;
+    margin-top: 1rem;
 }
-
-/*END FONTS*/
-
-div.container{
-	display: flex;
-	flex-flow: column;
-	height: 100%;
-	width: 100%;
-	position: relative;
+div.closeBar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-
-/*NAVBAR*/
-
-nav.main_nav{
-	margin: 0;
-	padding: 0 30px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #161b22;
-	height: 65px;
+svg.popUpCloseToggle{
+    height: 30px;
+    fill: var(--fontColorSub);
+    cursor: pointer;
 }
-div.links{
-	display: flex;
-	justify-content: space-evenly;
+h2.classCta{
+    font-weight: 500;
+    font-size: 1.9rem;
+    color: var(--fontColor);
+    letter-spacing: 0.03rem;
 }
-a.logo{
-	text-decoration: none;
+p.classCta{
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    letter-spacing: 0.02rem;
+    margin-top: 0.3rem;
 }
-img.nav_logo {
-	height: 40px;
+input.classCta{
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    outline: none;
+    background-color: var(--inputBack);
+    border-radius: 3px 3px 0 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    border-bottom: 3px solid var(--inputBorder);
 }
-ul.nav_links_cont{
-	margin-left: 20px;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+div.buttonCta{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2rem;
 }
-li.nav_link{
-	list-style-type: none;
-	margin: 0 10px;
-	padding: 8px 10px;
-	border-radius: 6px;
+button.popButton{
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    background: transparent;
+    letter-spacing: 0.02rem;
+    font-weight: 500;
+    cursor: pointer;
 }
-li.nav_link a{
-	text-decoration: none;
-	font-family: "Mulish-Reg", sans-serif;
-	font-weight: 600;
-	letter-spacing: 0.06rem;
-	font-size: 0.85rem;
-	color: #fff;
+button.cancel{
+    border: 3px solid var(--inputBorder);
+    color: var(--fontColorSub);
+    margin-right: 1rem;
 }
-li.nav_link:hover{
-	background-color: #1F2937;
-}
-div.nav_cta{
-	display: flex;
-	justify-content: space-evenly;
-}
-ul.nav_cta{
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-}
-ul.nav_cta li{
-	list-style-type: none;
-	margin: 0 10px;
-	padding: 8px 10px;
-	border-radius: 6px;
-}
-ul.nav_cta li:first-child{
-	background-color: #0078d4;
-}
-ul.nav_cta li:nth-child(2){
-	background-color: #109b67;
-	margin-right: 0;
-}
-ul.nav_cta li a{
-	text-decoration: none;
-	font-family: "Mulish-Reg", sans-serif;
-	font-weight: 600;
-	letter-spacing: 0.06rem;
-	font-size: 0.85rem;
-	color: #fff;
-}
-
-/*NAVBAR ENDS*/
-
-/*POPUP*/
-
-div.popUpsCont{
-	position: absolute;
-	height: 100vh;
-	width: 100vw;
-	top: 0;
-	left: 0;
-	background: rgba(22,27,34,0.6);
-	z-index: 200;
-	display: none;
-	justify-content: center;
-	align-items: center;
-	box-sizing: border-box;
-}
-div.popUpBody{
-	background-color: var(--popUp_background);
-	padding: 30px;
-	border-radius: 8px;
-}
-h1.warning{
-	color: var(--font_color);
-	font-family: "Mulish-Reg", sans-serif;
-	font-size: 1.4rem;
-	letter-spacing: 0.03rem;
-}
-div.ctaPopUp{
-	width: 60%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 20px auto 0 auto;
-}
-div.ctaPopUp button.closePop{
-	background-color: var(--pop_btn_background);
-	border: 3px solid var(--pop_btn_background);
-	border-radius: 6px;
-	padding: 5px 25px;
-	font-family: "Mulish-Reg", sans-serif;
-	color: #FFFFFF;
-	font-size: 0.9rem;
-	font-weight: 600;
-	letter-spacing: 0.04rem;
-	box-sizing: content-box;
-	outline: none;
-	cursor: pointer;
-}
-div.ctaPopUp a.acceptPop{
-	background-color: var(--error_color);
-	border: 3px solid var(--error_color);
-	border-radius: 6px;
-	padding: 8px 25px;
-	font-family: "Mulish-Reg", sans-serif;
-	color: #FFFFFF;
-	font-size: 0.9rem;
-	font-weight: 600;
-	letter-spacing: 0.04rem;
-	box-sizing: content-box;
+button.submit{
+    border: 3px solid var(--primaryColor);
+    background: var(--primaryColor);
+    color: #FFFFFF;
 }

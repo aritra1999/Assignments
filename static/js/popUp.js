@@ -1,13 +1,16 @@
-let popUpContainerWrap = document.getElementById("popUpContainerWrap")
-let popUpContainer = document.getElementById("popUpContainerW")
-let popUpOpen = document.getElementById("popUpOpenToggle")
-let popUpClose = document.getElementById("popUpCloseToggle")
+let popUpWrap = document.getElementById("popUpContainerWrap")
+let popUpCont = document.getElementById("popUpContainerW")
+let openToggle = document.getElementById("createCta")
+let closeToggle = document.querySelector(".closeClassPop")
+let closeToggleBtn = document.querySelector(".closeClassPopBtn")
 
-popUpOpen.addEventListener("click", popUpOpenFunc)
-function popUpOpenFunc(){
-    popUpContainerWrap.style.display="flex"
+openToggle.addEventListener("click", openCta)
+function openCta(){
+    popUpWrap.style.display="flex"
 }
-popUpClose.addEventListener("click", popUpCloseFunc)
-function popUpCloseFunc(){
-    popUpContainerWrap.style.display="none"
+
+closeToggle.addEventListener("click", closeCta)
+closeToggleBtn.addEventListener("click", closeCta)
+function closeCta(){
+    popUpWrap.style.display="none"
 }

@@ -1,156 +1,19 @@
-div.assignmentCont{
-    height: auto;
-    min-height: calc(100vh - 65px);
-    background-color: var(--body_color);
-	width: 100%;
-}
-div.tags{
-    background-color: var(--tag_back);
+div.questionCont{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 0;
-}
-button.tags{
-    display: inline-block;
-    padding: 15px 20px;
-    color: var(--font_color);
-    background-color: var(--tag_back);
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.85rem;
-    border-radius: 50px;
-    font-weight: 600;
-    letter-spacing: 0.03rem;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-.activeBtn{
-    background-color: var(--light_btn) !important;
-    color: #FFFFFF !important;
-}
-button.tags:first-child{
-    margin-right: 20px;
-}
-h1.yourAssignments{
-    color: var(--font_color);
-    font-family: "GT-Reg", sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 0.03rem;
-}
-h1.tagBatch{
-    color: var(--font_color_sub);
-    font-family: "GT-Reg", sans-serif;
-    font-size: 1.3rem;
-    margin-top: 8px;
-}
-p.youCan{
-    color: var(--font_color_subTwo);
-    font-family: "GT-Reg", sans-serif;
-    font-size: 1rem;
-    margin-top: 8px;
-}
-p.createdBy{
-    color: var(--font_color);
-    font-family: "GT-Reg", sans-serif;
-    font-size: 1rem;
-    margin-top: 8px;
-}
-div.assignmentsView{
-    margin-top: 1.5rem;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-div.assignmentCard{
-    width: 350px;
-    height: 250px;
-    background-color: var(--tile_color);
-    border-radius: 10px;
-    margin: 10px;
-    display: flex;
-    padding: 20px;
     justify-content: space-between;
-    flex-direction: column;
-    background-image: url("../Illustrations/animationBack.png");
-    background-repeat: no-repeat;
-    background-position: bottom right;
-}
-div.assignmentCardHead, div.assignmentCardFoot{
-    color: var(--font_color);
-    font-family: "Mulish-Reg", sans-serif;
-}
-h1.assignment{
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-h2.lastEdit{
-    font-size: 0.8rem;
-}
-h1.assignmentDue{
-    font-size: 1rem;
-    margin-bottom: 10px;
-    color: var(--font_color_sub);
-}
-h2.due{
-    font-size: 1.1rem;
-}
-span.goBack{
-    cursor: pointer;
-    color: var(--font_color_subTwo);
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 1rem;
-    display: flex;
     align-items: center;
-    width: 60px;
-    margin-bottom: 10px;
 }
-svg.goBack{
-    display: inline-block;
-    height: 20px;
-    margin-right: 10px;
-}
-h1.studentHead{
-    color: var(--font_color);
+h1.assignmentHead{
+    color: var(--fontColor);
     font-size: 1.8rem;
-    font-family: "Mulish-Reg", sans-serif;
+    font-weight: 500;
 }
-h2.students{
-    color: var(--light_btn);
-    font-family: "Mulish-It", sans-serif;
+p.due{
+    color: var(--fontColorSubTwo);
     font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.03rem;
-    margin-top: 10px;
 }
-p.youCan{
-    color: var(--font_color_sub);
-}
-div.studentView{
-    margin-top: 30px !important;
-}
-a.addQuestion{
-    color: var(--light_btn);
-    text-decoration: none;
-    background-color: transparent;
-    border: 3px solid var(--light_btn);
-    padding: 8px 25px;
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
-    font-weight: 600;
-    border-radius: 6px;
+p.due span{
+    color: var(--primaryColor);
     display: inline-block;
-    margin-top: 10px;
-}
-a.publish{
-    margin-left: 15px;
-    background-color: var(--light_btn) !important;
-    color: #FFFFFF;
-}
-a.archive{
-    background-color: transparent !important;
-    border-color: var(--error_color);
-    color: var(--error_color);
+    margin-left: 0.3rem;
 }

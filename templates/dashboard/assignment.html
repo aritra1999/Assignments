@@ -1,21 +1,48 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block extrahead %}
+{% block extraHead %}
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
     <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
-{% endblock extrahead %}
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <style>
+        td span.passVerdict{
+            background-color: #00AB66;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+        td span.failVerdict{
+            background-color: #E16541;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+        td span.noSub{
+            background-color: #e9c61d;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 200px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+{% endblock extraHead %}
 {% block content %}
     {% include 'base/dashnav.html' %}
-    <div class="assignmentCont">
-        <div class="class_cont">
-            <span class="goBack" onclick="goBack();">
-                <svg class="goBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg> Back
-            </span>
+    <div class="bodyCont">
+        <div class="insideCont">
             <div class="questionCont">
                 <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
                 <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
@@ -46,11 +73,11 @@
                                 <td>{{ question.score }}/100</td>
                                 <td>
                                     {% if question.verdict == "Passed" %}
-                                        <span class="passStatus verdictSubmission">{{ question.verdict }}</span>
+                                        <span class="passVerdict">{{ question.verdict }}</span>
                                     {% elif question.verdict == "Failed" %}
-                                        <span class="passStatus verdictSubmission failed">{{ question.verdict }}</span>
+                                        <span class="failVerdict">{{ question.verdict }}</span>
                                     {% else %}
-                                        <span class="passStatus verdictSubmission notFound">{{ question.verdict }}</span>
+                                        <span class="noSub">{{ question.verdict }}</span>
                                     {% endif %}
                                 </td>
                             </tr>
@@ -60,7 +87,6 @@
                             <td>NA</td>
                             <td>NA</td>
                             <td>NA</td>
-{#                            <td>NA</td>#}
                             <td>NA</td>
                         </tr>
                     {% endif %}
@@ -70,30 +96,7 @@
         </div>
     </div>
 {% endblock content %}
-{% block extrafoot %}
+{% block extraFoot %}
     <script src="{% static 'js/navPop.js' %}"></script>
-    <script>
-        window.goBack = function (e) {
-            let defaultLocation = "http://localhost:8000/dashboard/";
-            let oldHash = window.location.hash;
-
-            history.back();
-            let newHash = window.location.hash;
-            if (
-                newHash === oldHash &&
-                (typeof (document.referrer) !== "string" || document.referrer === "")
-            ) {
-                window.setTimeout(function () {
-                    window.location.href = defaultLocation;
-                }, 1000);
-            }
-            if (e) {
-                if (e.preventDefault)
-                    e.preventDefault();
-                if (e.preventPropagation)
-                    e.preventPropagation();
-            }
-            return false;
-        }
-    </script>
-{% endblock extrafoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+{% endblock extraFoot %}

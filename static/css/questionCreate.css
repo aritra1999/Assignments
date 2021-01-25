@@ -1,78 +1,21 @@
-
-div.questionCreateBody{
-    padding: 30px;
-    background-color: var(--tile_color);
-    box-sizing: border-box;
+label.questionCreate{
+    grid-template-columns: 200px auto;
 }
 div.questionCreateFormElem{
-    margin-bottom: 20px;
-}
-input.questionCreate, textarea.questionCreate{
-    border: 2px solid var(--font_color_subTwo);
-    background-color: var(--tile_color);
-    color: var(--font_color_subTwo);
-    outline: none;
-    display: block;
-    padding: 8px 15px;
-    margin-top: 10px;
-    width: 100%;
-    font-family: "GT-Reg", sans-serif;
-    font-size: 0.95rem;
-    border-radius: 4px;
-}
-textarea.questionCreate{
-    resize: none;
-}
-label.questionCreate{
-    color: var(--light_btn);
-    font-family: "GT-Med", sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.03rem;
-    display: block;
-}
-label.sample{
-    width: 48%;
-    display: inline-block;
+    margin: 1rem 0;
 }
 div.sample{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+label.sample {
+    width: 49%;
+    margin-bottom: 0;
+}
 h2.sampleText{
-    color: var(--font_color);
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-button.createQuestion{
-    border: none;
-    outline: none;
-    padding: 8px 20px;
-    background-color: var(--light_btn);
-    color: #FFFFFF;
-    font-family: "Mulish-Reg", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.05rem;
-    border-radius: 6px;
-    width: 200px;
-    display: inline-block;
-    cursor: pointer;
-}
-select.allowedLang{
-    border: 2px solid var(--font_color_subTwo);
-    background-color: var(--tile_color);
-    color: var(--font_color_subTwo);
-    outline: none;
-    display: block;
-    padding: 8px 15px;
-    margin-top: 10px;
-    width: calc(100% - 34px);
-    font-family: "GT-Reg", sans-serif;
-    font-size: 0.95rem;
-    border-radius: 4px;
-    -moz-box-sizing:content-box;
-    -webkit-box-sizing:content-box;
-    box-sizing:content-box;
+    color: var(--fontColorSubTwo);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
 }

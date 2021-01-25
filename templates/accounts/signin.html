@@ -1,37 +1,41 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block extrahead %}
+{% block extraHead %}
     <link rel="stylesheet" href="{% static 'css/signin.css' %}">
-{% endblock extrahead %}
+{% endblock extraHead %}
 {% block content %}
-    {% include 'base/header.html' %}
-    <div class="full_height">
-        <div class="left">
-            <img src="{% static 'Illustrations/logoBlank.svg' %}" alt="logo" class="logo">
-            <h1 class="login">Sign in to CodeVox</h1>
-            <p class="tag">Don't have an account?<a style="margin-left: 8px;" href="{% url 'register_view' %}">Create an account</a></p>
-            <form action="" method="post">{% csrf_token %}
-                {% if error %}
-                    <div class="error">
-                        <p class="errorText">{{ error }}</p>
-                    </div>
-                {% endif %}
-                <input type="email" name="email" class="username input" placeholder="someone@email.com">
-                <input type="password" name="password" class="password input" placeholder="password">
-                <button type="submit" class="login">Sign in to Assignments
-                    <svg class="arrow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 31.49 31.49" style="enable-background:new 0 0 31.49 31.49;" xml:space="preserve"> <path style="fill:#ffffff;" d="M21.205,5.007c-0.429-0.444-1.143-0.444-1.587,0c-0.429,0.429-0.429,1.143,0,1.571l8.047,8.047H1.111 C0.492,14.626,0,15.118,0,15.737c0,0.619,0.492,1.127,1.111,1.127h26.554l-8.047,8.032c-0.429,0.444-0.429,1.159,0,1.587                         c0.444,0.444,1.159,0.444,1.587,0l9.952-9.952c0.444-0.429,0.444-1.143,0-1.571L21.205,5.007z"/>
-                    </svg>
-                </button>
-            </form>
-            <a href="#" class="forgot">Forgot your password?</a>
-        </div>
-        <div class="right">
-            <img src="{% static 'Illustrations/LoginIllustration.svg' %}" alt="" class="loginImg">
-        </div>
+    <div class="mainCont">
+        <section class="formContMain">
+            <div class="formCont">
+                <div class="form">
+                    <a href="{% url 'home' %}"><img src="{% static 'Illustrations/logoBlank.svg' %}" alt="" class="logo"></a>
+                    <h2 class="formHead">Login to your <span>CodeVox</span> account</h2>
+                    <form action="" method="post" id="userForm" class="userForm">{% csrf_token %}
+                        {% if error %}
+                            <div class="error">
+                                <p class="errorText">{{ error }}</p>
+                            </div>
+                        {% endif %}
+                        <div class="part1">
+                            <div class="inputField">
+                                <input type="email" aria-required="true" class="classCta firstName" name="email" placeholder="Email Id">
+                            </div>
+                            <div class="inputField">
+                                <input type="password" aria-required="true" class="classCta lastName" name="password" placeholder="Password">
+                            </div>
+                            <div class="inputField links">
+                                <a href="{% url 'register_view' %}" class="signInLink">Sign Up</a>
+                                <button class="next" type="submit" id="nextBtn">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footCont">
+                <p class="foot">Created by team <img src="{% static 'Illustrations/LogoDark.svg' %}" alt=""></p>
+            </div>
+        </section>
     </div>
 {% endblock content %}
-
-{% block extrafoot %}
-{% endblock extrafoot %}
+{% block extraFoot %}
+{% endblock extraFoot %}
