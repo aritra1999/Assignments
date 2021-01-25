@@ -11,12 +11,15 @@ try{
     }
 
     function switchTheme(e) {
+        let text = document.getElementById("modeText")
         if (e.target.checked) {
             document.documentElement.setAttribute('data-theme', 'dark');
+            text.innerText="light"
             localStorage.setItem('theme', 'dark');
         }
         else {        
             document.documentElement.setAttribute('data-theme', 'light');
+            text.innerText="dark"
             localStorage.setItem('theme', 'light');
         }
     }

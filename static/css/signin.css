@@ -1,0 +1,125 @@
+section.formContMain{
+    height: 100vh;
+    padding: 0.75rem;
+    width: 100%;
+    position: relative;
+}
+div.formCont{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(248.66deg, #FFE7C1 4.5%, #DFE4F3 90.86%);
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.form{
+    max-width: 550px;
+    width: 100%;
+    height: auto;
+    padding: 3rem;
+    background-color: #F8F7FC;
+    border-radius: 0.4rem;
+}
+h2.formHead{
+    font-size: 2rem;
+    font-weight: 600;
+}
+h2.formHead span{
+    background: -webkit-linear-gradient(129.08deg, #3BF0E4 4.54%, #9867F0 25.3%, #C2A0FD 41.12%, #EA5DAD 57.44%, #FF7571 75.24%, #FFE580 99.46%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+form.userForm{
+    height: auto;
+    width: 100%;
+}
+div.error{
+    border: 3px solid #E16541;
+    padding: 8px 20px;
+    color: #E16541;
+    font-weight: 600;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+div.part1,div.part2{
+    width: 100%;
+    height: auto;
+}
+div.part2{
+    display: none;
+}
+div.inputField{
+    width: 100%;
+    margin: 1rem 0;
+}
+div.links{
+    margin-bottom: 0 !important;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+input.input, select.select{
+    display: block;
+    width: 100%;
+    padding: 8px 20px;
+    outline: none;
+    background: none;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #000000;
+    border-radius: 4px;
+    font-weight: 400;
+}
+input.rollNo{
+    display: none;
+}
+a.signInLink{
+    text-decoration: none;
+    color: #0078D4;
+    font-size: 1rem;
+}
+button.next {
+    border: 3px solid #0078d4;
+    background-color: #0078d4;
+    padding: 5px 20px;
+    width: 100px;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+button.prevBtn{
+    background-color: transparent;
+    color: #0078d4;
+}
+div.footCont{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p.foot{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+p.foot img{
+    margin-left: 0.7rem;
+    height: 1.5rem;
+    display: inline-block;
+}

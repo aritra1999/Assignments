@@ -1,0 +1,132 @@
+::selection {
+  color: #FFFFFF;
+  background: var(--primaryColor);
+}
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #DFE4F3;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primaryColor);
+  outline: 1px solid slategrey;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Jost", sans-serif;
+    font-size: 100%;
+    text-rendering: optimizespeed;
+}
+div.bodyCont{
+    background: var(--bodyGrad);
+    padding: 2rem;
+    min-height: calc(100vh - 65px);
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+div.popUpWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+div.popUpCont{
+    max-width: 700px;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: var(--popBack);
+    border-radius: 10px;
+}
+div.popFormCont{
+    width: 100%;
+    margin-top: 1rem;
+}
+form.classCta{
+    width: 100%;
+    margin-top: 1rem;
+}
+div.closeBar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+svg.popUpCloseToggle{
+    height: 30px;
+    fill: var(--fontColorSub);
+    cursor: pointer;
+}
+h2.classCta{
+    font-weight: 500;
+    font-size: 1.9rem;
+    color: var(--fontColor);
+    letter-spacing: 0.03rem;
+}
+p.classCta{
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    letter-spacing: 0.02rem;
+    margin-top: 0.3rem;
+}
+input.classCta{
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    outline: none;
+    background-color: var(--inputBack);
+    border-radius: 3px 3px 0 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    border-bottom: 3px solid var(--inputBorder);
+}
+div.buttonCta{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2rem;
+}
+button.popButton{
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    background: transparent;
+    letter-spacing: 0.02rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+button.cancel{
+    border: 3px solid var(--inputBorder);
+    color: var(--fontColorSub);
+    margin-right: 1rem;
+}
+button.submit{
+    border: 3px solid var(--primaryColor);
+    background: var(--primaryColor);
+    color: #FFFFFF;
+}

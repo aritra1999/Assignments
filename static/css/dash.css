@@ -1,0 +1,81 @@
+div.classCont{
+    width: 100%;
+    height: 100%;
+}
+div.classes{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 3rem;
+}
+div.noClass{
+    display: flex;
+    justify-content: center;
+    align-items : center;
+    flex-direction: column;
+    width: 100%;
+    padding: 5rem 0;
+}
+p.nothingAssigned{
+    color: var(--primaryColor);
+    font-size: 2rem;
+    font-weight: 500;
+}
+img.noCLass{
+    mix-blend-mode: luminosity;
+    height: 272px;
+    width: auto;
+}
+p.noClass{
+    color: var(--fontColor);
+    font-size: 1rem;
+    margin-top: 1.5rem;
+}
+p.orYou{
+    color: var(--fontColorSub);
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+}
+p.orYou a{
+    text-decoration: none;
+    color: var(--primaryColor);
+}
+div.class_tile{
+    background-color: var(--classTile);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    width: 300px;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    background-image: url("../Illustrations/classCardBack.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 40%;
+    margin: 1rem;
+}
+a.class_tile{
+    text-decoration: none;
+    color: initial;
+}
+h3.class_head{
+    color: var(--fontColor);
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+p.section{
+    font-size: 1.1rem;
+    letter-spacing: 0.03rem;
+    color: var(--fontColorSub);
+}
+p.due_tag{
+    color: var(--fontColorSubTwo);
+    font-size: 1rem;
+}
+p.date{
+    color: var(--primaryColor);
+    font-size: 1.4rem;
+}

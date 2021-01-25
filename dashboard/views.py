@@ -79,18 +79,22 @@ def class_view(request, class_slug):
         classSelected = Class.objects.get(slug=class_slug)
         try:
             assignments = Assignment.objects.filter(class_name=classSelected, isActive=True).order_by('-timestamp')
+            assignmentCount = Assignment.objects.filter(class_name=classSelected, isActive=True).count()
             students = Enrolled.objects.filter(class_name=classSelected)
         except:
             assignments = None
             students = None
+            assignmentCount = 0
         for student in students:
             student.rollNo = (Profile.objects.get(user=student.student)).rollNo
         context = {
             'title': 'Class',
             'assignments': assignments,
+            'assignmentCount': assignmentCount,
             'classSelected': classSelected,
             'profile': Profile.objects.get(user=request.user),
             'students': students,
+            'userType': userType,
         }
         return render(request, 'dashboard/class.html', context)
     else:

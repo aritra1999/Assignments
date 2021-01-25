@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <div class="assignmentCont" id="assignmentContainer">
+                <div class="classBlob">
+                    <div class="classInfo">
+                        <h1 class="className">{{ classSelected.name }}</h1>
+                        <p class="batch">{{ classSelected.batch }}</p>
+                        <p class="createdBy">Created by {{ classSelected.created_by.first_name }} {{ classSelected.created_by.last_name }}</p>
+                    </div>
+                    <div class="assignmentCount">
+                        <p class="assignmentCount">Total number of assignments</p>
+                        <h2 class="assignmentCount">{{ assignmentCount }}</h2>
+                        <p class="assignmentCount">Number of due assignments</p>
+                        <h2 class="assignmentDue">0</h2>
+                    </div>
+                </div>
+                <div class="assignmentsView">
+                    {% if assignments %}
+                        {% for assignment in assignments %}
+                            <a href="/dashboard/assignment/{{ assignment.slug }}">
+                                <div class="assignmentCard">
+                                    <div class="assignmentCardHead">
+                                        <h1 class="assignment">{{ assignment.name }}</h1>
+                                        <p class="lastEdit">Last edited on 20 Nov, 2020</p>
+                                    </div>
+                                    <div class="assignmentCardFoot">
+                                        <p class="assignmentDue">Assignment Due</p>
+                                        <p class="due">{{ assignment.due_date }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                        {% else %}
+                        <div class="noClass">
+                           <p class="nothingAssigned">Nothing Assigned, YAY!</p>
+                       </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="studentView" id="studentContainer">
+                <div class="tableCont">
+                    <table class="questionTable">
+                        <thead>
+                            <tr>
+                                <th>Classmates</th>
+                                <th>Roll Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if students %}
+                                {% for student in students %}
+                                    <tr>
+                                        <td>{{ student.student.first_name }} {{ student.student.last_name }}</td>
+                                        <td>{{ student.rollNo }}</td>
+                                    </tr>
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>NA</td>
+                                        <td>NA</td>
+                                    </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+{% endblock extraFoot %}

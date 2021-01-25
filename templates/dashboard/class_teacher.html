@@ -1,0 +1,130 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <div class="classBlob">
+                <div class="classInfo">
+                    <h1 class="className">{{ classSelected.name }}</h1>
+                    <p class="batch">{{ classSelected.batch }}</p>
+                    <p class="invite">Invite students by sharing this joining code</p>
+                    <span class="joinLink">
+                        <span>
+                            Class ID:
+                        <span class="linkText" id="linkText">{{ classSelected.slug }}</span>
+                        </span>
+                        <span class="copy">
+                            <svg id="linkTextToggle" class="copy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </span>
+                    </span>
+                    <p class="invite invLink">Or share the invite link</p>
+                    <span class="joinLink joinLinkMain">
+                        <span class="linkTextMain" id="linkTextMain">{{ request.META.HTTP_HOST }}/join/{{ classSelected.slug }}</span>
+                        <span class="copy">
+                            <svg id="linkTextToggleMain" class="copy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </span>
+                    </span>
+                </div>
+                <div class="assignmentCount">
+                    <p class="assignmentCount">Number of active assignments</p>
+                    <h2 class="assignmentCount">{{ assignmentNumber }}</h2>
+                    <a href="/dashboard/create/{{ classSelected.slug }}" class="createAssignment">Create Assignment</a>
+                    <button type="button" class="removeClass popUpToggleOpen" id="createCta">Delete Class</button>
+                </div>
+            </div>
+            <h2 class="yourAssg">Your assignments</h2>
+            <div class="tableCont">
+                <table class="questionTable" id="submissionTable">
+                    <thead>
+                    <tr>
+                        <th>Assignment Name</th>
+                        <th>Assignment Posted</th>
+                        <th>Due Date</th>
+                        <th>Average Score</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% if assignments %}
+                            {% for assignment in assignments %}
+                                <tr>
+                                    <td><a href="/dashboard/assignment/{{ assignment.slug }}" class="question">{{ assignment.name }}</a></td>
+                                    <td>{{ assignment.timestamp }}</td>
+                                    <td>{{ assignment.due_date }}</td>
+                                    <td>NA</td>
+                                    <td><a style="color: var(--primaryColor); text-decoration: none" href="/dashboard/assignment/remove/{{ classSelected.slug }}/{{ assignment.slug }}">Remove Assignment</a></td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                    <td>-</td>
+                                </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="popUpWrapper" id="popUpContainerWrap">
+        <div class="popUpCont" id="popUpContainerW">
+            <div class="closeBar">
+                <svg class="popUpCloseToggle closeClassPop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="popFormCont">
+                <h2 class="deleteClass">Delete {{ classSelected.name }} class?</h2>
+                <div class="deleteCta">
+                    <button class="cancel popButton closeClassPopBtn" type="button">Cancel</button>
+                    <a href="/dashboard/class/remove/{{ classSelected.slug }}" class="submitDel">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+    <script src="{% static 'js/popUp.js' %}"></script>
+    <script>
+        document.getElementById("linkTextToggle").addEventListener("click", copyLink)
+        function copyLink() {
+            let copyText = document.getElementById("linkText")
+            let textArea = document.createElement("textarea")
+            textArea.value = copyText.textContent
+            document.body.appendChild(textArea)
+            textArea.select()
+            document.execCommand("Copy")
+            alert("Code Copied")
+            textArea.remove()
+        }
+        document.getElementById("linkTextToggleMain").addEventListener("click", copyMain)
+        function copyMain() {
+            let copyText = document.getElementById("linkTextMain")
+            let textArea = document.createElement("textarea")
+            textArea.value = copyText.textContent
+            document.body.appendChild(textArea)
+            textArea.select()
+            document.execCommand("Copy")
+            alert("Code Copied")
+            textArea.remove()
+        }
+    </script>
+{% endblock extraFoot %}

@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <style>
+        td span.passVerdict{
+            background-color: #00AB66;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+        td span.failVerdict{
+            background-color: #E16541;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 80px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+        td span.noSub{
+            background-color: #e9c61d;
+            color: #FFFFFF;
+            padding: 4px 5px;
+            border-radius: 6px;
+            width: 200px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <div class="questionCont">
+                <h1 class="assignmentHead">{{ assignmentSelected.name }}</h1>
+                <p class="due">Assignment Due: <span>{{ assignmentSelected.due_date }}</span></p>
+            </div>
+            <div class="tableCont">
+                <table class="questionTable" id="submissionTable">
+                    <thead>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Success Rate</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if questions %}
+                        {% for question in questions %}
+                            <tr>
+                                <td><a href="/dashboard/question/{{ question.slug }}"
+                                       class="question">{{ question.title }}</a></td>
+                                {% if question.SR < 40 %}
+                                    <td>Overall SR: <span class="sr low">{{ question.SR }}%</span></td>
+                                {% elif question.SR > 40 and question.SR < 70 %}
+                                    <td>Overall SR: <span class="sr avg">{{ question.SR }}%</span></td>
+                                {% else %}
+                                    <td>Overall SR: <span class="sr great">{{ question.SR }}%</span></td>
+                                {% endif %}
+                                <td>{{ question.score }}/100</td>
+                                <td>
+                                    {% if question.verdict == "Passed" %}
+                                        <span class="passVerdict">{{ question.verdict }}</span>
+                                    {% elif question.verdict == "Failed" %}
+                                        <span class="failVerdict">{{ question.verdict }}</span>
+                                    {% else %}
+                                        <span class="noSub">{{ question.verdict }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+{% endblock extraFoot %}

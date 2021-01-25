@@ -1,0 +1,97 @@
+h1.createAssignment{
+    color: var(--fontColor);
+    font-weight: 500;
+    letter-spacing: 0.04rem;
+    font-size: 1.8rem;
+}
+p.createAssignment{
+    color: var(--fontColorSub);
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+    margin-top: 0.5rem;
+}
+div.assignmentPart{
+    background-color: var(--classTile);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+}
+h2.assignmentInfo{
+    color: var(--fontColor);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+form.assignmentInfo{
+    margin-top: 1rem;
+}
+label.assignmentInfo{
+    color: var(--primaryColor);
+    display: grid;
+    grid-template-columns: 150px auto;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+}
+label.assignmentInfo:last-child{
+    margin-bottom: 0;
+}
+input.assignmentInfo, input.assignmentDate, select.assignmentInfo, textarea.assignmentInfo{
+    background: var(--textBack);
+    border: none;
+    border-bottom: 2px solid var(--primaryColor);
+    outline: none;
+    padding: 13px 20px;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px 3px 0 0;
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    resize: none;
+}
+input.assignmentDate::-webkit-calendar-picker-indicator{
+    background-color: var(--fontColorSubTwo);
+}
+button.createAssignment{
+    background-color: var(--primaryColor);
+    color: #FFFFFF;
+    outline: none;
+    padding: 5px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 3px solid var(--primaryColor);
+    cursor: pointer;
+    width: auto;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+}
+button.cancelCta{
+    background: transparent;
+    color: var(--primaryColor);
+    border: 3px solid var(--primaryColor);
+}
+div.assignmentCta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+a.addQuestion{
+    text-decoration: none;
+    border: 3px solid var(--primaryColor);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 5px 20px;
+    background-color: var(--primaryColor);
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+}
+a.publish{
+    margin-left: 1rem;
+    background: transparent;
+    color: var(--fontColor);
+}
+a.archive{
+    color: #E16541;
+    border-color: #E16541;
+}

@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    <div class="mainCont">
+        <section class="formContMain">
+            <div class="formCont">
+                <div class="form">
+                    <a href="{% url 'home' %}"><img src="{% static 'Illustrations/logoBlank.svg' %}" alt="" class="logo"></a>
+                    <h2 class="formHead">Login to your <span>CodeVox</span> account</h2>
+                    <form action="" method="post" id="userForm" class="userForm">{% csrf_token %}
+                        {% if error %}
+                            <div class="error">
+                                <p class="errorText">{{ error }}</p>
+                            </div>
+                        {% endif %}
+                        <div class="part1">
+                            <div class="inputField">
+                                <input type="email" aria-required="true" class="input firstName" name="email" placeholder="Email Id">
+                            </div>
+                            <div class="inputField">
+                                <input type="password" aria-required="true" class="input lastName" name="password" placeholder="Password">
+                            </div>
+                            <div class="inputField links">
+                                <a href="{% url 'register_view' %}" class="signInLink">Sign Up</a>
+                                <button class="next" type="submit" id="nextBtn">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footCont">
+                <p class="foot">Created by team <img src="{% static 'Illustrations/LogoDark.svg' %}" alt=""></p>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+{% endblock extraFoot %}

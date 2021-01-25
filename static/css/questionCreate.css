@@ -1,0 +1,21 @@
+label.questionCreate{
+    grid-template-columns: 200px auto;
+}
+div.questionCreateFormElem{
+    margin: 1rem 0;
+}
+div.sample{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+label.sample {
+    width: 49%;
+    margin-bottom: 0;
+}
+h2.sampleText{
+    color: var(--fontColorSubTwo);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
+}

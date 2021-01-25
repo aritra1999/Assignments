@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="classCont">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="classes">
+                {% if createdClass %}
+                    {% for class in createdClass %}
+                        <a href="/dashboard/class/{{ class.slug }}" class="class_tile">
+                            <div class="class_tile">
+                                <div class="heads">
+                                    <h3 class="class_head">{{ class.name }}</h3>
+                                    <p class="section">{{ class.batch }}</p>
+                                </div>
+                                <div class="coverTeacher">
+                                    <div class="tags teacherTag">
+                                        <p class="due_tag">Active assignments</p>
+                                        <p class="date teachTag">{{ class.assignmentNumber }}</p>
+                                    </div>
+                                    <div class="tags">
+                                        <p class="due_tag">Total Students</p>
+                                        <p class="date teachTag">{{ class.studentNumber }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    {% else %}
+                        <div class="noClass">
+                            <img src="{% static 'Illustrations/noClass.svg' %}" alt="" class="noCLass">
+                            <p class="noClass">There are no classes created. To create a class click on create a class button in the navbar</p>
+                            <p class="orYou">Or you can try our <a href="#">Online IDE</a></p>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="popUpWrapper" id="popUpContainerWrap">
+        <div class="popUpCont" id="popUpContainerW">
+            <div class="closeBar">
+                <svg class="popUpCloseToggle closeClassPop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="popFormCont">
+                <h2 class="classCta">Create a class</h2>
+                <p class="classCta">Enter the class name and section to create a class</p>
+                <form action="" id="creationForm" class="classCta" method="post">{% csrf_token %}
+                    <input type="text" name="class_name" style="margin-bottom: 1rem" aria-required="true" class="classCta" placeholder="Enter class name">
+                    <input type="text" name="section" aria-required="true" class="classCta" placeholder="Enter section">
+                    <div class="buttonCta">
+                        <button class="cancel popButton closeClassPopBtn" type="button">Cancel</button>
+                        <button class="submit popButton" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/popUp.js' %}"></script>
+{% endblock extraFoot %}

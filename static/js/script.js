@@ -8,7 +8,7 @@ editor.setOptions({
 });
 
 
-editor.setTheme("ace/theme/tomorrow_night_blue");
+editor.setTheme("ace/theme/nord_dark");
 editor.session.setMode("ace/mode/python");
 editor.setFontSize(16);
 
@@ -106,27 +106,4 @@ function run_code(){
     .fail(function (data, status) {
         $('#error_message').text(data);
     });
-}
-
-window.goBack = function (e){
-    let defaultLocation = "http://localhost:8000/dashboard/";
-    let oldHash = window.location.hash;
-
-    history.back();
-    let newHash = window.location.hash;
-    if(
-        newHash === oldHash &&
-        (typeof(document.referrer) !== "string" || document.referrer  === "")
-    ){
-        window.setTimeout(function(){
-            window.location.href = defaultLocation;
-        },1000);
-    }
-    if(e){
-        if(e.preventDefault)
-            e.preventDefault();
-        if(e.preventPropagation)
-            e.preventPropagation();
-    }
-    return false;
 }

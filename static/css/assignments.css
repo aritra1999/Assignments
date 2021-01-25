@@ -1,0 +1,19 @@
+div.questionCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h1.assignmentHead{
+    color: var(--fontColor);
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+p.due{
+    color: var(--fontColorSubTwo);
+    font-size: 1rem;
+}
+p.due span{
+    color: var(--primaryColor);
+    display: inline-block;
+    margin-left: 0.3rem;
+}

@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questionCreate.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <div class="upDate">
+                <h1 class="createAssignment">Edit this question</h1>
+                <button type="button" class="updateBtn" id="disabledInputToggle">Edit question</button>
+            </div>
+            <div class="assignmentPart">
+                <h1 class="YoCanNow">You can now edit the question</h1>
+                <div class="questionBody">
+                    <form action="" method="POST">{% csrf_token %}
+                        <div class="questionCreateFormElem">
+                            <label class="assignmentInfo" for="questionName">Question Name:
+                                <input aria-required="true" type="text" value="{{ question.title }}" disabled name="questionName" class="assignmentInfo disabledInput" required>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="assignmentInfo" for="questionName">Allowed Language:
+                                <select aria-required="true" name="allowedLang" id="allowedLang" disabled class="assignmentInfo disabledInput" required>
+                                    <option value="{{ question.allowed_lang }}" selected>{{ question.allowed_lang }}</option>
+                                    <option value="C">C</option>
+                                    <option value="CPP">C++</option>
+                                    <option value="Python">Python</option>
+                                    <option value="Java">Java</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="assignmentInfo" for="questionName">Problem Statement:
+                                <textarea aria-required="true" disabled name="problemStatement" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.body }}</textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="assignmentInfo" for="questionName">Input Description:
+                                <textarea aria-required="true" disabled name="inputFormat" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.input_format }}</textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <label class="assignmentInfo" for="questionName">Output Description:
+                                <textarea aria-required="true" disabled name="outputFormat" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.output_format }}</textarea>
+                            </label>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 1</h2>
+                            <div class="sample">
+                                <label class="assignmentInfo sample" for="questionName">Sample Input 1:
+                                    <textarea aria-required="true" disabled name="input1" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input1 }}</textarea>
+                                </label>
+                                <label class="assignmentInfo sample" for="questionName">Sample Output 1:
+                                    <textarea aria-required="true" disabled name="output1" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output1 }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 2</h2>
+                            <div class="sample">
+                                <label class="assignmentInfo sample" for="questionName">Sample Input 2:
+                                    <textarea aria-required="true" disabled name="input2" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input2 }}</textarea>
+                                </label>
+                                <label class="assignmentInfo sample" for="questionName">Sample Output 2:
+                                    <textarea aria-required="true" disabled name="output2" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output2 }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 3</h2>
+                            <div class="sample">
+                                <label class="assignmentInfo sample" for="questionName">Sample Input 3:
+                                    <textarea aria-required="true" disabled name="input3" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input3 }}</textarea>
+                                </label>
+                                <label class="assignmentInfo sample" for="questionName">Sample Output 3:
+                                    <textarea aria-required="true" disabled name="output3" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output3 }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 4</h2>
+                            <div class="sample">
+                                <label class="assignmentInfo sample" for="questionName">Sample Input 4:
+                                    <textarea aria-required="true" disabled name="input4" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input4 }}</textarea>
+                                </label>
+                                <label class="assignmentInfo sample" for="questionName">Sample Output 4:
+                                    <textarea aria-required="true" disabled name="output4" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output4 }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="questionCreateFormElem">
+                            <h2 class="sampleText">Sample Test Case 5</h2>
+                            <div class="sample">
+                                <label class="assignmentInfo sample" for="questionName">Sample Input 5:
+                                    <textarea aria-required="true" disabled name="input5" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input5 }}</textarea>
+                                </label>
+                                <label class="assignmentInfo sample" for="questionName">Sample Output 5:
+                                    <textarea aria-required="true" disabled name="output5" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output5 }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="createAssignment" id="updateQuestion">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+    <script>
+        let disabledInputToggle = document.getElementById("disabledInputToggle")
+        disabledInputToggle.addEventListener("click", enableForm)
+        let head = document.querySelector(".YoCanNow")
+        head.style.display="none"
+        function enableForm(){
+            let updateButton = document.getElementById("updateQuestion")
+            updateButton.style.cursor="pointer"
+            head.style.display="block"
+            let ele = $(".disabledInput")
+            ele.removeAttr("disabled")
+        }
+    </script>
+{% endblock extraFoot %}

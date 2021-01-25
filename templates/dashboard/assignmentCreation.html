@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <h1 class="createAssignment">Create an assignment</h1>
+            <p class="createAssignment">You can create a new assignment here. Enter name, questions, due date and you're good to go.</p>
+            <div class="assignmentPart">
+                <h2 class="assignmentInfo">Assignment Information</h2>
+                <form action="" method="POST" class="assignmentInfo" id="assignmentInfo">{% csrf_token %}
+                    <label for="assignmentName" class="assignmentInfo">Assignment Name:
+                        <input type="text" name="assignmentName" id="assignmentName" aria-required="true" class="assignmentInfo" placeholder="Assignment Name" required>
+                    </label>
+                    <label for="assignmentName" class="assignmentInfo">Due Date:
+                        <input type="datetime-local" name="assignmentDate" id="assignmentDate" aria-required="true" class="assignmentDate" required>
+                    </label>
+                    <div class="assignmentCta">
+                        <button class="createAssignment cancelCta" type="button">Cancel</button>
+                        <button class="createAssignment" type="submit">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/assignments.js' %}"></script>
+{% endblock extraFoot %}
