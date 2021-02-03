@@ -111,3 +111,5 @@ ENV/
 # **/migrations/**
 # !**/migrations
 # !**/migrations/__init__.py
+
+auth_var.py
