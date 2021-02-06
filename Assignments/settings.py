@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku
+# import django_heroku
 from django.core.mail import send_mail
 from auth_var import email_pass
 
@@ -97,7 +97,7 @@ DATABASES = {
     }
 }
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
