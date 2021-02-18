@@ -28,7 +28,7 @@ SECRET_KEY = ')dvix1ludr$qm+v2p9uv%s9-zui=rc458@*ku@#0_rlpl6)ek='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codevox.herokuapp.com', 'ec2-3-7-66-60.ap-south-1.compute.amazonaws.com', '3.7.66.60', 'codevox.kiit.ac.in', 'www.codevox.kiit.ac.in']
+ALLOWED_HOSTS = ['codevox.herokuapp.com', '65.1.106.40', 'codevox.kiit.ac.in', 'www.codevox.kiit.ac.in']
 
 
 # Application definition
@@ -47,14 +47,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    
 ]
 
 ROOT_URLCONF = 'Assignments.urls'
