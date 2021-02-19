@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-# import django_heroku
 from django.core.mail import send_mail
 from auth_var import email_pass
 
@@ -28,7 +27,7 @@ SECRET_KEY = ')dvix1ludr$qm+v2p9uv%s9-zui=rc458@*ku@#0_rlpl6)ek='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codevox.herokuapp.com', '65.1.106.40', 'codevox.kiit.ac.in', 'www.codevox.kiit.ac.in']
+ALLOWED_HOSTS = ['codevox.herokuapp.com', '65.1.106.40', 'codevox.kiit.ac.in', 'www.codevox.kiit.ac.in', 'localhost']
 
 
 # Application definition
@@ -97,10 +96,6 @@ DATABASES = {
     }
 }
 
-# django_heroku.settings(locals())
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -133,21 +128,16 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# /media/io/4L1-BIM-IOA_1.in
-# /media/io/4L1-BIM-IOA_1.in
 
 LOGIN_URL = '/auth/signin'
 LOGIN_REDIRECT_URL = '/auth/signin'
