@@ -18,10 +18,10 @@
                         {% endif %}
                         <div class="part1">
                             <div class="inputField">
-                                <input type="text" aria-required="true" class="input firstName" name="f_name" placeholder="First Name">
+                                <input type="text" aria-required="true" class="input firstName" name="f_name" placeholder="First Name" required/>
                             </div>
                             <div class="inputField">
-                                <input type="text" aria-required="true" class="input lastName" name="l_name" placeholder="Last Name">
+                                <input type="text" aria-required="true" class="input lastName" name="l_name" placeholder="Last Name" required/>
                             </div>
                             <div class="inputField">
                                 <select name="university" id="university" class="select">
@@ -29,7 +29,7 @@
                                 </select>
                             </div>
                             <div class="inputField">
-                                <select name="userPersona" id="userType" class="select">
+                                <select name="userPersona" id="userType" class="select" required/>
                                     <option value="0" selected>Select user type</option>
                                     <option value="student">Student</option>
                                     <option value="teacher">Teacher</option>
@@ -42,16 +42,16 @@
                         </div>
                         <div class="part2">
                             <div class="inputField">
-                                <input type="text" aria-required="true" class="input rollNo" id="roll" name="roll" placeholder="Roll Number">
+                                <input type="text" aria-required="true" class="input rollNo" id="roll" name="roll" placeholder="Roll Number" required/>
                             </div>
                             <div class="inputField">
-                                <input type="email" aria-required="true" class="input" name="email" placeholder="Email Id">
+                                <input type="email" aria-required="true" class="input" name="email" placeholder="Email Id" required/>
                             </div>
                             <div class="inputField">
-                                <input type="password" aria-required="true" class="input" name="password" placeholder="Password">
+                                <input type="password" aria-required="true" class="input" name="password" placeholder="Password" required/>
                             </div>
                             <div class="inputField">
-                                <input type="password" aria-required="true" class="input" name="cnfrm_password" placeholder="Confirm Password">
+                                <input type="password" aria-required="true" class="input" name="cnfrm_password" placeholder="Confirm Password" required/> 
                             </div>
                             <div class="inputField links">
                                 <button class="prevBtn next" type="button" id="prevBtn">Previous</button>
