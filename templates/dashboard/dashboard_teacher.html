@@ -58,9 +58,9 @@
                 <h2 class="classCta">Create a class</h2>
                 <p class="classCta">Enter the class name and section to create a class</p>
                 <form action="" id="creationForm" class="classCta" method="post">{% csrf_token %}
-                    <input type="text" name="class_name" style="margin-bottom: 1rem" aria-required="true" class="classCta" placeholder="Enter class name">
+                    <input type="text" name="class_name" style="margin-bottom: 1rem" aria-required="true" class="classCta" placeholder="Enter class name" required/>
                     <input type="text" name="section" aria-required="true" class="classCta" placeholder="Enter section">
-                    <div class="buttonCta">
+                    <div class="buttonCta" required/>
                         <button class="cancel popButton closeClassPopBtn" type="button">Cancel</button>
                         <button class="submit popButton" type="submit">Submit</button>
                     </div>

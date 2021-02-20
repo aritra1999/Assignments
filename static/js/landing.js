@@ -23,3 +23,4 @@ function openFunc(){
     else
     navbarMob.classList.remove("open")
 }
+

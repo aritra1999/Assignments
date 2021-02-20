@@ -12,13 +12,11 @@ editor.setTheme("ace/theme/nord_dark");
 editor.session.setMode("ace/mode/python");
 editor.setFontSize(16);
 
-
 editor.setOptions({
     enableBasicAutocompletion: true,
     enableSnippets: true,
     enableLiveAutocompletion: true,
 });
-
 
 function submit_code() {
     
@@ -26,11 +24,11 @@ function submit_code() {
     var language = document.getElementById('lang').value;
     var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
     var slug = document.getElementById('slug').innerHTML;
-    
+        
     $("#processing").css({"display": "block"});
     
-    $(".success_message").css({"display": "none"});
-    $(".error_message").css({"display": "none"});
+    $(".success").css({"display": "none"});
+    $(".error").css({"display": "none"});
     
     $("#success_message").empty();
     $("#error_message").empty();
@@ -47,13 +45,15 @@ function submit_code() {
     .done(function (data, status) {
         $("#processing").css({"display": "none"});
         if (data.status === "success") {
+            
             for (let i = 1; i <= 5; i++) {
-                $("#success_message").append("<p class='messageText'>" + i + ". " + data['verdict' + i] + ". Time taken: " + data['time' + i] + ", Memory used: " + data['memory' + i] + ", Score: " + data['score' + i] + "</p>");
+                $("#success_message").append(
+                    "<tr><td>" + i + ". </td><td>" + data['verdict' + i] + ".</td><td> Time taken: " + data['time' + i] + "</td><td> Memory used: " + data['memory' + i] + "</td><td> Score: " + data['score' + i] + "</td></tr>"
+                );
             }
-            $("#success_message").append("Total Score: " + data['totalscore'] + "/100<br><br>" );
+            $("#success_message").append("<br>Total Score: " + data['totalscore'] + "/100<br><br>" );
             if(data['totalscore'] > 20){
                 $("#success").css({"display": "block"});
-                $("#success_message").append("Pass");
             }else{
                 $("#error").css({"display": "block"});
                 $("#error_message").append("Wrong Answer!");

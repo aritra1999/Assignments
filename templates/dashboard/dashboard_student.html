@@ -52,7 +52,7 @@
                 <h2 class="classCta">Join a class</h2>
                 <p class="classCta">Enter the class code to join a class</p>
                 <form action="" id="creationForm" class="classCta" method="post">{% csrf_token %}
-                    <input type="text" class="classCta" name="class_slug" placeholder="Enter Class Code" aria-required="true">
+                    <input type="text" class="classCta" name="class_slug" placeholder="Enter Class Code" aria-required="true" required/>
                     <div class="buttonCta">
                         <button class="cancel popButton closeClassPopBtn" type="button">Cancel</button>
                         <button class="submit popButton" type="submit">Submit</button>
