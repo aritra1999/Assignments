@@ -1,0 +1,155 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Illustrations/logoBlank.svg' %}" type="image/gif" sizes="16x16">
+    <title>CodeVox | {{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mainCont">
+        <section class="one">
+            <div class="sectionOneCont">
+                <nav class="navbarDesk">
+                    <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                    <ul class="navbar">
+                        <li class="navlinks"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="navlinks"><a href="{% url 'about' %}">About Us</a></li>
+                        <li class="navlinks"><a href="http://justrunide.herokuapp.com/" target="_blank">Online IDE</a></li>
+                        <li class="navlinks"><a href="#">Docs</a></li>
+                    </ul>
+                    <div class="ctaNav">
+                        <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                        <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
+                    </div>
+                </nav>
+                <nav class="navbarMob">
+                    <div class="mobileNavVisib">
+                        <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
+                        <div class="ham">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="dropDown">
+                        <ul class="navbar">
+                            <li class="navlinks"><a href="#">Home</a></li>
+                            <li class="navlinks"><a href="#">About Us</a></li>
+                            <li class="navlinks"><a href="#">Online IDE</a></li>
+                            <li class="navlinks"><a href="#">Docs</a></li>
+                        </ul>
+                        <div class="ctaNav">
+                            <a href="{% url 'login_view' %}" class="navCta login">Login</a>
+                            <a href="{% url 'register_view' %}" class="navCta signup">Sign Up</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="sectionOneData">
+                    <h1 class="description"><span>Codevox</span> is all about how a student’s coding skills are assessed at school and university level.</h1>
+                    <p class="subText">We help students and teachers by providing a platform where code submision and checking can be done hassle free and comfortably.</p>
+                </div>
+            </div>
+        </section>
+        <section class="two">
+            <div class="sectionTwoCont">
+                <div class="sectionTwoData">
+                    <h1 class="aboutTeamHead">Our Team</h1>
+                    <p class="aboutTeamTag">Meet the team behind this great software made for a great cause.</p>
+                    <div class="imgCont">
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/rajdeep.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Dr.Rajdeep Chatterjee</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">Mentor and Advisor</p>
+                        </div>
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/oreo.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Aritra Mondal</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">Backend Developer</p>
+                        </div>
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/hrishav.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Hrishav Kumar</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">Frontend & Backend Developer</p>
+                        </div>
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/hariom.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Hariom Patidar</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">ML Developer and Researcher</p>
+                        </div>
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/sakshi.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Sakshi Simhal</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">UI/UX & Frontend Developer</p>
+                        </div>
+                        <div class="part">
+                            <div class="imgPart">
+                                <img src="{% static 'Illustrations/mayukh.png' %}" alt="" class="teamImg">
+                            </div>
+                            <h2 class="teamName">Mayukh Mallick</h2>
+                            <p class="adj">Adjective</p>
+                            <p class="desig">UI/UX Designer and Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="six">
+            <div class="sectionSixCont">
+                <div class="cont">
+                    <h1 class="getStarted">
+                        Get started with <span>Codevox</span>
+                    </h1>
+                    <p class="getStarted">
+                        It hardly takes few minutes to set up an assignment.  Codevox is one of the platform which is helping to automate the submissin of coding assignments and checking simpler and faster.
+                    </p>
+                    <div class="cta">
+                        <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
+                        <a href="#" class="cta try">Try our online IDE</a>
+                    </div>
+                </div>
+                <div class="imageWrapper">
+                    <img src="{% static 'Illustrations/FooterImage.png' %}" alt="footImage">
+                </div>
+            </div>
+        </section>
+        <section class="foot">
+            <div class="footCont">
+                <div class="footBar">
+                    <a href="{% url 'home' %}" class="logo">
+                        <img src="{% static 'Illustrations/LogoLight.svg' %}" alt="logo">
+                    </a>
+                    <ul class="footLink">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="http://justrunide.herokuapp.com/" target="_blank">Online IDE</a></li>
+                        <li><a href="#">Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+<script src="{% static 'js/landing.js' %}"></script>
+</body>
+</html>
