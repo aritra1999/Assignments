@@ -19,8 +19,8 @@
                 <nav class="navbarDesk">
                     <a href="{% url 'home' %}" class="logo"><img src="{% static 'Illustrations/LogoDark.svg' %}" alt="" class="logo"></a>
                     <ul class="navbar">
-                        <li class="navlinks"><a href="#">Home</a></li>
-                        <li class="navlinks"><a href="#">About Us</a></li>
+                        <li class="navlinks"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="navlinks"><a href="{% url 'about' %}">About Us</a></li>
                         <li class="navlinks"><a href="#">Online IDE</a></li>
                         <li class="navlinks"><a href="#">Docs</a></li>
                     </ul>

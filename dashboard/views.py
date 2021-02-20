@@ -26,6 +26,14 @@ def home_view(request):
     return render(request, 'dashboard/home.html', context)
 
 
+def about_view(request):
+    context = {
+        'title': 'About'
+    }
+
+    return render(request, 'dashboard/about.html', context)
+
+
 @login_required
 def dashboard_view(request):
     user = request.user

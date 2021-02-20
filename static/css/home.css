@@ -33,6 +33,7 @@ html {
   height: 100%;
   width: 100%;
   min-height: 100vh;
+  text-rendering: geometricPrecision;
 }
 
 div.mainCont {
@@ -199,7 +200,6 @@ section.one div.sectionOneCont div.sectionOneData div.cta a.cta.try {
   background-color: #e8e8e8;
   color: #000000;
 }
-
 section.one div.sectionOneCont div.imageWrapper {
   position: absolute;
   max-width: 1200px;
@@ -212,7 +212,6 @@ section.one div.sectionOneCont div.imageWrapper {
   -webkit-filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
           filter: drop-shadow(0px 3.2px 7.2px rgba(0, 0, 0, 0.13));
 }
-
 section.one div.sectionOneCont div.imageWrapper img {
   max-width: 100%;
   border-radius: 20px;
@@ -221,14 +220,12 @@ section.one div.sectionOneCont div.imageWrapper img {
   -o-object-position: center center;
      object-position: center center;
 }
-
 section.two {
   padding: 0.75rem;
   height: auto;
   width: 100%;
   background-color: #ffffff;
 }
-
 section.two div.sectionTwoCont {
   background-color: #F5F5F5;
   width: 100%;
