@@ -21,8 +21,8 @@
                     <ul class="navbar">
                         <li class="navlinks"><a href="{% url 'home' %}">Home</a></li>
                         <li class="navlinks"><a href="{% url 'about' %}">About Us</a></li>
-                        <li class="navlinks"><a href="#">Online IDE</a></li>
-                        <li class="navlinks"><a href="#">Docs</a></li>
+                        <li class="navlinks"><a href="http://justrunide.herokuapp.com/" target="_blank">Online IDE</a></li>
+                        <li class="navlinks"><a href="https://github.com/aritra1999/Assignments.git">Docs</a></li>
                     </ul>
                     <div class="ctaNav">
                         <a href="{% url 'login_view' %}" class="navCta login">Login</a>
@@ -39,10 +39,10 @@
                     </div>
                     <div class="dropDown">
                         <ul class="navbar">
-                            <li class="navlinks"><a href="#">Home</a></li>
-                            <li class="navlinks"><a href="#">About Us</a></li>
-                            <li class="navlinks"><a href="#">Online IDE</a></li>
-                            <li class="navlinks"><a href="#">Docs</a></li>
+                            <li class="navlinks"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="navlinks"><a href="{% url 'about' %}">About Us</a></li>
+                            <li class="navlinks"><a href="http://justrunide.herokuapp.com/" target="_blank">Online IDE</a></li>
+                            <li class="navlinks"><a href="https://github.com/aritra1999/Assignments.git">Docs</a></li>
                         </ul>
                         <div class="ctaNav">
                             <a href="{% url 'login_view' %}" class="navCta login">Login</a>
@@ -56,7 +56,7 @@
                     <p class="subText">Free and collaborative tool to help students and teachers to assess coding skills efficiently.</p>
                     <div class="cta">
                         <a href="{% url 'register_view' %}" class="cta signup">Sign Up for free</a>
-                        <a href="#" class="cta try">Try our online IDE</a>
+                        <a href="http://justrunide.herokuapp.com/" target="_blank" class="cta try">Try our online IDE</a>
                     </div>
                 </div>
                 <div class="imageWrapper">
@@ -180,10 +180,10 @@
                         <img src="{% static 'Illustrations/LogoLight.svg' %}" alt="logo">
                     </a>
                     <ul class="footLink">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Online IDE</a></li>
-                        <li><a href="#">Docs</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="http://justrunide.herokuapp.com/" target="_blank">Online IDE</a></li>
+                        <li><a href="https://github.com/aritra1999/Assignments.git">Docs</a></li>
                     </ul>
                 </div>
             </div>
