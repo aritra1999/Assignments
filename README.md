@@ -21,5 +21,6 @@
 | teststudent02@kiit.ac.in | Student | 02 | 1807002 | v8S2tvp7_&sE{nQ! |
 
 ### Class
-Test Class: 1ZK-HJ4-EKC
-http://codevox.kiit.ac.in/join/1ZK-HJ4-EKC
+Name: Test Class   
+Code: 1ZK-HJ4-EKC  
+Link: http://codevox.kiit.ac.in/join/1ZK-HJ4-EKC  
