@@ -19,3 +19,7 @@
 |:-----:|:-----------:|:---------:|:-----------:|:--------:|
 | teststudent01@kiit.ac.in | Student | 01 | 1807001 | $Nfa:a('J8C8;"3Y |
 | teststudent02@kiit.ac.in | Student | 02 | 1807002 | v8S2tvp7_&sE{nQ! |
+
+### Class
+Test Class: 1ZK-HJ4-EKC
+http://codevox.kiit.ac.in/join/1ZK-HJ4-EKC
