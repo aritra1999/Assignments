@@ -10,12 +10,12 @@
 ## Demo Accounts
 
 ### Teacher
-| Email | Firsrt Name | Last Name | Roll Number | Password |
+| Email | First Name | Last Name | Roll Number | Password |
 |:-----:|:-----------:|:---------:|:-----------:|:--------:|
 | testteacher01@kiit.ac.in | Teacher | 01 | 1806001 | PsLh<>DF}gGJK^wW |
 
 ### Student 
-| Email | Firsrt Name | Last Name | Roll Number | Password |
+| Email | First Name | Last Name | Roll Number | Password |
 |:-----:|:-----------:|:---------:|:-----------:|:--------:|
 | teststudent01@kiit.ac.in | Student | 01 | 1807001 | $Nfa:a('J8C8;"3Y |
 | teststudent02@kiit.ac.in | Student | 02 | 1807002 | v8S2tvp7_&sE{nQ! |
