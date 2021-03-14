@@ -10,7 +10,7 @@ from django.contrib import messages
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 from assignment.models import Assignment, Class, Submission, BestSubmission, IO
 
@@ -529,3 +529,24 @@ def student_details(request, class_slug, student_email):
         return render(request, 'dashboard/studentDetails.html', context)
     else:
         return HttpResponse("Hello Student")
+
+
+@login_required
+def profile_view(request):
+    if request.method == "POST":
+        if request.POST.get('formName') == "nameChange":
+            newFirstName = request.POST.get('firstName')
+            newLastName = request.POST.get('lastName')
+            User.objects.filter(id=request.user.id).update(first_name=newFirstName, last_name=newLastName)
+        elif request.POST.get('formName') == "passwordChange":
+            currPass = request.POST.get('currPass')
+            newPass = request.POST.get('newPassword')
+            newPassCnf = request.POST.get('newPasswordRep')
+            if newPass == newPassCnf:
+                pass
+    user = request.user
+    context = {
+        'title': 'Profile',
+        'user': user,
+    }
+    return render(request, 'dashboard/profile.html', context)

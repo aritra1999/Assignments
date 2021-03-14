@@ -18,6 +18,7 @@ from .views import (
     remove_assignment,
     student_details,
     run,
+    profile_view,
 )
 
 urlpatterns = [
@@ -38,4 +39,5 @@ urlpatterns = [
     path('class/remove/<class_slug>', remove_class, name="removeClass"),
     path('assignment/remove/<class_slug>/<assignment_slug>', remove_assignment, name="removeAssignment"),
     path('student/<class_slug>/<student_email>', student_details, name='studentDetails'),
+    path('profile/', profile_view, name='profile'),
 ]
