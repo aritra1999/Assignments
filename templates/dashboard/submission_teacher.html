@@ -34,6 +34,7 @@
     {% include 'base/dashnav.html' %}
     <div class="bodyCont">
         <div class="insideCont">
+            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
             <div class="questionCont">
                 <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
             </div>

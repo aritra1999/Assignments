@@ -130,3 +130,14 @@ button.submit{
     background: var(--primaryColor);
     color: #FFFFFF;
 }
+a.backBtn{
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--primaryColor);
+    border: 3px solid var(--primaryColor);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+}
