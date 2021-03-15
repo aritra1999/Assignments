@@ -44,6 +44,12 @@
             <div class="profileFormCont">
                 <h2 class="profilePartHead">Password</h2>
                 <p class="profilePartTag">You may reset the password. Resetting the password  may need to re login into the portal.</p>
+                {% if error %}
+                    {{ error }}
+                {% endif %}
+                {% if success %}
+                    {{ success }}
+                {% endif %}
                 <form action="" method="post">{% csrf_token %}
                     <input type="text" hidden name="formName" value="passwordChange">
                     <div class="profileFormPartCont">
