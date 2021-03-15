@@ -13,11 +13,12 @@
     {% include 'base/dashnav.html' %}
     <div class="bodyCont">
         <div class="insideCont">
+            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
             <h1 class="profileHead">Your Profile</h1>
             <p class="profileTag">Some info may be visible to other people using Codevox like name and email address.</p>
             <div class="profileFormCont">
                 <h2 class="profilePartHead">Basic Info</h2>
-                <p class="profilePartTag">Some info may be visible to other people using Codevox like name and email address.</p>
+                <p class="profilePartTag">Some info may be visible to other people using Codevox like name and email address, click on name to edit.</p>
                 <form action="" method="post">{% csrf_token %}
                     <input type="text" hidden name="formName" value="nameChange">
                     <div class="profileFormPartCont">

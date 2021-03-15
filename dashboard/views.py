@@ -533,6 +533,11 @@ def student_details(request, class_slug, student_email):
 
 @login_required
 def profile_view(request):
+    user = request.user
+    context = {
+        'title': 'Profile',
+        'user': user,
+    }
     if request.method == "POST":
         if request.POST.get('formName') == "nameChange":
             newFirstName = request.POST.get('firstName')
@@ -544,9 +549,4 @@ def profile_view(request):
             newPassCnf = request.POST.get('newPasswordRep')
             if newPass == newPassCnf:
                 pass
-    user = request.user
-    context = {
-        'title': 'Profile',
-        'user': user,
-    }
     return render(request, 'dashboard/profile.html', context)
