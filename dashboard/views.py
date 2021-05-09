@@ -303,6 +303,7 @@ def submit(request, question_slug):
             Submission.objects.create(
                 submitted_by=request.user,
                 question=question,
+                code=request.POST.get('code'),
                 score=response['totalscore'],
                 status=response['verdict'],
             )

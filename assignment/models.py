@@ -14,7 +14,7 @@ class Class(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Class, self).save(*args, **kwargs)
+        super(Class, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.name)
@@ -32,7 +32,7 @@ class Assignment(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Assignment, self).save(*args, **kwargs)
+        super(Assignment, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.name)
@@ -52,7 +52,7 @@ class Question(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(Question, self).save(*args, **kwargs)
+        super(Question, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.title)
@@ -60,6 +60,7 @@ class Question(models.Model):
 
 class Submission(models.Model):
     submitted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    code = models.TextField(max_length=5000, null=True, blank=True)
     question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
     score = models.IntegerField(null=True, blank=True, default=0)
     lastRun = models.DateTimeField(null=True, blank=True, auto_now_add=True)
@@ -109,7 +110,7 @@ class IO(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slug_generator()
-            super(IO, self).save(*args, **kwargs)
+        super(IO, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.question)
