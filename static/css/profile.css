@@ -1,0 +1,75 @@
+h1.profileHead{
+    color: var(--fontColor);
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+p.profileTag{
+    color: var(--fontColorSub);
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+    margin-top: 0.2rem;
+}
+div.profileFormCont{
+    background-color: var(--tableBack);
+    padding: 2rem;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+h2.profilePartHead{
+    color: var(--fontColor);
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+p.profilePartTag{
+    color: var(--fontColorSub);
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+}
+div.profileFormPartCont{
+    margin: 1.3rem 0;
+    width: 100%;
+}
+div.profileCta, div.PassCta{
+    display: none;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+div.PassCta{
+    display: flex;
+}
+div.profileFormPartCont:last-child{
+    margin-bottom: 0;
+}
+div.profileFormPartCont label{
+    color: var(--fontColorSubTwo);
+    font-size: 1rem;
+    grid-template-columns: 150px auto;
+    display: grid;
+    vertical-align: middle;
+}
+input.profileForm{
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    font-family: "Jost", sans-serif;
+    font-size: 1rem;
+    border-bottom: 2px solid var(--primaryColor);
+    background: var(--tableBack);
+    color: var(--fontColor);
+}
+input.profileForm:disabled{
+    cursor: not-allowed;
+}
+button.profileCta{
+    padding: 0.5rem 1rem;
+    font-family: "Jost", sans-serif;
+    font-size: 0.9rem;
+    border: 3px solid var(--primaryColor);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+    background-color: var(--primaryColor);
+    color: #fff;
+}

@@ -12,6 +12,7 @@
     {% include 'base/dashnav.html' %}
     <div class="bodyCont">
         <div class="insideCont">
+            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
             <h1 class="createAssignment">Create an assignment</h1>
             <p class="createAssignment">You can create a new assignment here. Enter name, questions, due date and you're good to go.</p>
             <div class="assignmentPart">

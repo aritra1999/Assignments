@@ -1,5 +1,6 @@
 import json
 import requests
+from django.contrib.auth import authenticate
 from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
@@ -7,12 +8,11 @@ from django.db.models import Sum
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 from accounts.models import Profile, Enrolled
-from assignment.models import Question
-from django.contrib.auth.models import User
-
-from assignment.models import Assignment, Class, Submission, BestSubmission, IO
+from assignment.models import Question, Assignment, Class, Submission, BestSubmission, IO
 
 
 def home_view(request):
@@ -530,3 +530,31 @@ def student_details(request, class_slug, student_email):
         return render(request, 'dashboard/studentDetails.html', context)
     else:
         return HttpResponse("Hello Student")
+
+
+@login_required
+def profile_view(request):
+    context = {
+        'title': 'Profile',
+        'user': request.user,
+    }
+    if request.method == "POST":
+        if request.POST.get('formName') == "nameChange":
+            newFirstName = request.POST.get('firstName')
+            newLastName = request.POST.get('lastName')
+            User.objects.filter(id=request.user.id).update(first_name=newFirstName, last_name=newLastName)
+            return redirect('/dashboard/profile')
+        elif request.POST.get('formName') == "passwordChange":
+            user = authenticate(request, username=request.user.username, password=request.POST.get('currPass'))
+            if user is not None:
+                newPass = request.POST.get('newPassword')
+                newPassCnf = request.POST.get('newPasswordRep')
+                if newPass == newPassCnf:
+                    user.set_password(newPass)
+                    user.save()
+                    context['success'] = "Password Changed Successfully!"
+                else:
+                    context['error'] = "Password not matched!"
+            else:
+                context['error'] = "Wrong Password!"
+    return render(request, 'dashboard/profile.html', context)

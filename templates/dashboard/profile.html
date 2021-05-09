@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead  %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+{% endblock extraHead %}
+{% block content %}
+    {% include 'base/dashnav.html' %}
+    <div class="bodyCont">
+        <div class="insideCont">
+            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
+            <h1 class="profileHead">Your Profile</h1>
+            <p class="profileTag">Some info may be visible to other people using Codevox like name and email address.</p>
+            <div class="profileFormCont">
+                <h2 class="profilePartHead">Basic Info</h2>
+                <p class="profilePartTag">Some info may be visible to other people using Codevox like name and email address, click on name to edit.</p>
+                <form action="" method="post">{% csrf_token %}
+                    <input type="text" hidden name="formName" value="nameChange">
+                    <div class="profileFormPartCont">
+                        <label for="firstName">First Name
+                            <input type="text" class="profileForm nameProf" name="firstName" value="{{ user.first_name }}">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont">
+                        <label for="lastName">Last Name
+                            <input type="text" class="profileForm nameProf" name="lastName" value="{{ user.last_name }}">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont">
+                        <label for="email">Email
+                            <input type="email" disabled class="profileForm nameProf" name="email" value="{{ user.email }}">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont profileCta">
+                        <button class="profileCta" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="profileFormCont">
+                <h2 class="profilePartHead">Password</h2>
+                <p class="profilePartTag">You may reset the password. Resetting the password  may need to re login into the portal.</p>
+                {% if error %}
+                    {{ error }}
+                {% endif %}
+                {% if success %}
+                    {{ success }}
+                {% endif %}
+                <form action="" method="post">{% csrf_token %}
+                    <input type="text" hidden name="formName" value="passwordChange">
+                    <div class="profileFormPartCont">
+                        <label for="currPass">Current Password
+                            <input type="password" class="profileForm" name="currPass" placeholder="Current Password">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont">
+                        <label for="newPassword">New Password
+                            <input type="password" class="profileForm" name="newPassword" placeholder="New Password">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont">
+                        <label for="newPasswordRep">Confirm Password
+                            <input type="password" class="profileForm" name="newPasswordRep" placeholder="Confirm New Password">
+                        </label>
+                    </div>
+                    <div class="profileFormPartCont PassCta">
+                        <button class="profileCta" type="submit">Change</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script src="{% static 'js/navPop.js' %}"></script>
+    <script src="{% static 'js/colorChanger.js' %}"></script>
+    <script>
+        let $inputs = $('.nameProf');
+        $inputs.on('keyup change', function() {
+            let originalValue, currentValue
+            let dataChanged = $inputs.filter(function() {
+                if ($(this).is(':checkbox')) {
+                    originalValue = this.defaultChecked;
+                    currentValue = this.checked;
+                } else {
+                    originalValue = this.defaultValue;
+                    currentValue = this.value;
+                }
+                return originalValue !== currentValue;
+            }).length;
+
+            if (dataChanged === 0) {
+                $(".profileCta").css({"display": "none"})
+            } else {
+                $(".profileCta").css({"display": "flex"})
+            }
+        });
+    </script>
+{% endblock extraFoot %}
