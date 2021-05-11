@@ -305,6 +305,7 @@ def submit(request, question_slug):
                 question=question,
                 code=request.POST.get('code'),
                 score=response['totalscore'],
+                activity=request.POST.get('activity'),
                 status=response['verdict'],
             )
             try:

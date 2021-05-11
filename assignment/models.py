@@ -61,6 +61,7 @@ class Question(models.Model):
 class Submission(models.Model):
     submitted_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     code = models.TextField(max_length=5000, null=True, blank=True)
+    activity = models.TextField(max_length=7000, null=True, blank=True)
     question = models.ForeignKey(Question, null=True, on_delete=models.CASCADE)
     score = models.IntegerField(null=True, blank=True, default=0)
     lastRun = models.DateTimeField(null=True, blank=True, auto_now_add=True)

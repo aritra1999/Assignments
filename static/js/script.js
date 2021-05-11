@@ -24,6 +24,7 @@ function submit_code() {
     var language = document.getElementById('lang').value;
     var csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
     var slug = document.getElementById('slug').innerHTML;
+    var activity = localStorage.getItem("activity");
         
     $("#processing").css({"display": "block"});
     
@@ -39,6 +40,7 @@ function submit_code() {
         data: {
             language: language,
             code: code,
+            activity: activity,
             csrfmiddlewaretoken: csrf,
         }
     })
