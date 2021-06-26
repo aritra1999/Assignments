@@ -1,5 +1,6 @@
 import json
 import requests
+import re
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
@@ -284,12 +285,24 @@ def submit(request, question_slug):
             response['time' + str(it)] = r['time']
             response['memory' + str(it)] = r['memory']
 
-            if r['output'].strip() == output:
+
+            # check_output = re.sub('/^[ A-Za-z0-9_@./#&+-]*$/', '', r['output'].strip())
+            # output = re.sub('/^[ A-Za-z0-9_@./#&+-]*$/', '', str(output).strip())
+            check_output = r['output'].strip().replace('\n', '')
+            output = output.strip().replace('\n', '')
+
+            print(check_output, len(check_output))
+            print(output, len(output))
+
+            if check_output == output:
                 response['verdict' + str(it)] = "Passed"
                 response['score' + str(it)] = "20"
                 response['totalscore'] += 20
             else:
                 response['verdict' + str(it)] = "Failed"
+            print("\n-------------------------\n")
+
+
 
 
         if response['totalscore'] < 40:

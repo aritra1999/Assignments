@@ -96,16 +96,9 @@ class Executions(models.Model):
 
 class IO(models.Model):
     question = models.OneToOneField(Question, on_delete=models.CASCADE)
-    input1 = models.TextField(null=True, blank=True)
-    input2 = models.TextField(null=True, blank=True)
-    input3 = models.TextField(null=True, blank=True)
-    input4 = models.TextField(null=True, blank=True)
-    input5 = models.TextField(null=True, blank=True)
-    output1 = models.TextField(null=True, blank=True)
-    output2 = models.TextField(null=True, blank=True)
-    output3 = models.TextField(null=True, blank=True)
-    output4 = models.TextField(null=True, blank=True)
-    output5 = models.TextField(null=True, blank=True)
+    input = models.CharField(max_length=1000, null=True, blank=True)
+    output = models.CharField(max_length=1000, null=True, blank=True)
+    score = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=11, blank=True, null=True)
 
     def save(self, *args, **kwargs):
