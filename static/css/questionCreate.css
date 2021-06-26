@@ -13,6 +13,32 @@ label.sample {
     width: 49%;
     margin-bottom: 0;
 }
+label.sampleTest {
+    width: 49%;
+    margin-bottom: 0;
+}
+label.score{
+    color: var(--primaryColor);
+    display: block;
+    margin-top: 1rem;
+}
+input.score{
+    background: var(--textBack);
+    border: none;
+    border-bottom: 2px solid var(--primaryColor);
+    outline: none;
+    padding: 13px 20px;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px 3px 0 0;
+    font-size: 1rem;
+    color: var(--fontColorSub);
+    display: block;
+    width: 100%;
+}
+label.sampleScore{
+    width: 19%;
+    margin-bottom: 0;
+}
 h2.sampleText{
     color: var(--fontColorSubTwo);
     font-size: 1.5rem;
