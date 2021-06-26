@@ -49,61 +49,23 @@
                                 <textarea aria-required="true" name="outputFormat" rows="10" cols="50" class="assignmentInfo" required></textarea>
                             </label>
                         </div>
-                        <div class="questionCreateFormElem">
+                        <div id="inputOutputFieldCont">
+                            <div class="questionCreateFormElem" id="inputOutputField">
                             <h2 class="sampleText">Sample Test Case 1</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 1:
-                                    <textarea aria-required="true" name="input1" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 1:
-                                    <textarea aria-required="true" name="output1" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <h2 class="sampleText">Sample Test Case 2</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 2:
-                                    <textarea aria-required="true" name="input2" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 2:
-                                    <textarea aria-required="true" name="output2" rows="10" cols="50" class="assignmentInfo" required></textarea>
+                                <div class="sample">
+                                    <label class="assignmentInfo sampleTest" for="questionName">Input 1:
+                                        <textarea aria-required="true" name="input1" rows="10" cols="50" class="assignmentInfo" required></textarea>
+                                    </label>
+                                    <label class="assignmentInfo sampleTest" for="questionName">Output 1:
+                                        <textarea aria-required="true" name="output1" rows="10" cols="50" class="assignmentInfo" required></textarea>
+                                    </label>
+                                </div>
+                                <label class="score" for="score">Score 1(Out of 100):
+                                    <input type="number" class="score" placeholder="Score" required name="score">
                                 </label>
                             </div>
                         </div>
-                        <div class="questionCreateFormElem">
-                            <h2 class="sampleText">Sample Test Case 3</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 3:
-                                    <textarea aria-required="true" name="input3" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 3:
-                                    <textarea aria-required="true" name="output3" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <h2 class="sampleText">Sample Test Case 4</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 4:
-                                    <textarea aria-required="true" name="input4" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 4:
-                                    <textarea aria-required="true" name="output4" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <h2 class="sampleText">Sample Test Case 5</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 5:
-                                    <textarea aria-required="true" name="input5" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 5:
-                                    <textarea aria-required="true" name="output5" rows="10" cols="50" class="assignmentInfo" required></textarea>
-                                </label>
-                            </div>
-                        </div>
+                        <button type="button" id="addTC" class="addTC" onclick="AddIO()">Hello</button>
                         <button type="submit" class="createAssignment">Done</button>
                     </form>
                 </div>
@@ -112,7 +74,9 @@
     </div>
 {% endblock content %}
 {% block extraFoot %}
+    <script>let testCaseNumber = 2</script>
     <script src="{% static 'js/colorChanger.js' %}"></script>
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock extraFoot %}
