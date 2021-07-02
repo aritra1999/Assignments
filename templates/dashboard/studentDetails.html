@@ -19,28 +19,25 @@
                 </div>
             </div>
             <div class="tableCont">
-                <h1 class="yourAssg">Assignment Statistics</h1>
+                <h1 class="yourAssg">Submission Statistics</h1>
                 <table class="questionTable">
                     <thead>
                         <tr>
-                            <th>Assignment</th>
+                            <th>Submission</th>
                             <th>Score</th>
+                            <th>Submission Date</th>
+                            <th>View Submission</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% if assignments %}
-                            {% for assignment in assignments %}
-                                <tr>
-                                    <td>{{ assignment.name }}</td>
-                                    <td>Score</td>
-                                </tr>
-                            {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                </tr>
-                        {% endif %}
+                        {% for submission in submissions %}
+                            <tr>
+                                <td>{{ submission.status }}</td>
+                                <td>{{ submission.score }}</td>
+                                <td>{{ submission.lastRun }}</td>
+                                <td><a href="/submission/{{ submission.slug }}" target="_blank">View Submission</a></td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

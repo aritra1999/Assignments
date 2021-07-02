@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from requests.models import HTTPError
 
 from accounts.models import Profile, Enrolled
 from assignment.models import Question, Assignment, Class, Submission, BestSubmission, IO
@@ -144,7 +145,7 @@ def assignment_view(request, assignment_slug):
             questions = None
         for question in questions:
             try:
-                question.score = (BestSubmission.objects.get(submitted_by=user, question=question)).score
+                question.score = (BestSubmission.objects.get(submission__submitted_by=user, submission__question=question)).score
             except:
                 question.score = 0
             try:
@@ -159,7 +160,7 @@ def assignment_view(request, assignment_slug):
             except:
                 question.SR = 0
             try:
-                if (BestSubmission.objects.get(submitted_by=user, question=question)).score > 40:
+                if (BestSubmission.objects.get(submission__submitted_by=user, submission__question=question)).score > 40:
                     question.verdict = "Passed"
                 else:
                     question.verdict = "Failed"
@@ -178,8 +179,8 @@ def assignment_view(request, assignment_slug):
         except:
             questions = None
         for question in questions:
-            question.totalBestSub = (BestSubmission.objects.filter(question=question)).count()
-            bestScoreSum = BestSubmission.objects.filter(question=question).aggregate(Sum('score')).get('score__sum', 0.00)
+            question.totalBestSub = BestSubmission.objects.filter(submission__question=question).count()
+            bestScoreSum = BestSubmission.objects.filter(submission__question=question).aggregate(Sum('submission__score')).get('score__sum', 0.00)
             try:
                 question.averageScore = bestScoreSum / question.totalBestSub
             except:
@@ -301,7 +302,7 @@ def submit(request, question_slug):
         timeup = False
         if question.assignment.due_date >= timezone.now():
             timeup = True
-            Submission.objects.create(
+            submission = Submission.objects.create(
                 submitted_by=request.user,
                 question=question,
                 code=request.POST.get('code'),
@@ -309,21 +310,23 @@ def submit(request, question_slug):
                 activity=request.POST.get('activity'),
                 status=response['verdict'],
             )
-            try:
-                best = BestSubmission.objects.get(
-                    submitted_by=request.user,
-                    question=question
+            
+            try: 
+                bestSubmission = BestSubmission.objects.get(
+                    submisson_submitted_by=request.user,
+                    submission__question=question
                 )
-                if response['totalscore'] > best.score:
-                    print('Updating')
-                    best.score = response['totalscore']
-                    best.save()
+                
+                if response['totalscore'] >= bestSubmission.submission.score:
+                    
+                    bestSubmission.submission = submission 
+                    bestSubmission.save()
             except:
                 BestSubmission.objects.create(
-                    submitted_by=request.user,
-                    question=question,
-                    score=response['totalscore']
+                    submission = submission
                 )
+                
+            
         return JsonResponse(response)
     else:
         return JsonResponse({'error': 'Bad Request'})
@@ -337,10 +340,10 @@ def run(request, question_slug):
         except:
             return JsonResponse({'error': 'Bad Request'})
 
-        io = IO.objects.get(question=question)
+        io = IO.objects.filter(question=question).first()
 
-        input = io.input1
-        output = io.output1
+        input = io.input
+        output = io.output
 
         payload = {
                 "language": question.allowed_lang,
@@ -457,7 +460,7 @@ def submissions_view(request, question_slug):
         return render(request, 'dashboard/submissions.html', context)
     else:
         try:
-            submissionSelected = BestSubmission.objects.filter(question=questionSelected)
+            submissionSelected = BestSubmission.objects.filter(submission__question=questionSelected)
         except:
             submissionSelected = None
         print(submissionSelected)
@@ -466,7 +469,7 @@ def submissions_view(request, question_slug):
             'questionSelected': questionSelected,
             'submissionSelected': submissionSelected,
         }
-        return render(request, 'dashboard/submission_teacher.html', context)
+        return render(request, 'dashboard/submission__teacher.html', context)
 
 
 @login_required
@@ -520,15 +523,18 @@ def student_details(request, class_slug, student_email):
     studentSelected = User.objects.get(email=student_email)
     studentProfile = Profile.objects.get(user=studentSelected)
     classSelected = Class.objects.get(slug=class_slug)
+    submissions = Submission.objects.filter(submitted_by=studentSelected).order_by('-lastRun')
+    
     if userType == "teacher":
         context = {
             'title': 'Details',
             'studentSelected': studentSelected,
             'studentProfile': studentProfile,
+            'submissions': submissions
         }
         return render(request, 'dashboard/studentDetails.html', context)
     else:
-        return HttpResponse("Hello Student")
+        return HttpResponse("Oops!")
 
 
 @login_required
@@ -557,3 +563,17 @@ def profile_view(request):
             else:
                 context['error'] = "Wrong Password!"
     return render(request, 'dashboard/profile.html', context)
+
+@login_required
+def submission_view(request, submission_slug):
+    try:
+        submission = Submission.objects.get(slug=submission_slug)
+        submission.activity = json.loads(submission.activity)
+        
+    except:
+        return HttpResponse("Oops !")
+    context = {
+        'title': "Submission",
+        'submission': submission,
+    }
+    return render(request, 'dashboard/submission.html', context)

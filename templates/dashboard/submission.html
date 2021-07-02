@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+{% endblock extraHead %}
+{% block content %}
+    <div class="assignment">
+        {{ submission.question.assignment }} - {{ submission.question }}
+    </div>
+    <hr>
+    <div class="status">
+        {{ submission.submitted_by }} - {{ submission.status }}
+    </div>
+    <hr>
+    <div class="code">
+        <pre><code class="language-python">{{ submission.code }}</code></pre>
+    </div>
+    <hr>
+    <div>
+        {% for activity in submission.activity %}
+            {{ activity.time }} - {{ activity.activity }} <br>
+        {% endfor %}
+    </div>
+{% endblock content %}
+{% block extraFoot %}
+    <script>
+        document.querySelectorAll('div.code').forEach(el => {
+            hljs.highlightElement(el);
+        });
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+{% endblock extraFoot %}

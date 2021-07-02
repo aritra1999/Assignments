@@ -63,7 +63,7 @@ function submit_code() {
             }
         } else {
             $("#error").css({"display": "block"});
-            $('#error_message').text(data['error']['message'] + "<br>");
+            $('#error_message').html(data['error']['message'] + "<br />");
             $('#error_message').append(data['error']['output']);
         }
     })

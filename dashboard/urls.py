@@ -17,6 +17,7 @@ from .views import (
     remove_class,
     remove_assignment,
     student_details,
+    submission_view,
     run,
     profile_view,
 )
@@ -39,5 +40,6 @@ urlpatterns = [
     path('class/remove/<class_slug>', remove_class, name="removeClass"),
     path('assignment/remove/<class_slug>/<assignment_slug>', remove_assignment, name="removeAssignment"),
     path('student/<class_slug>/<student_email>', student_details, name='studentDetails'),
+    path('submission/<submission_slug>', submission_view, name='submisison_view'),
     path('profile/', profile_view, name='profile'),
 ]
