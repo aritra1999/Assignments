@@ -53,12 +53,13 @@ function submit_code() {
                     "<tr><td>" + i + ". </td><td>" + data['verdict' + i] + ".</td><td> Time taken: " + data['time' + i] + "</td><td> Memory used: " + data['memory' + i] + "</td><td> Score: " + data['score' + i] + "</td></tr>"
                 );
             }
-            $("#success_message").append("<br>Total Score: " + data['totalscore'] + "/100<br><br>" );
+            $("#success_message").append("<br>Total Score: " + data['totalscore'] + "/" + data['teacherscore'] + "<br><br>" );
+
             if(data['totalscore'] > 20){
                 $("#success").css({"display": "block"});
             }else{
                 $("#error").css({"display": "block"});
-                $("#error_message").append("Wrong Answer!");
+                $("#error_message").append("Need to pass atleast 2 test cases! :( ");
             }
         } else {
             $("#error").css({"display": "block"});

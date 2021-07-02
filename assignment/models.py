@@ -96,8 +96,8 @@ class Executions(models.Model):
 
 class IO(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    input = models.CharField(max_length=1000, null=True, blank=True)
-    output = models.CharField(max_length=1000, null=True, blank=True)
+    input = models.TextField(max_length=1000, null=True, blank=True)
+    output = models.TextField(max_length=1000, null=True, blank=True)
     score = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=11, blank=True, null=True)
 

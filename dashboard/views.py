@@ -254,18 +254,18 @@ def submit(request, question_slug):
         except:
             return JsonResponse({'error': 'Bad Request'})
 
-        io = IO.objects.get(question=question).__dict__
-
+        ios = IO.objects.filter(question=question)
+        
         response['totalscore'] = 0
-        for it in range(1, 6):
-            
-            input = io['input' + str(it)]
-            output = io['output' + str(it)]
-
+        response['teacherscore'] = 0
+        it = 0
+        for io in ios:
+            response['teacherscore'] = io.score
+            it += 1
             payload = {
                 "language": question.allowed_lang,
                 "code": request.POST.get('code'),
-                "input": input
+                "input": io.input
             }
 
             url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
@@ -281,24 +281,16 @@ def submit(request, question_slug):
             response['time' + str(it)] = r['time']
             response['memory' + str(it)] = r['memory']
 
-
-            # check_output = re.sub('/^[ A-Za-z0-9_@./#&+-]*$/', '', r['output'].strip())
-            # output = re.sub('/^[ A-Za-z0-9_@./#&+-]*$/', '', str(output).strip())
-            check_output = r['output'].strip().replace('\n', '')
-            output = output.strip().replace('\n', '')
-
-            print(check_output, len(check_output))
-            print(output, len(output))
+            check_output = r['output'].strip().replace('\r', '').split('\n')
+            output = io.output.strip().replace('\r', '').split('\n')
 
             if check_output == output:
                 response['verdict' + str(it)] = "Passed"
-                response['score' + str(it)] = "20"
-                response['totalscore'] += 20
+                response['score' + str(it)] = str(io.score)
+                response['totalscore'] += io.score
             else:
                 response['verdict' + str(it)] = "Failed"
-            print("\n-------------------------\n")
-
-
+                response['score' + str(it)] = "0"
 
 
         if response['totalscore'] < 40:
