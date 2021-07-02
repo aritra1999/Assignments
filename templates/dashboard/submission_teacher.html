@@ -1,74 +1,69 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block extraHead %}
-    <style>
-        td span.passVerdict{
-            background-color: #00AB66;
-            color: #FFFFFF;
-            padding: 4px 5px;
-            border-radius: 6px;
-            width: 80px;
-            display: inline-block;
-            text-align: center;
-            font-weight: 500;
-        }
-        td span.failVerdict{
-            background-color: #E16541;
-            color: #FFFFFF;
-            padding: 4px 5px;
-            border-radius: 6px;
-            width: 80px;
-            display: inline-block;
-            text-align: center;
-            font-weight: 500;
-        }
-    </style>
-    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
-    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
-    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
-{% endblock extraHead %}
-{% block content %}
-    {% include 'base/dashnav.html' %}
-    <div class="bodyCont">
-        <div class="insideCont">
-            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
-            <div class="questionCont">
-                <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
-            </div>
-            <div class="tableCont">
-                <table class="questionTable" id="submissionTable">
-                    <thead>
-                        <tr>
-                            <th>Student Name</th>
-                            <th>Email</th>
-                            <th>Best Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if submissionSelected %}
-                            {% for submission in submissionSelected %}
-                                <tr>
-                                    <td>{{ submission.submitted_by.first_name }} {{ submission.submitted_by.last_name }}</td>
-                                    <td>{{ submission.submitted_by }}</td>
-                                    <td id="score">{{ submission.score }}</td>
-                                </tr>
-                            {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td>NA</td>
-                                    <td>NA</td>
-                                </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+{% extends 'base/base.html' %} {% load static %} {% block extraHead %}
+<style>
+  td span.passVerdict {
+    background-color: #00ab66;
+    color: #ffffff;
+    padding: 4px 5px;
+    border-radius: 6px;
+    width: 80px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+  }
+  td span.failVerdict {
+    background-color: #e16541;
+    color: #ffffff;
+    padding: 4px 5px;
+    border-radius: 6px;
+    width: 80px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+  }
+</style>
+<link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+<link rel="stylesheet" href="{% static 'css/assignments.css' %}" />
+<link rel="stylesheet" href="{% static 'css/classTeacher.css' %}" />
+<link rel="stylesheet" href="{% static 'css/questions.css' %}" />
+<link rel="stylesheet" href="{% static 'css/dashNav.css' %}" />
+<link rel="stylesheet" href="{% static 'css/assignment_create.css' %}" />
+{% endblock extraHead %} {% block content %} {% include 'base/dashnav.html' %}
+<div class="bodyCont">
+  <div class="insideCont">
+    <div class="questionCont">
+      <h1 class="assignmentHead">{{ questionSelected.title }}</h1>
     </div>
-{% endblock content %}
-{% block extraFoot %}
-    <script src="{% static 'js/colorChanger.js' %}"></script>
-    <script src="{% static 'js/navPop.js' %}"></script>
+    <div class="tableCont">
+      <table class="questionTable" id="submissionTable">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Email</th>
+            <th>Best Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if submissionSelected %} {% for submission in submissionSelected %}
+          <tr>
+            <td>
+              {{ submission.submitted_by.first_name }} {{
+              submission.submitted_by.last_name }}
+            </td>
+            <td>{{ submission.submitted_by }}</td>
+            <td id="score">{{ submission.score }}</td>
+          </tr>
+          {% endfor %} {% else %}
+          <tr>
+            <td>NA</td>
+            <td>NA</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block extraFoot %}
+<script src="{% static 'js/colorChanger.js' %}"></script>
+<script src="{% static 'js/navPop.js' %}"></script>
 {% endblock extraFoot %}
