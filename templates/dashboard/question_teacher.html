@@ -1,104 +1,193 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block extraHead %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assignments.css' %}">
-    <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}">
-    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dashNav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}">
-    <link rel="stylesheet" href="{% static 'css/questionCreate.css' %}">
-{% endblock extraHead %}
-{% block content %}
-    {% include 'base/dashnav.html' %}
-    <div class="bodyCont">
-        <div class="insideCont">
-            <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
-            <div class="upDate">
-                <h1 class="createAssignment">Edit this question</h1>
-                <button type="button" class="updateBtn" id="disabledInputToggle">Edit question</button>
-            </div>
-            <div class="assignmentPart">
-                <h1 class="YoCanNow">You can now edit the question</h1>
-                <div class="questionBody">
-                    <form action="" method="POST">{% csrf_token %}
-                        <div class="questionCreateFormElem">
-                            <label class="assignmentInfo" for="questionName">Question Name:
-                                <input aria-required="true" type="text" value="{{ question.title }}" disabled name="questionName" class="assignmentInfo disabledInput" required/>
-                            </label>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <label class="assignmentInfo" for="questionName">Allowed Language:
-                                <select aria-required="true" name="allowedLang" id="allowedLang" disabled class="assignmentInfo disabledInput" required>
-                                    <option value="{{ question.allowed_lang }}" selected>{{ question.allowed_lang }}</option>
-                                    <option value="C">C</option>
-                                    <option value="CPP">C++</option>
-                                    <option value="Python">Python</option>
-                                    <option value="Java">Java</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <label class="assignmentInfo" for="questionName">Problem Statement:
-                                <textarea aria-required="true" disabled name="problemStatement" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.body }}</textarea>
-                            </label>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <label class="assignmentInfo" for="questionName">Input Description:
-                                <textarea aria-required="true" disabled name="inputFormat" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.input_format }}</textarea>
-                            </label>
-                        </div>
-                        <div class="questionCreateFormElem">
-                            <label class="assignmentInfo" for="questionName">Output Description:
-                                <textarea aria-required="true" disabled name="outputFormat" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.output_format }}</textarea>
-                            </label>
-                        </div>
-                        <div id="inputOutputFieldCont">
-                            {% for io in ios %}
-                            <div class="questionCreateFormElem" id="inputOutputField">
-                                <h2 class="sampleText">Sample Test Case {{ forloop.counter }}</h2>
-                                <div class="sample">
-                                    <label class="assignmentInfo sampleTest" for="questionName">Input {{ forloop.counter }}:
-                                        <textarea aria-required="true" name="input{{ forloop.counter }}" rows="10" cols="50" class="assignmentInfo" required>{{ io.input }}</textarea>
-                                    </label>
-                                    <label class="assignmentInfo sampleTest" for="questionName">Output {{ forloop.counter }}:
-                                        <textarea aria-required="true" name="output{{ forloop.counter }}" rows="10" cols="50" class="assignmentInfo" required>{{ io.output }}</textarea>
-                                    </label>
-                                </div>
-                                <label class="score" for="score">Score {{ forloop.counter }}:
-                                    <input type="number" class="score" name="score{{ forloop.counter }}" placeholder="Score" value="{{ io.score }}" required name="score">
-                                </label>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="testCases" id="testCase" value="{{ ios.count }}" />
-                        <div class="updateBtn">
-                            <button type="button" id="addTC" class="addTC" onclick="AddIO()">Add Test Case</button>
-                            <button type="submit" class="createAssignment" id="updateQuestion">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+{% extends 'base/base.html' %} {% load static %} {% block extraHead %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+<link rel="stylesheet" href="{% static 'css/assignments.css' %}" />
+<link rel="stylesheet" href="{% static 'css/classTeacher.css' %}" />
+<link rel="stylesheet" href="{% static 'css/questions.css' %}" />
+<link rel="stylesheet" href="{% static 'css/dashNav.css' %}" />
+<link rel="stylesheet" href="{% static 'css/assignment_create.css' %}" />
+<link rel="stylesheet" href="{% static 'css/questionCreate.css' %}" />
+{% endblock extraHead %} {% block content %} {% include 'base/dashnav.html' %}
+<div class="bodyCont">
+  <div class="insideCont">
+    <div class="upDate">
+      <h1 class="createAssignment">Edit this question</h1>
+      <button type="button" class="updateBtn" id="disabledInputToggle">
+        Edit question
+      </button>
     </div>
-{% endblock content %}
-{% block extraFoot %}
-    
-    <script src="{% static 'js/colorChanger.js' %}"></script>
-    <script src="{% static 'js/navPop.js' %}"></script>
-    <script src="{% static 'js/assignments.js' %}"></script>
-    <script>
-        let disabledInputToggle = document.getElementById("disabledInputToggle")
-        disabledInputToggle.addEventListener("click", enableForm)
-        let head = document.querySelector(".YoCanNow")
-        head.style.display="none"
-        function enableForm(){
-            let updateButton = document.getElementById("updateQuestion")
-            updateButton.style.cursor="pointer"
-            head.style.display="block"
-            let ele = $(".disabledInput")
-            ele.removeAttr("disabled")
-        }
-    </script>
+    <div class="assignmentPart">
+      <h1 class="YoCanNow">You can now edit the question</h1>
+      <div class="questionBody">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="questionCreateFormElem">
+            <label class="assignmentInfo" for="questionName"
+              >Question Name:
+              <input
+                aria-required="true"
+                type="text"
+                value="{{ question.title }}"
+                disabled
+                name="questionName"
+                class="assignmentInfo disabledInput"
+                required
+              />
+            </label>
+          </div>
+          <div class="questionCreateFormElem">
+            <label class="assignmentInfo" for="questionName"
+              >Allowed Language:
+              <select
+                aria-required="true"
+                name="allowedLang"
+                id="allowedLang"
+                disabled
+                class="assignmentInfo disabledInput"
+                required
+              >
+                <option value="{{ question.allowed_lang }}" selected>
+                  {{ question.allowed_lang }}
+                </option>
+                <option value="C">C</option>
+                <option value="CPP">C++</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+              </select>
+            </label>
+          </div>
+          <div class="questionCreateFormElem">
+            <label class="assignmentInfo" for="questionName"
+              >Problem Statement:
+              <textarea
+                aria-required="true"
+                disabled
+                name="problemStatement"
+                rows="10"
+                cols="50"
+                class="assignmentInfo disabledInput"
+                required
+              >
+{{ question.body }}</textarea
+              >
+            </label>
+          </div>
+          <div class="questionCreateFormElem">
+            <label class="assignmentInfo" for="questionName"
+              >Input Description:
+              <textarea
+                aria-required="true"
+                disabled
+                name="inputFormat"
+                rows="10"
+                cols="50"
+                class="assignmentInfo disabledInput"
+                required
+              >
+{{ question.input_format }}</textarea
+              >
+            </label>
+          </div>
+          <div class="questionCreateFormElem">
+            <label class="assignmentInfo" for="questionName"
+              >Output Description:
+              <textarea
+                aria-required="true"
+                disabled
+                name="outputFormat"
+                rows="10"
+                cols="50"
+                class="assignmentInfo disabledInput"
+                required
+              >
+{{ question.output_format }}</textarea
+              >
+            </label>
+          </div>
+          <div id="inputOutputFieldCont">
+            {% for io in ios %}
+            <div class="questionCreateFormElem" id="inputOutputField">
+              <h2 class="sampleText">Sample Test Case {{ forloop.counter }}</h2>
+              <div class="sample">
+                <label class="assignmentInfo sampleTest" for="questionName"
+                  >Input {{ forloop.counter }}:
+                  <textarea
+                    aria-required="true"
+                    name="input{{ forloop.counter }}"
+                    rows="10"
+                    cols="50"
+                    class="assignmentInfo"
+                    required
+                  >
+{{ io.input }}</textarea
+                  >
+                </label>
+                <label class="assignmentInfo sampleTest" for="questionName"
+                  >Output {{ forloop.counter }}:
+                  <textarea
+                    aria-required="true"
+                    name="output{{ forloop.counter }}"
+                    rows="10"
+                    cols="50"
+                    class="assignmentInfo"
+                    required
+                  >
+{{ io.output }}</textarea
+                  >
+                </label>
+              </div>
+              <label class="score" for="score"
+                >Score {{ forloop.counter }}:
+                <input
+                  type="number"
+                  class="score"
+                  name="score{{ forloop.counter }}"
+                  placeholder="Score"
+                  value="{{ io.score }}"
+                  required
+                  name="score"
+                />
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          <input
+            type="hidden"
+            name="testCases"
+            id="testCase"
+            value="{{ ios.count }}"
+          />
+          <div class="updateBtn" id="editQuestionDiv">
+            <button type="button" id="addTC" class="addTC" onclick="AddIO()">
+              Add Test Case
+            </button>
+            <button type="submit" class="createAssignment" id="updateQuestion">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block extraFoot %}
+
+<script src="{% static 'js/colorChanger.js' %}"></script>
+<script src="{% static 'js/navPop.js' %}"></script>
+<script src="{% static 'js/assignments.js' %}"></script>
+<script>
+  let disabledInputToggle = document.getElementById("disabledInputToggle");
+  disabledInputToggle.addEventListener("click", enableForm);
+  let head = document.querySelector(".YoCanNow");
+  let updateButton = document.getElementById("updateQuestion");
+  let editQuestionDiv = document.getElementById("editQuestionDiv");
+  head.style.display = "none";
+  function enableForm() {
+    editQuestionDiv.style.display = "flex";
+    updateButton.style.cursor = "pointer";
+    head.style.display = "block";
+    let ele = $(".disabledInput");
+    ele.removeAttr("disabled");
+  }
+</script>
 {% endblock extraFoot %}
