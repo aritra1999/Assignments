@@ -54,18 +54,27 @@
                                 <textarea aria-required="true" disabled name="outputFormat" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ question.output_format }}</textarea>
                             </label>
                         </div>
-                        <div class="questionCreateFormElem">
-                            <h2 class="sampleText">Sample Test Case 1</h2>
-                            <div class="sample">
-                                <label class="assignmentInfo sample" for="questionName">Sample Input 1:
-                                    <textarea aria-required="true" disabled name="input1" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.input1 }}</textarea>
-                                </label>
-                                <label class="assignmentInfo sample" for="questionName">Sample Output 1:
-                                    <textarea aria-required="true" disabled name="output1" rows="10" cols="50" class="assignmentInfo disabledInput" required>{{ io.output1 }}</textarea>
+                        <div id="inputOutputFieldCont">
+                            {% for io in ios %}
+                            <div class="questionCreateFormElem" id="inputOutputField">
+                                <h2 class="sampleText">Sample Test Case {{ forloop.counter }}</h2>
+                                <div class="sample">
+                                    <label class="assignmentInfo sampleTest" for="questionName">Input {{ forloop.counter }}:
+                                        <textarea aria-required="true" name="input{{ forloop.counter }}" rows="10" cols="50" class="assignmentInfo" required>{{ io.input }}</textarea>
+                                    </label>
+                                    <label class="assignmentInfo sampleTest" for="questionName">Output {{ forloop.counter }}:
+                                        <textarea aria-required="true" name="output{{ forloop.counter }}" rows="10" cols="50" class="assignmentInfo" required>{{ io.output }}</textarea>
+                                    </label>
+                                </div>
+                                <label class="score" for="score">Score {{ forloop.counter }}:
+                                    <input type="number" class="score" name="score{{ forloop.counter }}" placeholder="Score" value="{{ io.score }}" required name="score">
                                 </label>
                             </div>
+                            {% endfor %}
                         </div>
+                        <input type="hidden" name="testCases" id="testCase" value="{{ ios.count }}" />
                         <div class="updateBtn">
+                            <button type="button" id="addTC" class="addTC" onclick="AddIO()">Add Test Case</button>
                             <button type="submit" class="createAssignment" id="updateQuestion">Save Changes</button>
                         </div>
                     </form>
@@ -75,6 +84,7 @@
     </div>
 {% endblock content %}
 {% block extraFoot %}
+    
     <script src="{% static 'js/colorChanger.js' %}"></script>
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>

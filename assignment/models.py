@@ -95,7 +95,7 @@ class Executions(models.Model):
 
 
 class IO(models.Model):
-    question = models.OneToOneField(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     input = models.CharField(max_length=1000, null=True, blank=True)
     output = models.CharField(max_length=1000, null=True, blank=True)
     score = models.IntegerField(blank=True, null=True)

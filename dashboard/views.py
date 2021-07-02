@@ -211,7 +211,7 @@ def question_view(request, question_slug):
         return render(request, 'dashboard/question.html', context)
     else:
         question = Question.objects.get(slug=question_slug)
-        io = IO.objects.get(question=question)
+        ios = IO.objects.filter(question=question)
         if request.method == "POST":
             Question.objects.filter(slug=question_slug).update(
                 title=request.POST.get('questionName'),
@@ -220,23 +220,19 @@ def question_view(request, question_slug):
                 body=request.POST.get('problemStatement'),
                 output_format=request.POST.get('outputFormat')
             )
-            IO.objects.filter(question=question).update(
-                input1=request.POST.get('input1'),
-                input2=request.POST.get('input2'),
-                input3=request.POST.get('input3'),
-                input4=request.POST.get('input4'),
-                input5=request.POST.get('input5'),
-                output1=request.POST.get('output1'),
-                output2=request.POST.get('output2'),
-                output3=request.POST.get('output3'),
-                output4=request.POST.get('output4'),
-                output5=request.POST.get('output5'),
-            )
+            ios.delete()            
+            for testCase in range(1, int(request.POST.get('testCases')) + 1):
+                IO.objects.create(
+                    question=question,
+                    input=request.POST.get('input' + str(testCase)),
+                    output=request.POST.get('output' + str(testCase)),
+                    score=request.POST.get('score' + str(testCase)),
+                )
             return redirect("/dashboard/assignment/" + question.assignment.slug)
         context = {
             'title': 'Question',
             'question': question,
-            'io': io,
+            'ios': ios,
         }
         return render(request, 'dashboard/question_teacher.html', context)
 
@@ -418,21 +414,18 @@ def question_create(request, assignment_slug):
             output_format=request.POST.get('outputFormat'),
             allowed_lang=request.POST.get('allowedLang'),
         )
-
-        IO.objects.create(
-            question=question,
-            input1=request.POST.get('input1'),
-            input2=request.POST.get('input2'),
-            input3=request.POST.get('input3'),
-            input4=request.POST.get('input4'),
-            input5=request.POST.get('input5'),
-            output1=request.POST.get('output1'),
-            output2=request.POST.get('output2'),
-            output3=request.POST.get('output3'),
-            output4=request.POST.get('output4'),
-            output5=request.POST.get('output5'),
-        )
-
+        
+        for testCase in range(1, int(request.POST.get('testCases')) + 1):
+            IO.objects.create(
+                question=question,
+                input=request.POST.get('input' + str(testCase)),
+                output=request.POST.get('output' + str(testCase)),
+                score=request.POST.get('score' + str(testCase)),
+            )
+            
+            
+            
+        
         return redirect("/dashboard/assignment/" + assignment_slug)
     return render(request, 'dashboard/questionCreate.html', context)
 

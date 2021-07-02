@@ -51,7 +51,7 @@
                         </div>
                         <div id="inputOutputFieldCont">
                             <div class="questionCreateFormElem" id="inputOutputField">
-                            <h2 class="sampleText">Sample Test Case 1</h2>
+                                <h2 class="sampleText">Sample Test Case 1</h2>
                                 <div class="sample">
                                     <label class="assignmentInfo sampleTest" for="questionName">Input 1:
                                         <textarea aria-required="true" name="input1" rows="10" cols="50" class="assignmentInfo" required></textarea>
@@ -60,13 +60,14 @@
                                         <textarea aria-required="true" name="output1" rows="10" cols="50" class="assignmentInfo" required></textarea>
                                     </label>
                                 </div>
-                                <label class="score" for="score">Score 1(Out of 100):
-                                    <input type="number" class="score" placeholder="Score" required name="score">
+                                <label class="score" for="score">Score 1:
+                                    <input type="number" class="score" name="score1" placeholder="Score" required name="score">
                                 </label>
                             </div>
                         </div>
-                        <button type="button" id="addTC" class="addTC" onclick="AddIO()">Hello</button>
-                        <button type="submit" class="createAssignment">Done</button>
+                        <input type="hidden" name="testCases" id="testCase" value="1" />
+                        <button type="button" id="addTC" class="addTC" onclick="AddIO()">Add Test Case</button>
+                        <button type="submit" class="createAssignment" style="float: right;">Done</button>
                     </form>
                 </div>
             </div>
@@ -74,9 +75,8 @@
     </div>
 {% endblock content %}
 {% block extraFoot %}
-    <script>let testCaseNumber = 2</script>
     <script src="{% static 'js/colorChanger.js' %}"></script>
     <script src="{% static 'js/navPop.js' %}"></script>
     <script src="{% static 'js/assignments.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock extraFoot %}

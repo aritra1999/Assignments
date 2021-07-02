@@ -54,7 +54,7 @@ div.updateBtn{
     display: flex;
     justify-content: flex-end;
 }
-button.createAssignment{
+button.createAssignment, .addTC{
     background-color: var(--primaryColor);
     color: #FFFFFF;
     outline: none;

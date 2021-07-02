@@ -3,8 +3,6 @@ let studentToggle = document.getElementById("studentToggle")
 let assignmentContainer = document.getElementById("assignmentContainer")
 let studentContainer = document.getElementById("studentContainer")
 
-assignmentToggle.addEventListener("click", openAssignment)
-
 function openAssignment() {
     assignmentContainer.style.display = "block"
     studentContainer.style.display = "none"
@@ -22,7 +20,10 @@ function openStudent() {
 }
 
 function AddIO() {
+    let testCaseNumber = parseInt($('#testCase').val()) + 1;
+    console.log(testCaseNumber);
     let IOField = $("#inputOutputFieldCont")
+    $('#testCase').val(testCaseNumber);
     if(testCaseNumber <= 5){
         IOField.append(`<div class="questionCreateFormElem" id="inputOutputField">
                             <h2 class="sampleText">Sample Test Case ${testCaseNumber}</h2>
@@ -34,12 +35,15 @@ function AddIO() {
                                         <textarea aria-required="true" name="output${testCaseNumber}" rows="10" cols="50" class="assignmentInfo" required></textarea>
                                     </label>
                                 </div>
-                                <label class="score" for="score">Score ${testCaseNumber}(Out of 100):
-                                    <input type="number" class="score" placeholder="Score" required name="score${testCaseNumber}">
+                                <label class="score" for="score">Score ${testCaseNumber}
+                                    <input type="number" class="score" name="score${testCaseNumber}"  placeholder="Score" required name="score${testCaseNumber}">
                                 </label>
-                            </div>`)
-    testCaseNumber++
-    } else {
-        document.getElementById("addTC").style.display="none"
+                            </div>`);
+        
+        if(testCaseNumber == 5){
+            document.getElementById("addTC").style.display="none";
+        }
+        testCaseNumber++;
     }
+    
 }
