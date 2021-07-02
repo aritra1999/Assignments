@@ -1,11 +1,13 @@
 {% extends 'base/base.html' %} {% load static %} {% block extraHead %}
-<link rel="stylesheet" href="{% static 'css/dash.css' %}" />
-<link rel="stylesheet" href="{% static 'css/assignments.css' %}" />
-<link rel="stylesheet" href="{% static 'css/classTeacher.css' %}" />
-<link rel="stylesheet" href="{% static 'css/questions.css' %}" />
-<link rel="stylesheet" href="{% static 'css/dashNav.css' %}" />
-<link rel="stylesheet" href="{% static 'css/assignment_create.css' %}" />
-{% endblock extraHead %} {% block content %} {% include 'base/dashnav.html' %}
+  <link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/assignments.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/questions.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/dashNav.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}" />
+{% endblock extraHead %}
+{% block content %}
+{% include 'base/dashnav.html' %}
 <div class="bodyCont">
   <div class="insideCont">
     <div class="questionCont">
