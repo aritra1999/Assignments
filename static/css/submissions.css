@@ -1,0 +1,56 @@
+div.assignmentNameBlob{
+  width: 100%;
+  border-bottom: 1px solid var(--secondaryColorFont);
+  padding: 0 0 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+div.assignmentNameBlob div{
+  display: flex;
+  align-items: center;
+}
+h1.submissionHeadText{
+  color: var(--fontColor);
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+span.submissionStat{
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 6px;
+  color: #FFF;
+  font-size: 0.9rem;
+  letter-spacing: 0.02rem;
+  margin-left: 0.5rem;
+}
+span.passsedSubmission{
+  background-color: #42ba96;
+}
+span.failedSubmission{
+  background-color: #df4759;
+}
+p.nameStatus{
+  color: var(--fontColor);
+  font-size: 1rem;
+}
+div.codeSection{
+  padding: 1rem 0;
+}
+div.codeSection h3{
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--fontColor);
+}
+div.code{
+  margin-top: 0.7rem;
+  color: var(--fontColor);
+  background: var(--assignmentCard);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+div.tableCont h3{
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--fontColor);
+  margin-bottom: 0.7rem;
+}
