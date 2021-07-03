@@ -1,32 +1,73 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extraHead %}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
-{% endblock extraHead %}
+  <link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/assignments.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/classTeacher.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/questions.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/dashNav.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/assignment_create.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/submissions.css' %}" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css" />
+{%endblock extraHead %}
 {% block content %}
-    <div class="assignment">
-        {{ submission.question.assignment }} - {{ submission.question }}
+  {% include 'base/dashnav.html'%}
+  <div class="bodyCont">
+    <div class="insideCont">
+      <a class="backBtn" href="{{request.META.HTTP_REFERER}}">Go back</a>
+      <div class="assignmentNameBlob">
+        <h1 class="submissionHeadText">{{ submission.question.assignment }} - {{ submission.question }}</h1>
+        <div>
+          <p class="nameStatus">{{ submission.submitted_by }}</p>
+          {% if submission.status == "Passed" %}
+            <span class="submissionStat passsedSubmission">{{ submission.status }}</span>
+          {% else %}
+            <span class="submissionStat failedSubmission">{{ submission.status }}</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="codeSection">
+        <h3>Submitted Code</h3>
+        <div class="code">
+          <pre><code class="language-python">{{ submission.code }}</code></pre>
+        </div>
+      </div>
+      <div class="tableCont">
+        <h3>Activity Table</h3>
+        <table class="questionTable">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Activity Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if submission.activity  %}
+              {% for activity in submission.activity %}
+              <tr>
+                <td>{{ activity.time }}</td>
+                <td>{{ activity.activity }}</td>
+              </tr>
+              {% endfor %} {% else %}
+              <tr>
+                <td>NA</td>
+                <td>NA</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
     </div>
-    <hr>
-    <div class="status">
-        {{ submission.submitted_by }} - {{ submission.status }}
-    </div>
-    <hr>
-    <div class="code">
-        <pre><code class="language-python">{{ submission.code }}</code></pre>
-    </div>
-    <hr>
-    <div>
-        {% for activity in submission.activity %}
-            {{ activity.time }} - {{ activity.activity }} <br>
-        {% endfor %}
-    </div>
+  </div>
 {% endblock content %}
 {% block extraFoot %}
-    <script>
-        document.querySelectorAll('div.code').forEach(el => {
-            hljs.highlightElement(el);
-        });
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+  <script>
+    document.querySelectorAll("div.code").forEach((el) => {
+      hljs.highlightElement(el);
+    });
+  </script>
+  <script src="{% static 'js/colorChanger.js' %}"></script>
+  <script src="{% static 'js/navPop.js' %}"></script>
+  <script src="{% static 'js/assignments.js' %}"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 {% endblock extraFoot %}

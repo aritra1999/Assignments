@@ -469,7 +469,7 @@ def submissions_view(request, question_slug):
             'questionSelected': questionSelected,
             'submissionSelected': submissionSelected,
         }
-        return render(request, 'dashboard/submission__teacher.html', context)
+        return render(request, 'dashboard/submission_teacher.html', context)
 
 
 @login_required
