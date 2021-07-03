@@ -566,14 +566,19 @@ def profile_view(request):
 
 @login_required
 def submission_view(request, submission_slug):
-    try:
-        submission = Submission.objects.get(slug=submission_slug)
-        submission.activity = json.loads(submission.activity)
-        
-    except:
-        return HttpResponse("Oops !")
-    context = {
-        'title': "Submission",
-        'submission': submission,
-    }
-    return render(request, 'dashboard/submission.html', context)
+    profile = Profile.objects.get(user=request.user)
+    if profile.type == "teacher":
+        try:
+            submission = Submission.objects.get(slug=submission_slug)
+            submission.activity = json.loads(submission.activity)
+            if submission.submitted_by != request.user:
+                return redirect('/dashboard')
+        except:
+            return HttpResponse("Oops !")
+        context = {
+            'title': "Submission",
+            'submission': submission,
+        }
+        return render(request, 'dashboard/submission.html', context)
+    else:
+        return redirect('/dashboard')
