@@ -6,17 +6,21 @@ editor.setOptions({
     enableSnippets: true,
     enableLiveAutocompletion: true,
 });
+editor.setFontSize(18);
+
+let lang = $('#lang').val();
+
+if(lang == "CPP" || lang == "C"){
+    lang = "C_CPP";
+}
+
+lang = lang.toLowerCase();
 
 
 editor.setTheme("ace/theme/nord_dark");
-editor.session.setMode("ace/mode/python");
-editor.setFontSize(16);
+editor.session.setMode("ace/mode/" + lang);
 
-editor.setOptions({
-    enableBasicAutocompletion: true,
-    enableSnippets: true,
-    enableLiveAutocompletion: true,
-});
+
 
 function submit_code() {
     
@@ -38,7 +42,6 @@ function submit_code() {
         method: 'POST',
         url: '/dashboard/submit/' + slug,
         data: {
-            language: language,
             code: code,
             activity: activity,
             csrfmiddlewaretoken: csrf,

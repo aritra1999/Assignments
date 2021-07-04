@@ -16,6 +16,7 @@ from requests.models import HTTPError
 from accounts.models import Profile, Enrolled
 from assignment.models import Question, Assignment, Class, Submission, BestSubmission, IO
 
+from .run import run_code
 
 def home_view(request):
     if request.user.is_authenticated:
@@ -261,16 +262,24 @@ def submit(request, question_slug):
         response['teacherscore'] = 0
         it = 0
         for io in ios:
-            response['teacherscore'] = io.score
+            response['teacherscore'] += io.score
             it += 1
-            payload = {
-                "language": question.allowed_lang,
-                "code": request.POST.get('code'),
-                "input": io.input
-            }
+            
+            if question.allowed_lang == "Python":
+                payload = {
+                        "language": question.allowed_lang,
+                        "code": request.POST.get('code'),
+                        "input": io.input
+                    }
 
-            url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
-            r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+                url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
+                r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+            else: 
+                r = {}
+                r['verdict'], r['message'], r['output'], r['time'], r['memory'] = run_code(
+                    request.POST.get('code'), io.input, (question.allowed_lang).lower()
+                )
+            
 
             if r['verdict'] == "error":
                 return JsonResponse({
@@ -279,19 +288,19 @@ def submit(request, question_slug):
                 })
 
             response['status'] = "success"
-            response['time' + str(it)] = r['time']
-            response['memory' + str(it)] = r['memory']
+            response['time' + str(it)] = str(r['time']) + " MB"
+            response['memory' + str(it)] = str(r['memory']) + " Sec"
 
             check_output = r['output'].strip().replace('\r', '').split('\n')
             output = io.output.strip().replace('\r', '').split('\n')
 
             if check_output == output:
                 response['verdict' + str(it)] = "Passed"
-                response['score' + str(it)] = str(io.score)
+                response['score' + str(it)] = str(io.score)  + "/" + str(io.score)
                 response['totalscore'] += io.score
             else:
                 response['verdict' + str(it)] = "Failed"
-                response['score' + str(it)] = "0"
+                response['score' + str(it)] = "0/" + str(io.score)
 
 
         if response['totalscore'] < 40:
@@ -344,27 +353,37 @@ def run(request, question_slug):
 
         input = io.input
         output = io.output
+        
+        if question.allowed_lang == "Python":
+            payload = {
+                    "language": question.allowed_lang,
+                    "code": request.POST.get('code'),
+                    "input": input
+                }
 
-        payload = {
-                "language": question.allowed_lang,
-                "code": request.POST.get('code'),
-                "input": input
-            }
-
-        url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
-        r = json.loads(requests.post(url, data=json.dumps(payload)).text)
-
+            url = "https://nvdk5lgoek.execute-api.ap-south-1.amazonaws.com/JustRunStage"
+            r = json.loads(requests.post(url, data=json.dumps(payload)).text)
+        else: 
+            r = {}
+            r['verdict'], r['message'], r['output'], r['time'], r['memory'] = run_code(
+                request.POST.get('code'), input, (question.allowed_lang).lower()
+            )
+        
         if r['verdict'] == "error":
             return JsonResponse({
                 'status': 'error',
                 'error': r
             })
+        
 
         response['status'] = "success"
-        response['time'] = r['time']
-        response['memory'] = r['memory']
+        response['time'] = str(r['time']) + " MB"
+        response['memory'] = str(r['memory']) + " Sec"
 
-        if r['output'].strip() == output:
+        check_output = r['output'].strip().replace('\r', '').split('\n')
+        output = io.output.strip().replace('\r', '').split('\n')
+
+        if check_output == output:
             response['verdict'] = "Passed"
         else:
             response['verdict'] = "Failed"
@@ -567,18 +586,17 @@ def profile_view(request):
 @login_required
 def submission_view(request, submission_slug):
     profile = Profile.objects.get(user=request.user)
-    if profile.type == "teacher":
-        try:
-            submission = Submission.objects.get(slug=submission_slug)
-            submission.activity = json.loads(submission.activity)
-            if submission.submitted_by != request.user:
-                return redirect('/dashboard')
-        except:
-            return HttpResponse("Oops !")
-        context = {
-            'title': "Submission",
-            'submission': submission,
-        }
-        return render(request, 'dashboard/submission.html', context)
-    else:
-        return redirect('/dashboard')
+    
+    try:
+        submission = Submission.objects.get(slug=submission_slug)
+        submission.activity = json.loads(submission.activity)
+        if submission.submitted_by != request.user and profile.type != "teacher":
+            return redirect('/dashboard')
+    except:
+        return HttpResponse("Oops !")
+    context = {
+        'title': "Submission",
+        'submission': submission,
+    }
+    return render(request, 'dashboard/submission.html', context)
+    
