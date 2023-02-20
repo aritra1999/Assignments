@@ -16,7 +16,7 @@ SECRET_KEY = ')dvix1ludr$qm+v2p9uv%s9-zui=rc458@*ku@#0_rlpl6)ek='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codevox.herokuapp.com', '65.1.106.40', 'codevox.kiit.ac.in', 'www.codevox.kiit.ac.in', 'localhost']
+ALLOWED_HOSTS = ['codevox.onrender.com', 'localhost']
 
 
 # Application definition
